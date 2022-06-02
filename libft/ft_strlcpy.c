@@ -3,31 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 16:01:48 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/02 16:18:49 by hakermad         ###   ########.fr       */
+/*   Created: 2022/01/04 16:57:27 by bel-mous          #+#    #+#             */
+/*   Updated: 2022/01/31 14:12:52 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	unsigned int	count;
-	unsigned int	i;
+	size_t			i;
+	size_t			res;
 
-	count = 0;
+	res = ft_strlen(src);
 	if (dstsize == 0)
-		return (ft_strlen(src));
-	while (src[count] != '\0')
-		++count;
+		return (res);
 	i = 0;
-	while (src[i] != '\0' && i < (dstsize - 1))
+	while (src[i] && i < dstsize - 1)
 	{
 		dst[i] = src[i];
-		++i;
+		i++;
 	}
 	dst[i] = '\0';
-	return (count);
+	return (res);
 }

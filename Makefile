@@ -6,12 +6,12 @@
 #    By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/02 14:50:13 by hakermad         ###   ########.fr        #
+#    Updated: 2022/06/02 17:14:55 by hakermad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-SRC = src/main.c
+SRC = src/main.c find_path.c
 
 INCLUDES = includes
 OBJ = $(SRC:.c=.o)
