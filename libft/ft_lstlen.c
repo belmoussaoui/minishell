@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 17:00:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/02 13:34:34 by mliban-s         ###   ########.fr       */
+/*   Created: 2022/02/24 12:22:05 by bel-mous          #+#    #+#             */
+/*   Updated: 2022/02/24 12:25:33 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(void)
+int	ft_lstlen(t_list *lst)
 {
-	char	*line;
+	int	i;
 
-	while (19)
+	i = 0;
+	while (lst)
 	{
-		line = readline("minishell$ ");
-		add_history(line);
-		printf("%s\n", line);
-		ft_split(" ",*line);
+		lst = lst->next;
+		i++;
 	}
-	return (1);
+	return (i);
 }

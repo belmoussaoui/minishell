@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 17:00:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/02 13:34:34 by mliban-s         ###   ########.fr       */
+/*   Created: 2022/01/05 16:44:06 by bel-mous          #+#    #+#             */
+/*   Updated: 2022/01/07 00:40:55 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	*line;
+	void	*ptr;
 
-	while (19)
-	{
-		line = readline("minishell$ ");
-		add_history(line);
-		printf("%s\n", line);
-		ft_split(" ",*line);
-	}
-	return (1);
+	ptr = malloc(size * count);
+	if (ptr == NULL)
+		return (NULL);
+	ft_bzero(ptr, size * count);
+	return (ptr);
 }

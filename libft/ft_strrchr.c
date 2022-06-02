@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 17:00:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/02 13:34:34 by mliban-s         ###   ########.fr       */
+/*   Created: 2022/01/04 18:03:53 by bel-mous          #+#    #+#             */
+/*   Updated: 2022/01/11 21:01:24 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strrchr(const char *s, int c)
 {
-	char	*line;
+	int		i;
+	char	ch;
 
-	while (19)
-	{
-		line = readline("minishell$ ");
-		add_history(line);
-		printf("%s\n", line);
-		ft_split(" ",*line);
-	}
-	return (1);
+	i = ft_strlen(s);
+	ch = (char) c;
+	while (i >= 0 && s[i] != ch)
+		i--;
+	if (i >= 0 && s[i] == ch)
+		return ((char *) s + i);
+	return (NULL);
 }

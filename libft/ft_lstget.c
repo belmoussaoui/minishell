@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstget.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 17:00:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/02 13:34:34 by mliban-s         ###   ########.fr       */
+/*   Created: 2022/02/24 12:35:00 by bel-mous          #+#    #+#             */
+/*   Updated: 2022/02/24 12:38:38 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(void)
+t_list	*ft_lstget(t_list *lst, int index)
 {
-	char	*line;
+	int	i;
 
-	while (19)
+	i = 0;
+	while (lst && i < index)
 	{
-		line = readline("minishell$ ");
-		add_history(line);
-		printf("%s\n", line);
-		ft_split(" ",*line);
+		i++;
+		lst = lst->next;
 	}
-	return (1);
+	return (lst);
 }
