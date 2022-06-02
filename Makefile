@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/01 17:34:41 by bel-mous         ###   ########.fr        #
+#    Updated: 2022/06/02 16:47:17 by lrondia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,19 +19,24 @@ CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 $(RM) = rm -rf
 
+all: libft $(NAME)
+
+libft:
+	make bonus -C ./libft
+	
 .c.o: $(SRC)
 	$(CC) $(CFLAGS) -I $(INCLUDES) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $@
-
-all: $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $@ -lreadline -L./libft -lft
 
 clean:
+	make clean -C ./libft
 	$(RM) $(OBJ)
 
 fclean: clean
+	rm -f libft/libft.a
 	$(RM) $(NAME)
 
 re: fclean all
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft
