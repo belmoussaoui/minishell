@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/02 17:26:29 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/06 16:35:39 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ char	*path_finder(char **envp)
 		exit(EXIT_FAILURE);
 	}
 	return (*envp + 5);
-	printf("test");
 }
 
 char	*cmd_ok(char **paths, char *cmd)
