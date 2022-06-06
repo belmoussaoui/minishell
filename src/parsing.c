@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/06 17:15:48 by lrondia          ###   ########.fr       */
+/*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
+/*   Updated: 2022/06/06 17:29:01 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include "../libft/libft.h"
+void	check_pipes(char *line)
+{
+	int	i;
+	int	j;
 
-int		init_list_cmd(char *line, t_list *commands);
-void	parsing(char *line);
-
-#endif
+	i = 0;
+	j = 0;
+	while (line[i])
+	{
+		if (line[i] == '|')
+			j++;
+		i++;
+	}
+}
+	
+void	parsing(char *line)
+{
+	check_pipes(line);
+}
