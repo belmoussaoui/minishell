@@ -6,14 +6,16 @@
 #    By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/06 17:15:57 by lrondia          ###   ########.fr        #
+#    Updated: 2022/06/06 17:32:36 by lrondia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-SRC =	src/main.c\
-		src/init_list_cmd.c\
+SRC = 	src/main.c\
 		src/parsing.c\
+		src/init_list_cmd.c\
+		src/exec.c\
+		src/utils.c\
 
 INCLUDES = includes
 OBJ = $(SRC:.c=.o)
