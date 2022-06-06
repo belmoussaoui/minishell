@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 15:16:49 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/06 16:47:48 by hakermad         ###   ########.fr       */
+/*   Created: 2022/06/06 17:08:51 by hakermad          #+#    #+#             */
+/*   Updated: 2022/06/06 17:09:08 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	write_error(char *message, int code)
 {
-	t_list	*lstlast;
+	int	len;
 
-	if (lst == NULL || new == NULL)
-		return ;
-	if (*lst == NULL)
-		ft_lstadd_front(lst, new);
-	else
-	{
-		lstlast = ft_lstlast(*lst);
-		if (lstlast)
-			lstlast->next = new;
-	}
+	len = ft_strlen(message);
+	write(2, message, len);
+	write(2, "\n", 1);
+	exit(code);
 }
