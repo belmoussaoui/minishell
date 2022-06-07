@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/06 17:36:13 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/07 19:54:46 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,24 @@ typedef struct s_data
 	char	**args;
 	char	**path_cmd;
 	char	*paths;
+
+	int		error_code;
 }	t_data;
 
 // EXEC
 
-char	*path_finder(char **envp);
 char	*cmd_ok(char **paths, char *cmd);
 void	exec(t_data *data, char *line, char *envp[]);
 
 // PARSING
 
-void	parsing(char *line);
+int		parsing(t_data *data, char *line);
 int		init_list_cmd(char *line, t_list *commands);
 
 // UTILS
 
-void	write_error(char *message, int code);
+int		is_charset(char c);
+void	werror(t_data *data, char *message, int code);
+void	werror_exit(t_data *data, char *message, int code);
 
 #endif

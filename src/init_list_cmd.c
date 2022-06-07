@@ -6,18 +6,11 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:34:39 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/06 16:14:44 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/07 20:17:18 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	is_charset(char c)
-{
-	if (c == '|' || c == '<' || c == '>')
-		return (1);
-	return (0);
-}
 
 char	*get_command(char *line)
 {
@@ -32,6 +25,8 @@ char	*get_command(char *line)
 	if (is_charset(line[len]) && len == 0)
 		len++;
 	tmp = malloc(sizeof(char) * len + 1);
+	if (!tmp)
+		exit(EXIT_FAILURE);
 	while (i < len)
 	{
 		tmp[i] = line[i];
@@ -49,10 +44,10 @@ void	create_new_list(t_list **commands, char *line)
 
 	tmp = get_command(line);
 	tab = ft_split(tmp, ' ');
-	free (tmp);
+	free(tmp);
 	new = ft_lstnew(tab);
 	if (!new)
-		exit(0);
+		exit(EXIT_FAILURE);
 	ft_lstadd_back(commands, new);
 }
 

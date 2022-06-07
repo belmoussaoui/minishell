@@ -3,24 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/06 17:20:23 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/07 19:42:55 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*path_finder(char **envp)
+char	*path_finder(t_data *data, char **envp)
 {
 	while (*envp && ft_strncmp("PATH", *envp, 4))
 		envp++;
 	if (!*envp)
-	{
-		perror("NO PATH");
-		exit(EXIT_FAILURE);
-	}
+		werror_exit(data, "No such file or directory", 127);
 	return (*envp + 5);
 }
 
@@ -29,6 +26,8 @@ char	*cmd_ok(char **paths, char *cmd)
 	char	*temp;
 	char	*command;
 
+	if (!paths)
+		return (NULL);
 	if (access(cmd, F_OK) == 0)
 		return (cmd);
 	while (*paths)
@@ -50,15 +49,15 @@ void	exec(t_data *data, char *line, char *envp[])
 
 	pid = fork();
 	if (pid == -1)
-		write_error("can't fork, error occured\n", 127);
+		werror_exit(data, "can't fork, error occured\n", 127);
 	else if (pid == 0)
 	{
-		data->paths = path_finder(envp);
+		data->paths = path_finder(data, envp);
 		data->path_cmd = ft_split(data->paths, ':');
 		data->args = ft_split(line, ' ');
 		data->cmd = cmd_ok(data->path_cmd, data->args[0]);
 		if (!data->cmd)
-			write_error("command not found", 127);
+			werror_exit(data, "command not found", 127);
 		execve(data->cmd, data->args, envp);
 	}
 	waitpid(-1, NULL, 0);
