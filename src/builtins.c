@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 17:00:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/08 13:07:30 by hakermad         ###   ########.fr       */
+/*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
+/*   Updated: 2022/06/08 17:39:11 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char *argv[], char *envp[])
+int	ft_pwd(char **args)
 {
-	t_data	data;
-	char	*line;
-	t_list	*commands;
+	char *direction;
+	(void) args;
 
-	(void) argc;
-	(void) argv;
-	commands = NULL;
-	while (19)
-	{
-		line = readline("minishell$ ");
-		add_history(line);
-		init_list_cmd(line, commands);
-		exec(&data, line, envp);
-		ft_pwd(data.args);
-	}
-	return (1);
+	direction = NULL;
+	if (!(direction = getcwd(direction, 0)))
+		printf("Error pwd\n");
+	printf("%s test\n", direction);
+	free(direction);
+	return (0);
 }

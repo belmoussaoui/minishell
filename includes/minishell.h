@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/06 17:11:40 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/08 17:39:05 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	write_error(char *message, int code);
 char	*cmd_ok(char **paths, char *cmd);
 void	exec(t_data *data, char *line, char *envp[]);
 int		init_list_cmd(char *line, t_list *commands);
+int		ft_pwd(char **args);
 
 #endif

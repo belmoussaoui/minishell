@@ -6,7 +6,7 @@
 #    By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/06 17:10:38 by hakermad         ###   ########.fr        #
+#    Updated: 2022/06/08 12:27:55 by hakermad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC = 	src/main.c\
 		src/init_list_cmd.c\
 		src/exec.c\
 		src/utils.c\
+		src/builtins.c\
 
 INCLUDES = includes
 OBJ = $(SRC:.c=.o)
