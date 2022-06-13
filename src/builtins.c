@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reader.c                                           :+:      :+:    :+:   */
+/*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 03:03:03 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/13 17:08:04 by hakermad         ###   ########.fr       */
+/*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
+/*   Updated: 2022/06/13 15:45:20 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Reads a command written by the user in the terminal
-char	*reader(void)
+int	ft_pwd(char **args)
 {
-	char	*line;
+	char	*direction;
 
-	line = readline("minishell$ ");
-	add_history(line);
-	return (line);
+	(void) args;
+	direction = NULL;
+	if (!(direction = getcwd(direction, 0)))
+		printf("Error pwd\n");
+	printf("%s test\n", direction);
+	free(direction);
+	return (0);
 }

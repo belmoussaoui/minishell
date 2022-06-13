@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/13 04:02:37 by bel-mous         ###   ########.fr        #
+#    Updated: 2022/06/13 10:31:30 by hakermad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC = 	src/main.c\
 		src/execute.c\
 		src/clear.c\
 		src/utils.c\
+		src/builtins.c\
 
 INCLUDES = includes
 OBJ = $(SRC:.c=.o)
