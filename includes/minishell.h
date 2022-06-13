@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/08 17:39:05 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/13 17:27:22 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,41 @@
 # include <readline/history.h>
 # include "../libft/libft.h"
 
+typedef struct s_environment
+{
+	char	**environment;
+	char	*name;
+	char	*value;
+	char	*before;
+	char	*after;
+	char	*new;
+}	t_environment;
+
 typedef struct s_data
 {
-	char	*cmd;
-	char	**args;
-	char	**path_cmd;
-	char	*paths;
+	char					*line;
+	t_list					*commands;
+	char					*cmd;
+	char					**args;
+	char					**path_cmd;
+	char					*paths;
+	struct s_environment	*environment;
 }	t_data;
 
-char	*path_finder(char **envp);
 void	write_error(char *message, int code);
-char	*cmd_ok(char **paths, char *cmd);
-void	exec(t_data *data, char *line, char *envp[]);
-int		init_list_cmd(char *line, t_list *commands);
-int		ft_pwd(char **args);
+
+void	initializer(t_data *data, int argc, char *argv[], char *envp[]);
+
+char	*reader(void);
+
+int		lexer(char *line, t_list *commands);
+
+void	parser(t_list *commands);
+
+void	expander(t_list *commands);
+
+void	execute(t_data *data, char *line, char *envp[]);
+
+void	clear(t_data *data, char *line);
 
 #endif

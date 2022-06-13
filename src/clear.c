@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.c                                         :+:      :+:    :+:   */
+/*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/13 15:45:20 by hakermad         ###   ########.fr       */
+/*   Created: 2022/06/13 04:01:14 by bel-mous          #+#    #+#             */
+/*   Updated: 2022/06/13 04:08:15 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_pwd(char **args)
+void	clear(t_data *data, char *line)
 {
-	char	*direction;
-
-	(void) args;
-	direction = NULL;
-	if (!(direction = getcwd(direction, 0)))
-		printf("Error pwd\n");
-	printf("%s test\n", direction);
-	free(direction);
-	return (0);
+	(void) data;
+	free(line);
 }
