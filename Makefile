@@ -6,14 +6,19 @@
 #    By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/08 12:27:55 by hakermad         ###   ########.fr        #
+#    Updated: 2022/06/13 10:31:30 by hakermad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 SRC = 	src/main.c\
-		src/init_list_cmd.c\
-		src/exec.c\
+		src/initializer.c\
+		src/reader.c\
+		src/lexer.c\
+		src/parser.c\
+		src/expander.c\
+		src/execute.c\
+		src/clear.c\
 		src/utils.c\
 		src/builtins.c\
 
@@ -26,7 +31,7 @@ $(RM) = rm -rf
 all: libft $(NAME)
 
 libft:
-	make bonus -C ./libft
+	@make -C ./libft
 	
 .c.o: $(SRC)
 	$(CC) $(CFLAGS) -I $(INCLUDES) -c -o $@ $<
