@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+         #
+#    By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/06 17:10:38 by hakermad         ###   ########.fr        #
+#    Updated: 2022/06/13 02:54:32 by bel-mous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ $(RM) = rm -rf
 all: libft $(NAME)
 
 libft:
-	make bonus -C ./libft
+	@make -C ./libft
 	
 .c.o: $(SRC)
 	$(CC) $(CFLAGS) -I $(INCLUDES) -c -o $@ $<
