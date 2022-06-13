@@ -3,17 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+         #
+#    By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/06 17:10:38 by hakermad         ###   ########.fr        #
+#    Updated: 2022/06/13 04:02:37 by bel-mous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 SRC = 	src/main.c\
-		src/init_list_cmd.c\
-		src/exec.c\
+		src/initializer.c\
+		src/reader.c\
+		src/lexer.c\
+		src/parser.c\
+		src/expander.c\
+		src/execute.c\
+		src/clear.c\
 		src/utils.c\
 
 INCLUDES = includes
@@ -25,7 +30,7 @@ $(RM) = rm -rf
 all: libft $(NAME)
 
 libft:
-	make bonus -C ./libft
+	@make -C ./libft
 	
 .c.o: $(SRC)
 	$(CC) $(CFLAGS) -I $(INCLUDES) -c -o $@ $<

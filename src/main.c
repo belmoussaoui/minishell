@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:00:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/07 14:10:12 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/13 17:33:33 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,17 @@
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_data	data;
-	char	*line;
-	t_list	*commands;
 
-	(void) argc;
-	(void) argv;
-	commands = NULL;
+	initializer(&data, argc, argv, envp);
 	while (19)
 	{
-		line = readline("minishell$ ");
-		add_history(line);
-		init_list_cmd(line, commands);
-		exec(&data, line, envp);
+		data.line = reader();
+		lexer(data.line, data.commands);
+		parser(data.commands);
+		expander(data.commands);
+		execute(&data, data.line, envp);
+		clear(&data, data.line);
 	}
+
 	return (1);
 }
