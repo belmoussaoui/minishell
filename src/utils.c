@@ -6,17 +6,15 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:08:51 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/07 19:54:32 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/13 19:33:37 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_charset(char c)
+int	is_metachar(char c)
 {
-	if (c == '|' || c == '<' || c == '>')
-		return (1);
-	return (0);
+	return (c == '|' || c == '<' || c == '>');
 }
 
 void	werror(t_data *data, char *message, int code)

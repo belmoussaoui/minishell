@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/13 12:29:58 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/13 20:31:37 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
+
+typedef struct s_cmd
+{
+	char	**elements;
+	int		infile;	
+	int		outfile;	
+}	t_cmd;
 
 typedef struct s_data
 {
@@ -31,17 +38,13 @@ typedef struct s_data
 	int		error_code;
 }	t_data;
 
-void	write_error(char *message, int code);
-
 void	initializer(t_data *data, int argc, char *argv[], char *envp[]);
 
 char	*reader(void);
 
-void	initializer(t_data *data, int argc, char *argv[], char *envp[]);
+int		syntax_error(t_data *data);
 
-int		lexer(char *line, t_list *commands);
-
-void	parser(t_list *commands);
+int		parser(char *line, t_list *commands);
 
 void	expander(t_list *commands);
 
@@ -51,8 +54,9 @@ void	clear(t_data *data, char *line);
 
 // UTILS
 
-int		is_charset(char c);
+int		is_metachar(char c);
 void	werror(t_data *data, char *message, int code);
 void	werror_exit(t_data *data, char *message, int code);
+void	debug_list(t_list *commands);
 
 #endif
