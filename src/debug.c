@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initializer.c                                      :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 03:05:53 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/13 20:23:28 by lrondia          ###   ########.fr       */
+/*   Created: 2022/06/13 14:56:58 by lrondia           #+#    #+#             */
+/*   Updated: 2022/06/13 20:26:56 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Intialize minishell data and setup the environment.
-void	initializer(t_data *data, int argc, char *argv[], char *envp[])
+void	debug_list(t_list *commands)
 {
-	(void) argc;
-	(void) argv;
-	(void) envp;
-	data->commands = NULL;
-	data->error_code = 0;
+	int	i;
+
+	while (commands)
+	{
+		i = 0;
+		while (((t_cmd *)(commands->content))->elements[i])
+		{
+			printf("%s\n", ((t_cmd *)(commands->content))->elements[i]);
+			i++;
+		}
+		commands = commands->next;
+	}
 }
