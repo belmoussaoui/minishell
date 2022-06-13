@@ -6,14 +6,19 @@
 #    By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/13 02:54:32 by bel-mous         ###   ########.fr        #
+#    Updated: 2022/06/13 04:02:37 by bel-mous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 SRC = 	src/main.c\
-		src/init_list_cmd.c\
-		src/exec.c\
+		src/initializer.c\
+		src/reader.c\
+		src/lexer.c\
+		src/parser.c\
+		src/expander.c\
+		src/execute.c\
+		src/clear.c\
 		src/utils.c\
 
 INCLUDES = includes

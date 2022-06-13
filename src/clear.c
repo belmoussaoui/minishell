@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 17:00:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/13 04:06:51 by bel-mous         ###   ########.fr       */
+/*   Created: 2022/06/13 04:01:14 by bel-mous          #+#    #+#             */
+/*   Updated: 2022/06/13 04:08:15 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char *argv[], char *envp[])
+void	clear(t_data *data, char *line)
 {
-	t_data	data;
-
-	initializer(&data, argc, argv, envp);
-	while (19)
-	{
-		data.line = reader();
-		lexer(data.line, data.commands);
-		parser(data.commands);
-		expander(data.commands);
-		execute(&data, data.line, envp);
-		clear(&data, data.line);
-	}
-	return (1);
+	(void) data;
+	free(line);
 }
