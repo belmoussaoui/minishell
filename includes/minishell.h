@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/07 19:54:46 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/13 12:29:58 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 typedef struct s_data
 {
+	char	*line;
+	t_list	*commands;
 	char	*cmd;
 	char	**args;
 	char	**path_cmd;
@@ -29,15 +31,23 @@ typedef struct s_data
 	int		error_code;
 }	t_data;
 
-// EXEC
+void	write_error(char *message, int code);
 
-char	*cmd_ok(char **paths, char *cmd);
-void	exec(t_data *data, char *line, char *envp[]);
+void	initializer(t_data *data, int argc, char *argv[], char *envp[]);
 
-// PARSING
+char	*reader(void);
 
-int		parsing(t_data *data, char *line);
-int		init_list_cmd(char *line, t_list *commands);
+void	initializer(t_data *data, int argc, char *argv[], char *envp[]);
+
+int		lexer(char *line, t_list *commands);
+
+void	parser(t_list *commands);
+
+void	expander(t_list *commands);
+
+void	execute(t_data *data, char *line, char *envp[]);
+
+void	clear(t_data *data, char *line);
 
 // UTILS
 

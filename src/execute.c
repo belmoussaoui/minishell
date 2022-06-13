@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/07 19:42:55 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/13 12:26:59 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ char	*cmd_ok(char **paths, char *cmd)
 	return (NULL);
 }
 
-void	exec(t_data *data, char *line, char *envp[])
+// Execute the list of commands.
+void	execute(t_data *data, char *line, char *envp[])
 {
 	pid_t	pid;
 

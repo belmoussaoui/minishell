@@ -6,15 +6,19 @@
 #    By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/06 17:32:36 by lrondia          ###   ########.fr        #
+#    Updated: 2022/06/13 12:29:18 by lrondia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 SRC = 	src/main.c\
-		src/parsing.c\
-		src/init_list_cmd.c\
-		src/exec.c\
+		src/initializer.c\
+		src/reader.c\
+		src/lexer.c\
+		src/parser.c\
+		src/expander.c\
+		src/execute.c\
+		src/clear.c\
 		src/utils.c\
 
 INCLUDES = includes
@@ -26,7 +30,7 @@ $(RM) = rm -rf
 all: libft $(NAME)
 
 libft:
-	make bonus -C ./libft
+	@make -C ./libft
 	
 .c.o: $(SRC)
 	$(CC) $(CFLAGS) -I $(INCLUDES) -c -o $@ $<
