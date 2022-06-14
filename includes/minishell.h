@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/13 20:31:37 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/14 12:23:08 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ char	*reader(void);
 
 int		syntax_error(t_data *data);
 
-int		parser(char *line, t_list *commands);
+int		parser(char *line, t_list **commands);
 
 void	expander(t_list *commands);
 
-void	execute(t_data *data, char *line, char *envp[]);
+void	execute(t_data *data, char *envp[]);
 
 void	clear(t_data *data, char *line);
 

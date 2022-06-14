@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:34:39 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/13 20:30:33 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/14 12:22:53 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*get_command(char *line)
 	return (tmp);
 }
 
-void	lexer(t_list *commands, char *line)
+void	lexer(t_list **commands, char *line)
 {
 	t_list	*new;
 	t_cmd	*cmd;
@@ -50,13 +50,12 @@ void	lexer(t_list *commands, char *line)
 	new = ft_lstnew(cmd);
 	if (!new)
 		exit(EXIT_FAILURE);
-	ft_lstadd_back(&commands, new);
-	debug_list(commands);
+	ft_lstadd_back(commands, new);
 	free(tmp);
 }
 
 // Transforms a command line into a list of tokens
-int	parser(char *line, t_list *commands)
+int	parser(char *line, t_list **commands)
 {
 	int	i;
 
