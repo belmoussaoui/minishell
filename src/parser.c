@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:34:39 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/14 13:56:40 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/14 14:03:04 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*get_command(char *line)
 	return (tmp);
 }
 
-void	lexer(t_list *commands, char *line)
+void	lexer(t_list **commands, char *line)
 {
 	t_list	*new;
 	t_cmd	*cmd;
@@ -50,12 +50,12 @@ void	lexer(t_list *commands, char *line)
 	new = ft_lstnew(cmd);
 	if (!new)
 		exit(EXIT_FAILURE);
-	ft_lstadd_back(&commands, new);
+	ft_lstadd_back(commands, new);
 	free(tmp);
 }
 
 // Transforms a command line into a list of tokens
-int	parser(t_list *commands, char *line)
+int	parser(t_list **commands, char *line)
 {
 	int	i;
 
