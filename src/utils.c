@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:08:51 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/13 19:33:37 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/14 15:35:48 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,19 @@ void	werror_exit(t_data *data, char *message, int code)
 	write(2, message, len);
 	write(2, "\n", 1);
 	exit(code);
+}
+
+void	ft_close(t_list *commands)
+{
+	int		i;
+	t_list	*copy;
+
+	i = 0;
+	copy = commands;
+	while (copy)
+	{
+		close(((t_cmd *)(copy->content))->infile);
+		close(((t_cmd *)(copy->content))->outfile);
+		copy = copy->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/14 14:03:35 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/14 16:24:25 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_cmd
 {
 	char	**elements;
 	int		infile;	
-	int		outfile;	
+	int		outfile;
 }	t_cmd;
 
 typedef struct s_data
@@ -55,6 +55,7 @@ void	clear(t_data *data, char *line);
 // UTILS
 
 int		is_metachar(char c);
+void	ft_close(t_list *commands);
 void	werror(t_data *data, char *message, int code);
 void	werror_exit(t_data *data, char *message, int code);
 void	debug_list(t_list *commands);
