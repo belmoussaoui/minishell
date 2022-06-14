@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/13 17:27:22 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/14 14:29:34 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
@@ -37,23 +38,38 @@ typedef struct s_data
 	char					**args;
 	char					**path_cmd;
 	char					*paths;
+	int		error_code;
 	struct s_environment	*environment;
 }	t_data;
 
-void	write_error(char *message, int code);
+typedef struct s_cmd
+{
+	char	**elements;
+	int		infile;	
+	int		outfile;	
+}	t_cmd;
 
 void	initializer(t_data *data, int argc, char *argv[], char *envp[]);
 
 char	*reader(void);
 
-int		lexer(char *line, t_list *commands);
+void	lexer(t_list **commands, char *line);
 
-void	parser(t_list *commands);
+int		syntax_error(t_data *data);
+
+int		parser(t_list **commands, char *line);
 
 void	expander(t_list *commands);
 
-void	execute(t_data *data, char *line, char *envp[]);
+void	execute(t_data *data, char *envp[]);
 
 void	clear(t_data *data, char *line);
+
+// UTILS
+
+int		is_metachar(char c);
+void	werror(t_data *data, char *message, int code);
+void	werror_exit(t_data *data, char *message, int code);
+void	debug_list(t_list *commands);
 
 #endif

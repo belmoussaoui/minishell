@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 12:19:35 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/13 20:28:40 by lrondia          ###   ########.fr       */
+/*   Created: 2022/06/13 14:56:58 by lrondia           #+#    #+#             */
+/*   Updated: 2022/06/13 20:26:56 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "minishell.h"
 
-t_list	*ft_lstnew(void *content)
+void	debug_list(t_list *commands)
 {
-	t_list	*lst;
+	int	i;
 
-	lst = malloc(sizeof(t_list));
-	if (lst == NULL)
-		return (NULL);
-	lst->content = content;
-	lst->next = NULL;
-	return (lst);
+	while (commands)
+	{
+		i = 0;
+		while (((t_cmd *)(commands->content))->elements[i])
+		{
+			printf("%s\n", ((t_cmd *)(commands->content))->elements[i]);
+			i++;
+		}
+		commands = commands->next;
+	}
 }
