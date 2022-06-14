@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:34:39 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/14 13:42:40 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/14 13:56:40 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	lexer(t_list *commands, char *line)
 	if (!new)
 		exit(EXIT_FAILURE);
 	ft_lstadd_back(&commands, new);
-	debug_list(commands);
 	free(tmp);
 }
 

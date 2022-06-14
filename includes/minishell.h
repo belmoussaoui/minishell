@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/14 13:41:48 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/14 13:55:06 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		parser(t_list *commands, char *line);
 
 void	expander(t_list *commands);
 
-void	execute(t_data *data, char *line, char *envp[]);
+void	execute(t_data *data, char *envp[]);
 
 void	clear(t_data *data, char *line);
 
