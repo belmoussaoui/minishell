@@ -6,16 +6,11 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:08:51 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/14 15:35:48 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/14 20:44:23 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	is_metachar(char c)
-{
-	return (c == '|' || c == '<' || c == '>');
-}
 
 void	werror(t_data *data, char *message, int code)
 {

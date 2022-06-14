@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/14 16:24:25 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/14 19:15:41 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
@@ -34,8 +35,9 @@ typedef struct s_data
 	char	**args;
 	char	**path_cmd;
 	char	*paths;
-
 	int		error_code;
+	bool	s_quote;
+	bool	d_quote;
 }	t_data;
 
 void	initializer(t_data *data, int argc, char *argv[], char *envp[]);
@@ -44,7 +46,7 @@ char	*reader(void);
 
 int		syntax_error(t_data *data);
 
-int		parser(t_list **commands, char *line);
+int		parser(t_data *data, t_list **commands, char *line);
 
 void	expander(t_list *commands);
 
@@ -55,6 +57,9 @@ void	clear(t_data *data, char *line);
 // UTILS
 
 int		is_metachar(char c);
+int		check_quote(t_data *data, char c);
+void	activate_s_quote(t_data *data, char c);
+void	activate_d_quote(t_data *data, char c);
 void	ft_close(t_list *commands);
 void	werror(t_data *data, char *message, int code);
 void	werror_exit(t_data *data, char *message, int code);

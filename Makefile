@@ -6,7 +6,7 @@
 #    By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/13 20:31:06 by lrondia          ###   ########.fr        #
+#    Updated: 2022/06/14 20:45:16 by lrondia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC = 	src/main.c\
 		src/execute.c\
 		src/clear.c\
 		src/utils.c\
+		src/syntax_utils.c\
 		src/debug.c\
 		src/syntax_error.c\
 
