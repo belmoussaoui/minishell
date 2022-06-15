@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/13 20:25:08 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/15 14:18:44 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_wrong_seperators(t_data *data, char *line)
 	nb_pipe = 0;
 	while (line[i])
 	{
-		if (is_metachar(line[i]))
+		if (!check_quote(data, line[i]) && is_metachar(line[i]))
 		{
 			nb_pipe++;
 			if (nb_pipe == 3 || (nb_pipe == 2 && !is_metachar(line[i - 1])))
@@ -56,6 +56,7 @@ void	begin_end_with_separator(t_data *data, char *line)
 int	syntax_error(t_data *data)
 {
 	check_wrong_seperators(data, data->line);
+	clear_quote(data);
 	begin_end_with_separator(data, data->line);
 	if (data->error_code)
 		return (0);
