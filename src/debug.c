@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:56:58 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/13 20:26:56 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/15 18:48:41 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,14 @@ void	debug_list(t_list *commands)
 			i++;
 		}
 		commands = commands->next;
+	}
+}
+
+void	debug_env(t_list *env)
+{
+	while (env)
+	{
+		printf("debug --> %s\n", env->content);
+		env = env->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/14 15:29:53 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/15 19:34:28 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,23 @@ char	*path_finder(t_data *data, char **envp)
 	return (*envp + 5);
 }
 
-char	*cmd_ok(char **paths, char *cmd)
+char	*cmd_ok(t_data *data, char **paths, char *cmd_name, char *envp[])
 {
 	char	*temp;
 	char	*command;
 
 	if (!paths)
 		return (NULL);
-	if (access(cmd, F_OK) == 0)
-		return (cmd);
+	if (ft_strncmp(data->line, "unset", 6) == 0)
+	{
+		ft_unset(data, envp);
+	}
+	if (access(cmd_name, F_OK) == 0)
+		return (cmd_name);
 	while (*paths)
 	{
 		temp = ft_strjoin(*paths, "/");
-		command = ft_strjoin(temp, cmd);
+		command = ft_strjoin(temp, cmd_name);
 		free(temp);
 		if (access(command, X_OK) == 0)
 			return (command);
@@ -43,39 +47,65 @@ char	*cmd_ok(char **paths, char *cmd)
 	return (NULL);
 }
 
-void	run_child(t_data *data, char *envp[], int i)
+int	is_builtin(char *cmd_name)
 {
-	data->paths = path_finder(data, envp);
-	data->path_cmd = ft_split(data->paths, ':');
-	data->args = ((t_cmd *)(ft_lstget(data->commands, i)->content))->elements;
-	data->cmd = cmd_ok(data->path_cmd, data->args[0]);
-	if (!data->cmd)
-		werror_exit(data, "command not found", 127);
-	execve(data->cmd, data->args, envp);
+	return (!ft_strncmp(cmd_name, "unset", 6) || !ft_strncmp(cmd_name, "export", 7));
+}
+
+void	redirecting(t_data *data, char *cmd_name, char *envp[])
+{
+	if (!ft_strncmp(cmd_name, "unset", 6))
+		ft_unset(data, envp);
+	else if (!ft_strncmp(cmd_name, "export", 7))
+		ft_export(data, &data->new_env);
+}
+
+void	run_child(t_data *data, char *envp[], t_list *current)
+{
+	char	*path_temp;
+	
+	path_temp = path_finder(data, envp);
+	data->paths = ft_split(path_temp, ':');
+	data->elements = ((t_cmd *)(current->content))->elements;
+	if (is_builtin(data->elements[0]))
+		redirecting(data, data->elements[0], envp);
+	else
+	{	
+		data->cmd = cmd_ok(data, data->paths, data->elements[0], envp);
+		if (!data->cmd)
+			werror_exit(data, "command not found", 127);
+		if (current != data->commands)
+			dup2(((t_cmd *)(current->content))->infile, STDIN_FILENO);
+		if (ft_lstlen(current) > 1)
+			dup2(((t_cmd *)(current->next->content))->outfile, STDOUT_FILENO);
+		ft_close(current);
+		execve(data->cmd, data->elements, envp);
+	}
 }
 
 // Execute the list of commands.
 void	execute(t_data *data, char *envp[])
 {
-	pid_t	*pids;
-	int		cmdn;
-	int		i;
+	int		pid;
+	t_list	*current;
 
-	cmdn = ft_lstlen(data->commands);
-	pids = malloc(sizeof(int) * cmdn);
-	if (!pids)
-		exit(EXIT_FAILURE);
-	i = 0;
-	while (i < cmdn)
+	current = data->commands;
+	while (current)
 	{
-		pids[i] = fork();
-		if (pids[i] == -1)
+		pid = fork();
+		if (pid == -1)
 			werror_exit(data, "can't fork, error occured\n", 127);
-		else if (pids[i] == 0)
-			run_child(data, envp, i);
-		i++;
+		else if (pid == 0)
+			run_child(data, envp, current);
+		close(((t_cmd *)(current->content))->infile);
+		close(((t_cmd *)(current->content))->outfile);
+		current = current->next;
 	}
-	i = 0;
-	while (i++ < cmdn)
-		waitpid(-1, NULL, 0);
+	current = data->commands;
+	while (current)
+	{
+		wait(&data->error_code);
+		current = current->next;
+	}
 }
+// ! WEXITSTATUS

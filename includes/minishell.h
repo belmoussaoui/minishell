@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/14 17:58:36 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/15 19:42:37 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,41 +20,28 @@
 # include <readline/history.h>
 # include "../libft/libft.h"
 
-typedef struct s_environment
-{
-	char	**environment;
-	char	*name;
-	char	*value;
-	char	*before;
-	char	*after;
-	char	*new;
-
-	void			*content;
-	struct s_list	*next;
-}	t_environment;
-
 typedef struct s_data
 {
-	char					*line;
-	t_list					*commands;
-	char					*cmd;
-	char					**args;
-	char					**path_cmd;
-	char					*paths;
+	char	*line;
+	t_list	*commands;
+	char	*cmd;
+	char	**elements;
+	char	**paths;
 	int		error_code;
-	struct s_environment	*environment;
+	int		len_env;
+	t_list	*new_env;
 }	t_data;
 
 typedef struct s_cmd
 {
 	char	**elements;
 	int		infile;	
-	int		outfile;	
+	int		outfile;
 }	t_cmd;
 
 void	write_error(char *message, int code);
 
-void	initializer(t_data *data, int argc, char *argv[], char *envp[]);
+void	initializer(t_data *data, char *envp[]);
 
 char	*reader(void);
 
@@ -70,12 +57,18 @@ void	execute(t_data *data, char *envp[]);
 
 void	clear(t_data *data, char *line);
 
+void	ft_unset(t_data *data, char *envp[]);
+
+void	ft_export(t_data *data, t_list **new_env);
+
 
 // UTILS
 
 int		is_metachar(char c);
+void	ft_close(t_list *commands);
 void	werror(t_data *data, char *message, int code);
 void	werror_exit(t_data *data, char *message, int code);
 void	debug_list(t_list *commands);
+void	debug_env(t_list *env);
 
 #endif

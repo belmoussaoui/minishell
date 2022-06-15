@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:34:39 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/14 14:03:27 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/15 11:53:51 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ char	*get_command(char *line)
 	return (tmp);
 }
 
+void	in_out_file(t_cmd *cmd)
+{
+	int		tab[2];
+
+	pipe(tab);
+	cmd->infile = tab[0];
+	cmd->outfile = tab[1];
+}
+// protéger pipe avec werror_exit( , "can't pipe, error occured\n", 127);
+
 void	lexer(t_list **commands, char *line)
 {
 	t_list	*new;
@@ -45,8 +55,7 @@ void	lexer(t_list **commands, char *line)
 		exit(EXIT_FAILURE);
 	tmp = get_command(line);
 	cmd->elements = ft_split(tmp, ' ');
-	cmd->infile = 0;
-	cmd->outfile = 1;
+	in_out_file(cmd);
 	new = ft_lstnew(cmd);
 	if (!new)
 		exit(EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:00:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/14 15:29:48 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/15 17:38:40 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_data	data;
 
-	initializer(&data, argc, argv, envp);
+	(void) argc;
+	(void) argv;
+	initializer(&data, envp);
 	while (19)
 	{
 		data.line = reader();
