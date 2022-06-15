@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/14 18:29:02 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/15 14:48:12 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,5 @@ void	execute(t_data *data, char *envp[])
 		wait(&data->error_code);
 		current = current->next;
 	}
+	data->error_code = WEXITSTATUS(data->error_code);
 }
-// ! WEXITSTATUS
