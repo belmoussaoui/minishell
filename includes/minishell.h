@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/14 19:15:41 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/15 14:21:28 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ void	clear(t_data *data, char *line);
 
 int		is_metachar(char c);
 int		check_quote(t_data *data, char c);
-void	activate_s_quote(t_data *data, char c);
-void	activate_d_quote(t_data *data, char c);
+void	clear_quote(t_data *data);
 void	ft_close(t_list *commands);
 void	werror(t_data *data, char *message, int code);
 void	werror_exit(t_data *data, char *message, int code);

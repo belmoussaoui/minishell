@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:34:39 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/14 20:43:18 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/15 15:45:02 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	*get_command(t_data *data, char *line)
 		i++;
 	}
 	tmp[i] = '\0';
+	clear_quote(data);
 	return (tmp);
 }
 
@@ -83,5 +84,6 @@ int	parser(t_data *data, t_list **commands, char *line)
 			lexer(data, commands, line + i + 1);
 		i++;
 	}
+	clear_quote(data);
 	return (1);
 }

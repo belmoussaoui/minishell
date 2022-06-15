@@ -6,20 +6,11 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/14 20:22:15 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/15 14:18:44 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	check_quote(t_data *data, char c)
-{
-	activate_s_quote(data, c);
-	activate_d_quote(data, c);
-	if (data->s_quote == 1 || data->d_quote == 1)
-		return (1);
-	return (0);
-}
 
 void	check_wrong_seperators(t_data *data, char *line)
 {
@@ -65,6 +56,7 @@ void	begin_end_with_separator(t_data *data, char *line)
 int	syntax_error(t_data *data)
 {
 	check_wrong_seperators(data, data->line);
+	clear_quote(data);
 	begin_end_with_separator(data, data->line);
 	if (data->error_code)
 		return (0);

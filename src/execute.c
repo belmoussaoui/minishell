@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/14 18:29:02 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/15 13:49:32 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ void	run_child(t_data *data, char *envp[], t_list *current)
 	if (ft_lstlen(current) > 1)
 		dup2(((t_cmd *)(current->next->content))->outfile, STDOUT_FILENO);
 	ft_close(current);
-	execve(data->cmd, data->args, envp);
+	if (execve(data->cmd, data->args, envp) == -1)
+		werror_exit(data, "can't execve, error occured\n", 256);
 }
+// code d'erreur pour échec d'execve ?
 
 // Execute the list of commands.
 void	execute(t_data *data, char *envp[])
