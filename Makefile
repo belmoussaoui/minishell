@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+         #
+#    By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/13 10:31:30 by hakermad         ###   ########.fr        #
+#    Updated: 2022/06/14 15:27:58 by mliban-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,14 @@ NAME = minishell
 SRC = 	src/main.c\
 		src/initializer.c\
 		src/reader.c\
-		src/lexer.c\
 		src/parser.c\
 		src/expander.c\
 		src/execute.c\
 		src/clear.c\
 		src/utils.c\
 		src/builtins.c\
+		src/debug.c\
+		src/syntax_error.c\
 
 INCLUDES = includes
 OBJ = $(SRC:.c=.o)

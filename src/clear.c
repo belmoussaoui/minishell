@@ -6,7 +6,7 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 04:01:14 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/13 04:08:15 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/14 12:33:19 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	clear(t_data *data, char *line)
 {
-	(void) data;
+	data->commands = NULL;
 	free(line);
 }

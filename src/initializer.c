@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:05:53 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/13 18:54:26 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/14 15:40:37 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_env(int argc, char *argv[], char *envp[])
 	new_env = NULL;
 	i = 0;
 	
+	ft_export(argc, argv, &new_env);
 	while (envp[i] != 0)
 	{
 		ft_lstadd_back(&new_env, ft_lstnew(envp[i]));
@@ -43,10 +44,7 @@ void	ft_env(int argc, char *argv[], char *envp[])
 		printf("Apres : %s\n", env.after);
 		i++;
 	}
-	ft_export(argc, argv, &new_env);
 	printf("%s\n", new_env->content);
-
-
 }
 
 // Intialize minishell data and setup the environment.
@@ -58,4 +56,5 @@ void	initializer(t_data *data, int argc, char *argv[], char *envp[])
 	data->commands = NULL;
 	//printf("La valeur de %s est %s\n", argv[1], getenv(argv[1]));
 	ft_env(argc, argv, envp);
+	data->error_code = 0;
 }
