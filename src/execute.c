@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/15 13:49:32 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/15 15:49:37 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,5 @@ void	execute(t_data *data, char *envp[])
 		wait(&data->error_code);
 		current = current->next;
 	}
+	data->error_code = WEXITSTATUS(data->error_code);
 }
-// ! WEXITSTATUS
