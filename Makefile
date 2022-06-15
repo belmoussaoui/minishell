@@ -6,7 +6,7 @@
 #    By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/14 15:29:44 by hakermad         ###   ########.fr        #
+#    Updated: 2022/06/15 19:53:17 by hakermad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC = 	src/main.c\
 		src/clear.c\
 		src/utils.c\
 		src/builtins.c\
+		src/syntax_utils.c\
 		src/debug.c\
 		src/syntax_error.c\
 

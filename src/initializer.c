@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:05:53 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/15 19:45:09 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/15 19:52:53 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	init_env(t_data *data, t_list **new_env, char *envp[])
 // Intialize minishell data and setup the environment.
 void	initializer(t_data *data, char *envp[])
 {
+	data->s_quote = 0;
+	data->d_quote = 0;
 	data->commands = NULL;
 	data->len_env = 0;
 	data->new_env = NULL;

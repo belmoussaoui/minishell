@@ -6,19 +6,25 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/15 19:45:51 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/15 19:59:25 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_pwd(char **args)
+int	is_builtin(char *cmd_name)
+{
+	return (!ft_strncmp(cmd_name, "unset", 6)
+		|| !ft_strncmp(cmd_name, "export", 7));
+}
+
+int	ft_pwd(void)
 {
 	char	*direction;
 
-	(void) args;
 	direction = NULL;
-	if (!(direction = getcwd(direction, 0)))
+	direction = getcwd(direction, 0);
+	if (!direction)
 		printf("Error pwd\n");
 	printf("%s test\n", direction);
 	free(direction);
@@ -27,8 +33,8 @@ int	ft_pwd(char **args)
 
 void	ft_export(t_data *data, t_list **new_env)
 {
-	int 	i;
-	int 	arg_count;
+	int		i;
+	int		arg_count;
 	char	**value;
 	char	**elem_split;
 
@@ -41,7 +47,7 @@ void	ft_export(t_data *data, t_list **new_env)
 		{
 			value = ft_split((ft_lstget(*new_env, i))->content, '=');
 			if (!ft_strncmp(elem_split[0], value[0], ft_strlen(elem_split[0])))
-				break;
+				break ;
 			i++;
 		}
 		if (i == data->len_env)
@@ -53,13 +59,22 @@ void	ft_export(t_data *data, t_list **new_env)
 
 void	ft_unset(t_data *data, char *envp[])
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (envp[i])
 	{
-		if (ft_strncmp(data->elements[1], envp[i], ft_strlen(data->elements[1])) == 0)
+		if (ft_strncmp(data->elements[1], envp[i],
+				ft_strlen(data->elements[1])) == 0)
 			printf("ft_unset\n");
 		i++;
 	}
+}
+
+void	redirecting(t_data *data, char *cmd_name, char *envp[])
+{
+	if (!ft_strncmp(cmd_name, "unset", 6))
+		ft_unset(data, envp);
+	else if (!ft_strncmp(cmd_name, "export", 7))
+		ft_export(data, &data->new_env);
 }
