@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/14 14:29:34 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/14 17:58:36 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ typedef struct s_environment
 	char	*before;
 	char	*after;
 	char	*new;
+
+	void			*content;
+	struct s_list	*next;
 }	t_environment;
 
 typedef struct s_data
@@ -49,6 +52,8 @@ typedef struct s_cmd
 	int		outfile;	
 }	t_cmd;
 
+void	write_error(char *message, int code);
+
 void	initializer(t_data *data, int argc, char *argv[], char *envp[]);
 
 char	*reader(void);
@@ -64,6 +69,7 @@ void	expander(t_list *commands);
 void	execute(t_data *data, char *envp[]);
 
 void	clear(t_data *data, char *line);
+
 
 // UTILS
 
