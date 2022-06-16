@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/16 13:50:55 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/16 16:52:59 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	clear(t_data *data, char *line);
 void	ft_unset(t_data *data, char *envp[]);
 
 void	ft_export(t_data *data, t_list **new_env);
+
+int		cmp_env(t_data *data, t_list **new_env);
 
 // UTILS
 

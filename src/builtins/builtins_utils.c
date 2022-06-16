@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.c                                         :+:      :+:    :+:   */
+/*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 16:40:34 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/16 17:53:26 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,19 @@ int	ft_pwd(void)
 	return (0);
 }
 
-void	ft_export(t_data *data, t_list **new_env)
+int	cmp_env(t_data *data, t_list **new_env)
 {
-	int		i;
+	char	**elem_split;
 	int		arg_count;
 	char	**value;
-	char	**elem_split;
+	int		i;
 
+	i = 0;
 	arg_count = 1;
-	while (data->elements[arg_count])
+	elem_split = ft_split(data->elements[arg_count], '=');
+	while (i < data->len_env)
 	{
+<<<<<<< HEAD:src/builtins.c
 		i = 0;
 		elem_split = ft_split(data->elements[arg_count], '=');
 		while (i < data->len_env)
@@ -57,6 +60,14 @@ void	ft_export(t_data *data, t_list **new_env)
 		arg_count++;
 	}
 debug_env(*new_env);
+=======
+		value = ft_split((ft_lstget(*new_env, i))->content, '=');
+		if (!ft_strncmp(elem_split[0], value[0], ft_strlen(elem_split[0])))
+			break ;
+		i++;
+	}
+	return (i);
+>>>>>>> 6af2652194e046a14feca4866ac49e5761dd56a0:src/builtins/builtins_utils.c
 }
 
 void	ft_unset(t_data *data, char *envp[])
