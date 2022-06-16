@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/15 19:59:47 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/16 13:50:55 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int		parser(t_data *data, t_list **commands, char *line);
 void	expander(t_list *commands);
 
 void	execute(t_data *data, char *envp[]);
+void	run_builtin(t_data *data, char *cmd_name, char *envp[]);
+int		is_builtin(char *cmd_name);
 
 void	clear(t_data *data, char *line);
 

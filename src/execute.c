@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/15 19:59:34 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/16 14:17:54 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,22 @@ void	run_child(t_data *data, char *envp[], t_list *current)
 	path_temp = path_finder(data, envp);
 	data->paths = ft_split(path_temp, ':');
 	data->elements = ((t_cmd *)(current->content))->elements;
+	data->cmd = cmd_ok(data, data->paths, data->elements[0], envp);
+	if (current != data->commands)
+		dup2(((t_cmd *)(current->content))->infile, STDIN_FILENO);
+	if (ft_lstlen(current) > 1)
+		dup2(((t_cmd *)(current->next->content))->outfile, STDOUT_FILENO);
+	ft_close(current);
 	if (is_builtin(data->elements[0]))
-		redirecting(data, data->elements[0], envp);
+		run_builtin(data, data->elements[0], envp);
 	else
-	{	
-		data->cmd = cmd_ok(data, data->paths, data->elements[0], envp);
+	{
 		if (!data->cmd)
 			werror_exit(data, "command not found", 127);
-		if (current != data->commands)
-			dup2(((t_cmd *)(current->content))->infile, STDIN_FILENO);
-		if (ft_lstlen(current) > 1)
-			dup2(((t_cmd *)(current->next->content))->outfile, STDOUT_FILENO);
-		ft_close(current);
 		if (execve(data->cmd, data->elements, envp) == -1)
 			werror_exit(data, "can't execve, error occured\n", 256);
 	}
 }
-// code d'erreur pour échec d'execve ?
 
 // Execute the list of commands.
 void	execute(t_data *data, char *envp[])

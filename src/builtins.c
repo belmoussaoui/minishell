@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/15 19:59:25 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/16 13:51:11 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_unset(t_data *data, char *envp[])
 	}
 }
 
-void	redirecting(t_data *data, char *cmd_name, char *envp[])
+void	run_builtin(t_data *data, char *cmd_name, char *envp[])
 {
 	if (!ft_strncmp(cmd_name, "unset", 6))
 		ft_unset(data, envp);
