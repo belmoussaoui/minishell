@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/16 13:50:55 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/16 16:22:20 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ int		parser(t_data *data, t_list **commands, char *line);
 void	expander(t_list *commands);
 
 void	execute(t_data *data, char *envp[]);
-void	run_builtin(t_data *data, char *cmd_name, char *envp[]);
+void	run_builtin(t_data *data, char *cmd_name);
 int		is_builtin(char *cmd_name);
 
 void	clear(t_data *data, char *line);
 
-void	ft_unset(t_data *data, char *envp[]);
+void	ft_unset(t_data *data, t_list **new_env);
 
 void	ft_export(t_data *data, t_list **new_env);
 

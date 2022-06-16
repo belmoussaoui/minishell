@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 13:51:11 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/16 17:01:07 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,11 @@ void	ft_export(t_data *data, t_list **new_env)
 		arg_count++;
 	}
 }
-// debug_env(*new_env);
 
-void	ft_unset(t_data *data, char *envp[])
-{
-	int	i;
-
-	i = 0;
-	while (envp[i])
-	{
-		if (ft_strncmp(data->elements[1], envp[i],
-				ft_strlen(data->elements[1])) == 0)
-			printf("ft_unset\n");
-		i++;
-	}
-}
-
-void	run_builtin(t_data *data, char *cmd_name, char *envp[])
+void	run_builtin(t_data *data, char *cmd_name)
 {
 	if (!ft_strncmp(cmd_name, "unset", 6))
-		ft_unset(data, envp);
+		ft_unset(data, &data->new_env);
 	else if (!ft_strncmp(cmd_name, "export", 7))
 		ft_export(data, &data->new_env);
 }
