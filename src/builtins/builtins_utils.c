@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 18:09:32 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/16 18:40:04 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,8 @@
 int	is_builtin(char *cmd_name)
 {
 	return (!ft_strncmp(cmd_name, "unset", 6)
-		|| !ft_strncmp(cmd_name, "export", 7));
-}
-
-int	ft_pwd(void)
-{
-	char	*direction;
-
-	direction = NULL;
-	direction = getcwd(direction, 0);
-	if (!direction)
-		printf("Error pwd\n");
-	printf("%s test\n", direction);
-	free(direction);
-	return (0);
+		|| !ft_strncmp(cmd_name, "export", 7)
+		|| !ft_strncmp(cmd_name, "pwd", 4));
 }
 
 int	cmp_env(t_data *data, t_list **new_env)
@@ -59,4 +47,6 @@ void	run_builtin(t_data *data, char *cmd_name)
 		ft_export(data, &data->new_env);
 	else if (!ft_strncmp(cmd_name, "env", 4))
 		ft_env(&data->new_env);
+	else if (!ft_strncmp(cmd_name, "pwd", 4))
+		ft_pwd();
 }
