@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 17:30:18 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/16 17:58:08 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,6 @@ void	run_builtin(t_data *data, char *cmd_name)
 		ft_unset(data, &data->new_env);
 	else if (!ft_strncmp(cmd_name, "export", 7))
 		ft_export(data, &data->new_env);
+	else if (!ft_strncmp(cmd_name, "env", 4))
+		ft_env(&data->new_env);
 }

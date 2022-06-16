@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/16 17:30:49 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/16 17:58:02 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	clear(t_data *data, char *line);
 void	ft_unset(t_data *data, t_list **new_env);
 
 void	ft_export(t_data *data, t_list **new_env);
+
+void	ft_env(t_list **env);
 
 int		cmp_env(t_data *data, t_list **new_env);
 
