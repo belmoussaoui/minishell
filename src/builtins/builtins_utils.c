@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 18:09:32 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/19 19:03:22 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,33 @@
 int	is_builtin(char *cmd_name)
 {
 	return (!ft_strncmp(cmd_name, "unset", 6)
-		|| !ft_strncmp(cmd_name, "export", 7));
+		|| !ft_strncmp(cmd_name, "export", 7)
+		|| !ft_strncmp(cmd_name, "pwd", 4)
+		|| !ft_strncmp(cmd_name, "cd", 3)
+		|| !ft_strncmp(cmd_name, "env", 4));
 }
 
-int	ft_pwd(void)
+void	run_builtin(t_data *data, char *cmd_name)
 {
-	char	*direction;
-
-	direction = NULL;
-	direction = getcwd(direction, 0);
-	if (!direction)
-		printf("Error pwd\n");
-	printf("%s test\n", direction);
-	free(direction);
-	return (0);
+	if (!ft_strncmp(cmd_name, "unset", 6))
+		ft_unset(data, &data->new_env);
+	else if (!ft_strncmp(cmd_name, "export", 7))
+		ft_export(data, &data->new_env);
+	else if (!ft_strncmp(cmd_name, "env", 4))
+		ft_env(data->new_env);
+	else if (!ft_strncmp(cmd_name, "cd", 3))
+		ft_cd(data);
+	else if (!ft_strncmp(cmd_name, "pwd", 4))
+		ft_pwd();
 }
 
-int	cmp_env(t_data *data, t_list **new_env)
+int	cmp_env(t_data *data, t_list **new_env, int arg_count)
 {
 	char	**elem_split;
-	int		arg_count;
 	char	**value;
 	int		i;
 
 	i = 0;
-	arg_count = 1;
 	elem_split = ft_split(data->elements[arg_count], '=');
 	while (i < data->len_env)
 	{
@@ -51,12 +53,18 @@ int	cmp_env(t_data *data, t_list **new_env)
 	return (i);
 }
 
-void	run_builtin(t_data *data, char *cmd_name)
+char	*get_env(t_list *env, char *name)
 {
-	if (!ft_strncmp(cmd_name, "unset", 6))
-		ft_unset(data, &data->new_env);
-	else if (!ft_strncmp(cmd_name, "export", 7))
-		ft_export(data, &data->new_env);
-	else if (!ft_strncmp(cmd_name, "env", 4))
-		ft_env(&data->new_env);
+	char	*content;
+	int		len_name;
+
+	len_name = ft_strlen(name);
+	while (env)
+	{
+		content = (char *) env->content;
+		if (!ft_strncmp(name, content, len_name) && content[len_name] == '=')
+			return (content + len_name + 1);
+		env = env->next;
+	}
+	return (NULL);
 }
