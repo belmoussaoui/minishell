@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/16 18:53:26 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/16 18:55:20 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int		is_builtin(char *cmd_name);
 int		cmp_env(t_data *data, t_list **new_env, int arg_count);
 
 void	clear(t_data *data, char *line);
+
+int		ft_pwd(void);
 
 void	ft_unset(t_data *data, t_list **new_env);
 

@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 16:53:53 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/16 18:48:33 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/16 18:55:14 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,3 @@ void	ft_unset(t_data *data, t_list **env)
 		arg_count++;
 	}
 }
-	// debug_env(*env);

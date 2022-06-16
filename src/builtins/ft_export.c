@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 16:45:10 by mliban-s          #+#    #+#             */
-/*   Updated: 2022/06/16 18:49:33 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/16 18:56:48 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,3 @@ void	ft_export(t_data *data, t_list **new_env)
 		arg_count++;
 	}
 }
-	// debug_env(*new_env);
