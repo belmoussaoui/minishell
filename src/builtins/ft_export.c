@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 17:00:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/16 15:11:40 by mliban-s         ###   ########.fr       */
+/*   Created: 2022/06/16 16:45:10 by mliban-s          #+#    #+#             */
+/*   Updated: 2022/06/16 17:06:23 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char *argv[], char *envp[])
+void	ft_export(t_data *data, t_list **new_env)
 {
-	t_data	data;
+	int		i;
+	int		arg_count;
+	char	*new_elem;
 
-	(void) argc;
-	(void) argv;
-	initializer(&data, envp);
-	while (19)
+	arg_count = 1;
+	while (data->elements[arg_count])
 	{
-		data.line = reader(&data);
-		if (!syntax_error(&data))
-			continue ;
-		parser(&data, &data.commands, data.line);
-		expander(data.commands);
-		execute(&data, envp);
-		clear(&data, data.line);
+		i = cmp_env(data, new_env);
+		if (i == data->len_env)
+			ft_lstadd_back(new_env, ft_lstnew(data->elements[arg_count]));
+		else
+		{
+			new_elem = ft_strdup(data->elements[arg_count]);
+			(ft_lstget(*new_env, i))->content = new_elem;
+		}
+		arg_count++;
 	}
-	return (1);
+	debug_env(*new_env);
 }

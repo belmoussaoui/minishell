@@ -6,60 +6,34 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:05:53 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/15 13:44:15 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/16 15:11:23 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_export(int argc, char *argv[], t_list **new_env)
+void	init_env(t_data *data, t_list **new_env, char *envp[])
 {
-	(void) argc;
+	int	i;
 
-	if (ft_strncmp(argv[1], "export", 7) == 0)
-	{
-		ft_lstadd_back(new_env, ft_lstnew(argv[2]));
-	}
-}
-
-void	ft_env(int argc, char *argv[], char *envp[])
-{
-	t_list			*new_env;
-	t_environment	env;
-	int				i;
-
-	(void) argc;
-	(void) argv;
-	new_env = NULL;
 	i = 0;
-	
-	ft_export(argc, argv, &new_env);
-	while (envp[i] != 0)
+	while (envp[data->len_env])
+		data->len_env++;
+	while (i < data->len_env)
 	{
-		ft_lstadd_back(&new_env, ft_lstnew(envp[i]));
-		env.before = ft_split(new_env->content, '=')[0];
-		env.after = ft_split(new_env->content, '=')[1];
-		new_env = new_env->next;
-		printf("Avant : %s\n", env.before);
-		printf("Apres : %s\n", env.after);
+		ft_lstadd_back(new_env, ft_lstnew(envp[i]));
 		i++;
 	}
-	printf("%s\n", new_env->content);
-}
-
-void	ft_unset(int argc, char *argv[], char *envp[])
-{
-	
 }
 
 // Intialize minishell data and setup the environment.
-void	initializer(t_data *data, int argc, char *argv[], char *envp[])
+void	initializer(t_data *data, char *envp[])
 {
-	(void) argc;
-	(void) argv;
-	(void) envp;
+	data->s_quote = 0;
+	data->d_quote = 0;
 	data->commands = NULL;
-	//printf("La valeur de %s est %s\n", argv[1], getenv(argv[1]));
-	ft_env(argc, argv, envp);
+	data->len_env = 0;
+	data->new_env = NULL;
 	data->error_code = 0;
+	init_env(data, &data->new_env, envp);
 }
