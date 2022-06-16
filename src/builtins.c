@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins_utils.c                                   :+:      :+:    :+:   */
+/*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 17:56:06 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/16 17:57:44 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,36 +29,6 @@ int	ft_pwd(void)
 	printf("%s test\n", direction);
 	free(direction);
 	return (0);
-}
-
-int	cmp_env(t_data *data, t_list **new_env)
-{
-	char	**elem_split;
-	int		arg_count;
-	char	**value;
-	int		i;
-
-	i = 0;
-	arg_count = 1;
-	elem_split = ft_split(data->elements[arg_count], '=');
-	while (i < data->len_env)
-	{
-		i = 0;
-		elem_split = ft_split(data->elements[arg_count], '=');
-		while (i < data->len_env)
-		{
-			value = ft_split((ft_lstget(*new_env, i))->content, '=');
-			if (!ft_strncmp(elem_split[0], value[0], ft_strlen(elem_split[0])))
-				break ;
-			i++;
-		}
-		if (i == data->len_env)
-			ft_lstadd_back(new_env, ft_lstnew(data->elements[arg_count]));
-		else
-			printf("je suis la\n");
-		arg_count++;
-	}
-	return (i);
 }
 
 void	ft_unset(t_data *data, char *envp[])
