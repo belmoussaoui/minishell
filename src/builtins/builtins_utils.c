@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 17:07:12 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/16 18:13:59 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_pwd(void)
 	return (0);
 }
 
-int	cmp_env(t_data *data, t_list **new_env)
+int	cmp_env(t_data *data, t_list **new_env )
 {
 	char	**elem_split;
 	int		arg_count;
@@ -41,6 +41,9 @@ int	cmp_env(t_data *data, t_list **new_env)
 	i = 0;
 	arg_count = 1;
 	elem_split = ft_split(data->elements[arg_count], '=');
+	if(!ft_strchr(data->elements[arg_count], '='))
+		exit(1);
+	// printf("%d\n", ft_strncmp(data->elements[arg_count], "=", 1));
 	while (i < data->len_env)
 	{
 		value = ft_split((ft_lstget(*new_env, i))->content, '=');
