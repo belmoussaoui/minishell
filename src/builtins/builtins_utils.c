@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 17:58:08 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/16 18:53:30 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,18 @@
 int	is_builtin(char *cmd_name)
 {
 	return (!ft_strncmp(cmd_name, "unset", 6)
-		|| !ft_strncmp(cmd_name, "export", 7));
+		|| !ft_strncmp(cmd_name, "export", 7)
+		|| !ft_strncmp(cmd_name, "env", 4));
+}
+
+void	run_builtin(t_data *data, char *cmd_name)
+{
+	if (!ft_strncmp(cmd_name, "unset", 6))
+		ft_unset(data, &data->new_env);
+	else if (!ft_strncmp(cmd_name, "export", 7))
+		ft_export(data, &data->new_env);
+	else if (!ft_strncmp(cmd_name, "env", 4))
+		ft_env(data->new_env);
 }
 
 int	ft_pwd(void)
@@ -31,15 +42,13 @@ int	ft_pwd(void)
 	return (0);
 }
 
-int	cmp_env(t_data *data, t_list **new_env)
+int	cmp_env(t_data *data, t_list **new_env, int arg_count)
 {
 	char	**elem_split;
-	int		arg_count;
 	char	**value;
 	int		i;
 
 	i = 0;
-	arg_count = 1;
 	elem_split = ft_split(data->elements[arg_count], '=');
 	while (i < data->len_env)
 	{
@@ -49,14 +58,4 @@ int	cmp_env(t_data *data, t_list **new_env)
 		i++;
 	}
 	return (i);
-}
-
-void	run_builtin(t_data *data, char *cmd_name)
-{
-	if (!ft_strncmp(cmd_name, "unset", 6))
-		ft_unset(data, &data->new_env);
-	else if (!ft_strncmp(cmd_name, "export", 7))
-		ft_export(data, &data->new_env);
-	else if (!ft_strncmp(cmd_name, "env", 4))
-		ft_env(&data->new_env);
 }

@@ -6,20 +6,17 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 17:52:55 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/16 17:58:13 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/16 18:53:24 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env(t_list **env)
+void	ft_env(t_list *env)
 {
-	t_list	*copy;
-
-	copy = *env;
-	while (copy)
+	while (env)
 	{
-		printf("%s\n", copy->content);
-		copy = copy->next;
+		printf("%s\n", env->content);
+		env = env->next;
 	}
 }
