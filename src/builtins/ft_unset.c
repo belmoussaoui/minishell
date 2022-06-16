@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 16:53:53 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/16 18:40:10 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/16 19:04:19 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_unset(t_data *data, t_list **env)
 	arg_count = 1;
 	while (data->elements[arg_count])
 	{
-		i = cmp_env(data, env);
+		i = cmp_env(data, env, arg_count);
 		if (i != data->len_env)
 			unset_from_env(data, env, i);
 		arg_count++;
