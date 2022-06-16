@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/16 17:58:02 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/16 18:39:55 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	run_builtin(t_data *data, char *cmd_name);
 int		is_builtin(char *cmd_name);
 
 void	clear(t_data *data, char *line);
+
+int		ft_pwd(void);
 
 void	ft_unset(t_data *data, t_list **new_env);
 
