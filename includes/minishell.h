@@ -6,9 +6,10 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/14 15:30:30 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/15 13:35:08 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #ifndef MINISHELL_H
@@ -24,17 +25,14 @@ typedef struct s_cmd
 {
 	char	**elements;
 	int		infile;	
-	int		outfile;	
+	int		outfile;
 }	t_cmd;
 
 typedef struct s_environment
 {
 	char	**environment;
-	char	*name;
-	char	*value;
 	char	*before;
 	char	*after;
-	char	*new;
 }	t_environment;
 
 typedef struct s_data
@@ -56,7 +54,7 @@ char	*reader(void);
 
 int		syntax_error(t_data *data);
 
-int		parser(char *line, t_list **commands);
+int		parser(t_list **commands, char *line);
 
 void	expander(t_list *commands);
 
@@ -67,6 +65,7 @@ void	clear(t_data *data, char *line);
 // UTILS
 
 int		is_metachar(char c);
+void	ft_close(t_list *commands);
 void	werror(t_data *data, char *message, int code);
 void	werror_exit(t_data *data, char *message, int code);
 void	debug_list(t_list *commands);

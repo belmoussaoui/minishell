@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:00:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/14 15:21:20 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/15 13:04:08 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char *argv[], char *envp[])
 		data.line = reader();
 		if (!syntax_error(&data))
 			continue ;
-		parser(data.line, &data.commands);
+		parser(&data.commands, data.line);
 		expander(data.commands);
 		execute(&data, envp);
 		clear(&data, data.line);

@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:05:53 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/14 15:40:37 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/15 13:44:15 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void	ft_env(int argc, char *argv[], char *envp[])
 		i++;
 	}
 	printf("%s\n", new_env->content);
+}
+
+void	ft_unset(int argc, char *argv[], char *envp[])
+{
+	
 }
 
 // Intialize minishell data and setup the environment.
