@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 13:51:11 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/16 16:40:34 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,12 @@ void	ft_export(t_data *data, t_list **new_env)
 		}
 		if (i == data->len_env)
 			ft_lstadd_back(new_env, ft_lstnew(data->elements[arg_count]));
+		else
+			printf("je suis la\n");
 		arg_count++;
 	}
+debug_env(*new_env);
 }
-// debug_env(*new_env);
 
 void	ft_unset(t_data *data, char *envp[])
 {
