@@ -6,7 +6,7 @@
 #    By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/16 17:01:41 by lrondia          ###   ########.fr        #
+#    Updated: 2022/06/16 17:30:41 by lrondia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,11 @@ SRC = 	src/main.c\
 		src/execute.c\
 		src/clear.c\
 		src/utils.c\
-		src/builtins.c\
-		src/ft_unset.c\
 		src/syntax_utils.c\
 		src/debug.c\
 		src/syntax_error.c\
+		src/builtins/builtins_utils.c\
+		src/builtins/ft_export.c\
 
 INCLUDES = includes
 OBJ = $(SRC:.c=.o)

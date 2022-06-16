@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.c                                         :+:      :+:    :+:   */
+/*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 17:01:07 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/16 17:30:18 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,24 @@ int	ft_pwd(void)
 	return (0);
 }
 
-void	ft_export(t_data *data, t_list **new_env)
+int	cmp_env(t_data *data, t_list **new_env)
 {
-	int		i;
+	char	**elem_split;
 	int		arg_count;
 	char	**value;
-	char	**elem_split;
+	int		i;
 
+	i = 0;
 	arg_count = 1;
-	while (data->elements[arg_count])
+	elem_split = ft_split(data->elements[arg_count], '=');
+	while (i < data->len_env)
 	{
-		i = 0;
-		elem_split = ft_split(data->elements[arg_count], '=');
-		while (i < data->len_env)
-		{
-			value = ft_split((ft_lstget(*new_env, i))->content, '=');
-			if (!ft_strncmp(elem_split[0], value[0], ft_strlen(elem_split[0])))
-				break ;
-			i++;
-		}
-		if (i == data->len_env)
-			ft_lstadd_back(new_env, ft_lstnew(data->elements[arg_count]));
-		arg_count++;
+		value = ft_split((ft_lstget(*new_env, i))->content, '=');
+		if (!ft_strncmp(elem_split[0], value[0], ft_strlen(elem_split[0])))
+			break ;
+		i++;
 	}
+	return (i);
 }
 
 void	run_builtin(t_data *data, char *cmd_name)
