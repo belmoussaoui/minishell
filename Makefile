@@ -6,7 +6,7 @@
 #    By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/16 17:53:31 by hakermad         ###   ########.fr        #
+#    Updated: 2022/06/16 18:01:30 by hakermad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ SRC = 	src/main.c\
 		src/syntax_error.c\
 		src/builtins/builtins_utils.c\
 		src/builtins/ft_export.c\
+		src/builtins/ft_unset.c\
+		src/builtins/ft_env.c\
 
 INCLUDES = includes
 OBJ = $(SRC:.c=.o)
