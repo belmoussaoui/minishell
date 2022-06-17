@@ -6,11 +6,17 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/16 15:56:24 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/17 18:32:48 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	is_special_char(char c)
+{
+	return (!ft_isalnum(c) && !is_metachar(c) && c != '_'
+		&& c != ' ' && c != '\\' && c != '$');
+}
 
 void	check_wrong_seperators(t_data *data, char *line)
 {
@@ -51,6 +57,13 @@ void	begin_end_with_separator(t_data *data, char *line)
 	i = ft_strlen(line) - 1;
 	if (line[i] == '<' || line[i] == '>')
 		werror(data, "syntax error near unexpected token `newline'", 285);
+	i = 0;
+	while (line[i])
+	{
+		if (is_special_char(line[i]))
+			werror(data, "not a valid identifier", 1);
+		i++;
+	}
 }
 
 int	syntax_error(t_data *data)

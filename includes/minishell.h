@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/16 18:55:20 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/17 18:26:24 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	ft_env(t_list *env);
 // UTILS
 
 int		is_metachar(char c);
+int		is_special_char(char c);
 int		check_quote(t_data *data, char c);
 void	clear_quote(t_data *data);
 void	ft_close(t_list *commands);
