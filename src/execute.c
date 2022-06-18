@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 14:17:54 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/16 17:30:23 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,13 @@ char	*path_finder(t_data *data, char **envp)
 	return (*envp + 5);
 }
 
-char	*cmd_ok(t_data *data, char **paths, char *cmd_name, char *envp[])
+char	*cmd_ok(char **paths, char *cmd_name)
 {
 	char	*temp;
 	char	*command;
 
 	if (!paths)
 		return (NULL);
-	if (ft_strncmp(data->line, "unset", 6) == 0)
-	{
-		ft_unset(data, envp);
-	}
 	if (access(cmd_name, F_OK) == 0)
 		return (cmd_name);
 	while (*paths)
@@ -51,19 +47,19 @@ void	run_child(t_data *data, char *envp[], t_list *current)
 {
 	char	*path_temp;
 
-	path_temp = path_finder(data, envp);
-	data->paths = ft_split(path_temp, ':');
 	data->elements = ((t_cmd *)(current->content))->elements;
-	data->cmd = cmd_ok(data, data->paths, data->elements[0], envp);
 	if (current != data->commands)
 		dup2(((t_cmd *)(current->content))->infile, STDIN_FILENO);
 	if (ft_lstlen(current) > 1)
 		dup2(((t_cmd *)(current->next->content))->outfile, STDOUT_FILENO);
 	ft_close(current);
 	if (is_builtin(data->elements[0]))
-		run_builtin(data, data->elements[0], envp);
+		run_builtin(data, data->elements[0]);
 	else
 	{
+		path_temp = path_finder(data, envp);
+		data->paths = ft_split(path_temp, ':');
+		data->cmd = cmd_ok(data->paths, data->elements[0]);
 		if (!data->cmd)
 			werror_exit(data, "command not found", 127);
 		if (execve(data->cmd, data->elements, envp) == -1)

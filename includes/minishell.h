@@ -6,7 +6,7 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/16 17:44:09 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/18 13:00:26 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,24 @@ int		parser(t_data *data, t_list **commands, char *line);
 void	expander(t_data *data, t_list *commands);
 
 void	execute(t_data *data, char *envp[]);
-void	run_builtin(t_data *data, char *cmd_name, char *envp[]);
+void	run_builtin(t_data *data, char *cmd_name);
 int		is_builtin(char *cmd_name);
+int		cmp_env(t_data *data, t_list **new_env, int arg_count);
 
 void	clear(t_data *data, char *line);
 
-void	ft_unset(t_data *data, char *envp[]);
+int		ft_pwd(void);
+
+void	ft_unset(t_data *data, t_list **new_env);
 
 void	ft_export(t_data *data, t_list **new_env);
+
+void	ft_env(t_list *env);
 
 // UTILS
 
 int		is_metachar(char c);
+int		is_special_char(char c);
 int		check_quote(t_data *data, char c);
 void	clear_quote(t_data *data);
 void	ft_close(t_list *commands);
