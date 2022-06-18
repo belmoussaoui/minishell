@@ -6,13 +6,13 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:28:19 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/18 15:15:54 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/18 16:58:24 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	expands_variable(t_list **new, char *element)
+int	expands_variable(t_data *data, t_list **new, char *element)
 {
 	int		len_var;
 	char	*name_var;
@@ -26,7 +26,7 @@ int	expands_variable(t_list **new, char *element)
 	if (!name_var)
 		exit(EXIT_FAILURE);
 	ft_strlcpy(name_var, element, len_var + 1);
-	val_var = getenv(name_var);
+	val_var = get_env(data->new_env, name_var);
 	if (!val_var)
 		val_var = "";
 	free(name_var);
@@ -41,9 +41,10 @@ int	expands_variable(t_list **new, char *element)
 
 void	remplace_element(t_list *new, char **element)
 {
-	int	i;
+	int		i;
+	char	*copy;
 
-	free(*element);
+	copy = *element;
 	*element = malloc(sizeof(char) * ft_lstlen(new));
 	if (!*element)
 		exit(EXIT_FAILURE);
@@ -55,6 +56,7 @@ void	remplace_element(t_list *new, char **element)
 		i++;
 	}
 	(*element)[i] = '\0';
+	free(copy);
 }
 
 void	expands_element(t_data *data, char **element)
@@ -70,7 +72,7 @@ void	expands_element(t_data *data, char **element)
 	{
 		check_quote(data, str[i]);
 		if (str[i] == '$' && data->s_quote == 0)
-			i += expands_variable(&new, str + i + 1);
+			i += expands_variable(data, &new, str + i + 1);
 		else if ((str[i] != '"' || data->s_quote)
 			&& (str[i] != '\'' || data->d_quote))
 			ft_lstadd_back(&new, ft_lstnew(str + i));

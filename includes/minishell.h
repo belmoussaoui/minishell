@@ -6,7 +6,7 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/18 13:00:26 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/18 16:35:08 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	execute(t_data *data, char *envp[]);
 void	run_builtin(t_data *data, char *cmd_name);
 int		is_builtin(char *cmd_name);
 int		cmp_env(t_data *data, t_list **new_env, int arg_count);
+char	*get_env(t_list *env, char *name);
 
 void	clear(t_data *data, char *line);
 

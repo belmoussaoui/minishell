@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 18:56:17 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/18 16:35:29 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,20 @@ int	cmp_env(t_data *data, t_list **new_env, int arg_count)
 		i++;
 	}
 	return (i);
+}
+
+char	*get_env(t_list *env, char *name)
+{
+	char	*content;
+	int		len_name;
+
+	len_name = ft_strlen(name);
+	while (env)
+	{
+		content = (char *) env->content;
+		if (!ft_strncmp(name, content, len_name) && content[len_name] == '=')
+			return (content + len_name + 1);
+		env = env->next;
+	}
+	return (NULL);
 }
