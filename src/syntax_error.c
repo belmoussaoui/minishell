@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/17 18:32:48 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/18 13:13:45 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	is_special_char(char c)
 {
 	return (!ft_isalnum(c) && !is_metachar(c) && c != '_'
-		&& c != ' ' && c != '\\' && c != '$');
+		&& c != ' ' && c != '\\' && c != '$' && c != '"' && c != '\'');
 }
 
 void	check_wrong_seperators(t_data *data, char *line)
