@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:56:58 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/19 19:05:31 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/19 19:08:45 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	debug_env(t_list *env)
 {
 	while (env)
 	{
-		//printf("debug --> %s\n", env->content);
+		printf("debug --> %s\n", env->content);
 		env = env->next;
 	}
 }
