@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:34:39 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/15 19:52:07 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:42:09 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*get_command(t_data *data, char *line)
 	return (tmp);
 }
 
-void	in_out_file(t_data *data, t_cmd *cmd)
+void	fd_pipe(t_data *data, t_cmd *cmd)
 {
 	int		tab[2];
 
@@ -57,11 +57,14 @@ void	lexer(t_data *data, t_list **commands, char *line)
 	cmd = malloc(sizeof(t_cmd *));
 	if (!cmd)
 		exit(EXIT_FAILURE);
-	tmp = get_command(data, line);
+	tmp = get_command(data, line + 1);
 	cmd->elements = ft_split(tmp, ' ');
 	if (!cmd->elements)
 		exit(EXIT_FAILURE);
-	in_out_file(data, cmd);
+	if (line[0] =='|')
+		fd_pipe(data, cmd);
+	else
+		redirections(data, cmd, line);
 	new = ft_lstnew(cmd);
 	if (!new)
 		exit(EXIT_FAILURE);
@@ -81,7 +84,7 @@ int	parser(t_data *data, t_list **commands, char *line)
 	while (line[i])
 	{
 		if (!check_quote(data, line[i]) && is_metachar(line[i]))
-			lexer(data, commands, line + i + 1);
+			lexer(data, commands, line + i);
 		i++;
 	}
 	clear_quote(data);

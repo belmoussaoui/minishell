@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/18 16:35:08 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:45:42 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	*reader(t_data *data);
 int		syntax_error(t_data *data);
 
 int		parser(t_data *data, t_list **commands, char *line);
+void	redirections(t_data *data, t_cmd *cmd, char *line);
 
 void	expander(t_data *data, t_list *commands);
 
@@ -66,13 +67,13 @@ int		ft_pwd(void);
 void	ft_unset(t_data *data, t_list **new_env);
 
 void	ft_export(t_data *data, t_list **new_env);
+void	parsing_export_unset(t_data *data, char *line);
 
 void	ft_env(t_list *env);
 
 // UTILS
 
 int		is_metachar(char c);
-int		is_special_char(char c);
 int		check_quote(t_data *data, char c);
 void	clear_quote(t_data *data);
 void	ft_close(t_list *commands);

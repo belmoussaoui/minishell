@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+         #
+#    By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/16 18:39:10 by hakermad         ###   ########.fr        #
+#    Updated: 2022/06/20 15:46:01 by lrondia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC = 	src/main.c\
 		src/initializer.c\
 		src/reader.c\
 		src/parser.c\
+		src/redirections.c\
 		src/expander.c\
 		src/execute.c\
 		src/clear.c\
