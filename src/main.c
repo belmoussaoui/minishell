@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:00:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/16 18:33:29 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/20 20:08:12 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char *argv[], char *envp[])
 		if (!syntax_error(&data))
 			continue ;
 		parser(&data, &data.commands, data.line);
-		expander(data.commands);
+		expander(&data, data.commands);
 		execute(&data, envp);
 		clear(&data, data.line);
 	}

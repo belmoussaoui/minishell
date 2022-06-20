@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:05:53 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/16 15:11:23 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/20 20:10:07 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ void	initializer(t_data *data, char *envp[])
 	data->len_env = 0;
 	data->new_env = NULL;
 	data->error_code = 0;
+	g_ret_number = 0;
 	init_env(data, &data->new_env, envp);
+	increment_shell_level(data);
 }

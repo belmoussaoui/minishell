@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 21:45:00 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/20 12:13:42 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,20 @@ int	cmp_env(t_data *data, t_list **new_env, int arg_count)
 		i++;
 	}
 	return (i);
+}
+
+char	*get_env(t_list *env, char *name)
+{
+	char	*content;
+	int		len_name;
+
+	len_name = ft_strlen(name);
+	while (env)
+	{
+		content = (char *) env->content;
+		if (!ft_strncmp(name, content, len_name) && content[len_name] == '=')
+			return (content + len_name + 1);
+		env = env->next;
+	}
+	return (NULL);
 }
