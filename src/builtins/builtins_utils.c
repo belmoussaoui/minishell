@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 19:04:35 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/20 12:38:52 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	is_builtin(char *cmd_name)
 	return (!ft_strncmp(cmd_name, "unset", 6)
 		|| !ft_strncmp(cmd_name, "export", 7)
 		|| !ft_strncmp(cmd_name, "pwd", 4)
+		|| !ft_strncmp(cmd_name, "cd", 3)
 		|| !ft_strncmp(cmd_name, "env", 4));
 }
 
@@ -28,6 +29,8 @@ void	run_builtin(t_data *data, char *cmd_name)
 		ft_export(data, &data->new_env);
 	else if (!ft_strncmp(cmd_name, "env", 4))
 		ft_env(data->new_env);
+	else if (!ft_strncmp(cmd_name, "cd", 3))
+		ft_cd(data);
 	else if (!ft_strncmp(cmd_name, "pwd", 4))
 		ft_pwd();
 }
@@ -48,4 +51,20 @@ int	cmp_env(t_data *data, t_list **new_env, int arg_count)
 		i++;
 	}
 	return (i);
+}
+
+char	*get_env(t_list *env, char *name)
+{
+	char	*content;
+	int		len_name;
+
+	len_name = ft_strlen(name);
+	while (env)
+	{
+		content = (char *) env->content;
+		if (!ft_strncmp(name, content, len_name) && content[len_name] == '=')
+			return (content + len_name + 1);
+		env = env->next;
+	}
+	return (NULL);
 }
