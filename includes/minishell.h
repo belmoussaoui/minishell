@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/20 12:38:45 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:00:30 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <readline/history.h>
 # include "../libft/libft.h"
 
+# define TABLE_SIZE 100
+
 typedef struct s_data
 {
 	int		error_code;
@@ -31,6 +33,7 @@ typedef struct s_data
 	char	*cmd;
 	char	**paths;
 	char	**elements;
+	void	*data;
 	t_list	*commands;
 }	t_data;
 
@@ -39,6 +42,7 @@ typedef struct s_cmd
 	char	**elements;
 	int		infile;	
 	int		outfile;
+	void	*data;
 }	t_cmd;
 
 void	write_error(char *message, int code);
@@ -69,7 +73,11 @@ void	ft_export(t_data *data, t_list **new_env);
 
 void	ft_env(t_list *env);
 
-void    ft_cd(t_data *data);
+void    increment_shell_level(t_data *data);
+
+int ft_atoi_1(const char *str);
+
+bool	ft_cd(t_data *data);
 
 // UTILS
 
