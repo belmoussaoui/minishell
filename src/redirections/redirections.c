@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:42:11 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/20 19:12:33 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/20 19:55:00 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	handle_infile(t_data *data, t_cmd *cmd, char *line)
 	cmd->infile = open(infile, O_RDONLY);
 	if (cmd->infile == -1)
 		werror_exit(data, "can't open, error occured", 1);
-		
 }
 
 void	handle_outfile(t_data *data, t_cmd *cmd, char *line)
@@ -49,18 +48,6 @@ void	handle_outfile_append(t_data *data, t_cmd *cmd, char *line)
 		werror_exit(data, "can't open, error occured", 1);
 }
 
-void	handle_heredoc(t_data *data, t_cmd *cmd, char **elements)
-{
-	cmd->infile = open(".heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (cmd->infile == -1)
-		werror_exit(data, "can't open, error occured", 1);
-	write_stdin(elements[1], cmd->infile);
-	cmd->infile = open(".heredoc", O_RDONLY, 0644);
-	if (cmd->infile == -1)
-		werror_exit(data, "can't open, error occured", 1);
-	
-}
-
 void	handle_fd(t_data *data, t_cmd *cmd, char **elements, char *line)
 {
 	int	i;
@@ -70,22 +57,28 @@ void	handle_fd(t_data *data, t_cmd *cmd, char **elements, char *line)
 	{
 		if (line[i] == '<' && line[i + 1] == '<')
 		{
-			handle_heredoc(data, cmd, elements);
+			if (line[i + 2] != '\0')
+				handle_heredoc(data, cmd, elements[0] + 2);
+			else
+				handle_heredoc(data, cmd, elements[1]);
 			i++;
 		}
-		// else if (line[i] == '<' && line[i] != '<')
-		// 	handle_infile(data, cmd, line + 1);
-		// else if (line[i] == '>' && line[i] != '<')
-		// 	handle_outfile(data, cmd, line + 2);
-		// else if (line[i] == '>' && line[i] == '>')
-		// 	handle_outfile_append(data, cmd, line);
+		else if (line[i] == '<' && line[i] != '<')
+			handle_infile(data, cmd, line + 1);
+		else if (line[i] == '>' && line[i] != '<')
+			handle_outfile(data, cmd, line + 2);
+		else if (line[i] == '>' && line[i] == '>')
+		{
+			handle_outfile_append(data, cmd, line);
+			i++;
+		}
 		i++;
 	}
 }
 
 void	redirections(t_data *data, t_list *commands)
 {
-	int	i;
+	int		i;
 	t_cmd	*content;
 
 	while (commands)
@@ -94,7 +87,8 @@ void	redirections(t_data *data, t_list *commands)
 		content = (t_cmd *)(commands->content);
 		while (content->elements[i])
 		{
-			handle_fd(data, content, content->elements + i, content->elements[i]);
+			handle_fd(data, content, content->elements + i,
+				content->elements[i]);
 			i++;
 		}
 		commands = commands->next;

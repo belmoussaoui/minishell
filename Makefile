@@ -6,7 +6,7 @@
 #    By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/20 18:55:44 by lrondia          ###   ########.fr        #
+#    Updated: 2022/06/20 19:48:23 by lrondia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC = 	src/main.c\
 		src/builtins/ft_env.c\
 		src/builtins/ft_pwd.c\
 		src/redirections/redirections.c\
-		src/redirections/redirections_utils.c\
+		src/redirections/heredoc.c\
 
 INCLUDES = includes
 OBJ = $(SRC:.c=.o)

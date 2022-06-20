@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/20 18:40:54 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/20 19:55:14 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int		syntax_error(t_data *data);
 
 int		parser(t_data *data, t_list **commands, char *line);
 void	redirections(t_data *data, t_list *commands);
+void	handle_heredoc(t_data *data, t_cmd *cmd, char *stop);
 char	*get_file(char *line);
-void	write_stdin(char *infile, int file_id);
 
 void	expander(t_data *data, t_list *commands);
 
