@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 18:13:59 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/16 21:45:00 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,30 @@
 int	is_builtin(char *cmd_name)
 {
 	return (!ft_strncmp(cmd_name, "unset", 6)
-		|| !ft_strncmp(cmd_name, "export", 7));
+		|| !ft_strncmp(cmd_name, "export", 7)
+		|| !ft_strncmp(cmd_name, "pwd", 4)
+		|| !ft_strncmp(cmd_name, "env", 4));
 }
 
-int	ft_pwd(void)
+void	run_builtin(t_data *data, char *cmd_name)
 {
-	char	*direction;
-
-	direction = NULL;
-	direction = getcwd(direction, 0);
-	if (!direction)
-		printf("Error pwd\n");
-	printf("%s test\n", direction);
-	free(direction);
-	return (0);
+	if (!ft_strncmp(cmd_name, "unset", 6))
+		ft_unset(data, &data->new_env);
+	else if (!ft_strncmp(cmd_name, "export", 7))
+		ft_export(data, &data->new_env);
+	else if (!ft_strncmp(cmd_name, "env", 4))
+		ft_env(data->new_env);
+	else if (!ft_strncmp(cmd_name, "pwd", 4))
+		ft_pwd();
 }
 
-int	cmp_env(t_data *data, t_list **new_env )
+int	cmp_env(t_data *data, t_list **new_env, int arg_count)
 {
 	char	**elem_split;
-	int		arg_count;
 	char	**value;
 	int		i;
 
 	i = 0;
-	arg_count = 1;
 	elem_split = ft_split(data->elements[arg_count], '=');
 	if(!ft_strchr(data->elements[arg_count], '='))
 		exit(1);
@@ -52,26 +51,4 @@ int	cmp_env(t_data *data, t_list **new_env )
 		i++;
 	}
 	return (i);
-}
-
-void	ft_unset(t_data *data, char *envp[])
-{
-	int	i;
-
-	i = 0;
-	while (envp[i])
-	{
-		if (ft_strncmp(data->elements[1], envp[i],
-				ft_strlen(data->elements[1])) == 0)
-			printf("ft_unset\n");
-		i++;
-	}
-}
-
-void	run_builtin(t_data *data, char *cmd_name, char *envp[])
-{
-	if (!ft_strncmp(cmd_name, "unset", 6))
-		ft_unset(data, envp);
-	else if (!ft_strncmp(cmd_name, "export", 7))
-		ft_export(data, &data->new_env);
 }
