@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:34:39 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/20 15:42:09 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/20 18:39:50 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_command(t_data *data, char *line)
 	if (!line)
 		return (line);
 	while (line[len] && ((check_quote(data, line[len])
-				&& is_metachar(line[len])) || !is_metachar(line[len])))
+				&& line[len] == '|') || line[len] != '|'))
 		len++;
 	tmp = malloc(sizeof(char) * len + 1);
 	if (!tmp)
@@ -57,14 +57,11 @@ void	lexer(t_data *data, t_list **commands, char *line)
 	cmd = malloc(sizeof(t_cmd *));
 	if (!cmd)
 		exit(EXIT_FAILURE);
-	tmp = get_command(data, line + 1);
+	tmp = get_command(data, line);
 	cmd->elements = ft_split(tmp, ' ');
 	if (!cmd->elements)
 		exit(EXIT_FAILURE);
-	if (line[0] =='|')
-		fd_pipe(data, cmd);
-	else
-		redirections(data, cmd, line);
+	fd_pipe(data, cmd);
 	new = ft_lstnew(cmd);
 	if (!new)
 		exit(EXIT_FAILURE);
@@ -83,10 +80,11 @@ int	parser(t_data *data, t_list **commands, char *line)
 	lexer(data, commands, line);
 	while (line[i])
 	{
-		if (!check_quote(data, line[i]) && is_metachar(line[i]))
-			lexer(data, commands, line + i);
+		if (!check_quote(data, line[i]) && line[i] == '|')
+			lexer(data, commands, line + i + 1);
 		i++;
 	}
+	redirections(data, *commands);
 	clear_quote(data);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/20 15:45:42 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/20 18:40:54 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
@@ -50,7 +51,9 @@ char	*reader(t_data *data);
 int		syntax_error(t_data *data);
 
 int		parser(t_data *data, t_list **commands, char *line);
-void	redirections(t_data *data, t_cmd *cmd, char *line);
+void	redirections(t_data *data, t_list *commands);
+char	*get_file(char *line);
+void	write_stdin(char *infile, int file_id);
 
 void	expander(t_data *data, t_list *commands);
 
