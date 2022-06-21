@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/20 19:01:48 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/21 16:34:45 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	increment_shell_level(t_data *data);
 
 int		ft_atoi_1(const char *str);
 
-
 // UTILS
 
 int		is_metachar(char c);
@@ -100,6 +99,6 @@ void	restore_prompt(int sig);
 void	ctrl_c(int sig);
 void	back_slash(int sig);
 
-void rl_replace_line (const char *text, int clear_undo);
+void	rl_replace_line(const char *text, int clear_undo);
 
 #endif

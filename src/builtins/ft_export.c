@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 16:45:10 by mliban-s          #+#    #+#             */
-/*   Updated: 2022/06/16 20:30:00 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/21 16:36:26 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_export(t_data *data, t_list **new_env)
 	char	*new_elem;
 
 	arg_count = 1;
-	while (data->elements[arg_count] )
+	while (data->elements[arg_count])
 	{
 		i = cmp_env(data, new_env, arg_count);
 		if (!ft_strchr(data->elements[arg_count], '='))

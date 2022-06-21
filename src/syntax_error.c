@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/20 15:43:59 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/21 16:51:29 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	is_special_char(char c)
 {
 	return (!ft_isalnum(c) && !is_metachar(c) && c != '_'
-		&& c != ' ' && c != '\\' && c != '$' && c != '"' && c != '\'');
+		&& c != ' ' && c != '\\' && c != '$' && c != '"' && c != '\''
+		&& c != '=');
 }
 
 void	check_wrong_seperators(t_data *data, char *line)

@@ -6,15 +6,16 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:40:27 by mliban-s          #+#    #+#             */
-/*   Updated: 2022/06/20 19:54:22 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/21 16:40:01 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char		*get_env_name(char *dest, const char *src)
+char	*get_env_name(char *dest, const char *src)
 {
-	int		i;
+	int	i;
+
 	i = 0;
 	while (src[i] && src[i] != '=')
 	{
@@ -25,17 +26,15 @@ char		*get_env_name(char *dest, const char *src)
 	return (dest);
 }
 
-int		env_value_len(const char *env)
+int	env_value_len(const char *env)
 {
-	int		i;
+	int	i;
 
 	i = 0;
-	printf("%s\n", env);
 	while (env[i] && env[i] != '=')
 		i++;
 	i += 1;
 	return (i);
-	
 }
 
 void	increment_shell_level(t_data *data)
@@ -45,7 +44,7 @@ void	increment_shell_level(t_data *data)
 	char	*shlvl;
 	char	*shell_level_value;
 	t_list	*save;
-	
+
 	env_name = malloc(sizeof(char *) * env_value_len("SHLVL="));
 	save = data->new_env;
 	shell_level_value = get_env(data->new_env, "SHLVL");

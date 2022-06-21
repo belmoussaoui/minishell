@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:24:55 by mliban-s          #+#    #+#             */
-/*   Updated: 2022/06/20 15:44:35 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/21 16:37:58 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ static int	invalid_lvl(const char *str)
 	}
 	return (0);
 }
+
 void	ft_skip_spacenl(const char *str, int *i)
 {
 	while ((str[*i] == ' ' || str[*i] == '\t' || str[*i] == '\n')
-	|| (str[*i] == '\r' || str[*i] == '\v' || str[*i] == '\f'))
+		|| (str[*i] == '\r' || str[*i] == '\v' || str[*i] == '\f'))
 		(*i)++;
 }
+
 static int	handle_overflow(int sign)
 {
 	if (sign == -1)
@@ -49,7 +51,7 @@ int	ft_atoi_1(const char *str)
 	i = 0;
 	res = 0;
 	ft_skip_spacenl(&str[i], &i);
-    if (invalid_lvl(str))
+	if (invalid_lvl(str))
 		return (0);
 	if (str[i] == '-' || str[i] == '+')
 	{
