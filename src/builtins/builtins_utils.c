@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/21 18:06:18 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/21 19:40:11 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	is_builtin(char *cmd_name)
 		|| !ft_strncmp(cmd_name, "export", 7)
 		|| !ft_strncmp(cmd_name, "pwd", 4)
 		|| !ft_strncmp(cmd_name, "cd", 3)
-		|| !ft_strncmp(cmd_name, "env", 4));
+		|| !ft_strncmp(cmd_name, "env", 4)
+		|| !ft_strncmp(cmd_name, "exit", 5));
 }
 
 void	run_builtin(t_data *data, char *cmd_name)
@@ -33,6 +34,8 @@ void	run_builtin(t_data *data, char *cmd_name)
 		ft_cd(data);
 	else if (!ft_strncmp(cmd_name, "pwd", 4))
 		ft_pwd();
+	else if (!ft_strncmp(cmd_name, "exit", 5))
+		ft_exit();
 	exit(1);
 }
 
