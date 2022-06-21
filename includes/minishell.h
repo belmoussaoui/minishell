@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/21 18:11:22 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/21 18:29:25 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int		ft_atoi_1(const char *str);
 
 bool	ft_cd(t_data *data);
 
+bool	ft_echo(t_data *data);
+
 // UTILS
 
 int		is_metachar(char c);
@@ -94,6 +96,7 @@ void	werror(t_data *data, char *message, int code);
 void	werror_exit(t_data *data, char *message, int code);
 void	debug_list(t_list *commands);
 void	debug_env(t_list *env);
+int		ft_strcmp(char *s1, char *s2);
 
 //signal
 void	run_signals(int sig);

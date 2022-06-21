@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/21 17:20:53 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/21 18:30:43 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_special_char(char c)
 {
-	return (!ft_isalnum(c) && !is_metachar(c) && c != '_'
+	return (!ft_isalnum(c) && !is_metachar(c) && c != '_' && c != '-'
 		&& c != ' ' && c != '\\' && c != '$' && c != '"' && c != '\''
 		&& c != '=');
 }

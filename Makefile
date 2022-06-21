@@ -6,7 +6,7 @@
 #    By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/21 18:11:27 by hakermad         ###   ########.fr        #
+#    Updated: 2022/06/21 18:27:57 by hakermad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC = 	src/main.c\
 		src/builtins/ft_env.c\
 		src/builtins/ft_pwd.c\
 		src/builtins/ft_cd.c\
+		src/builtins/ft_echo.c\
 		src/builtins/ft_shlvl.c\
 		src/builtins/ft_mon_at.c\
 		src/builtins/ft_signal.c\
