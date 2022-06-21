@@ -6,7 +6,7 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:42:11 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/21 18:01:14 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/21 19:34:00 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,34 +46,6 @@ void	handle_outfile_append(t_data *data, t_cmd *cmd, char *line)
 	cmd->outfile = open(outfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (cmd->outfile == -1)
 		werror_exit(data, "can't open, error occured", 1);
-}
-
-void	clear_redirection(char **elements)
-{
-	int		i;
-	int		j;
-	char	*line;
-
-	i = 0;
-	while (elements[i])
-	{
-		line = elements[i];
-		j = 0;
-		while (line[j])
-		{
-			if (is_metachar(line[j]))
-			{
-				if (j == 0)
-					elements[i] = NULL;
-				else
-					line[j] = '\0';
-				elements[i + 1] = NULL;
-				return ;
-			}
-			j++;
-		}
-		i++;
-	}
 }
 
 void	handle_fd(t_data *data, t_cmd *cmd, char **elements, char *line)

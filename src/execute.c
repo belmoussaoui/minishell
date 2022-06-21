@@ -6,7 +6,7 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/21 18:56:19 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/21 19:41:00 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,30 @@ char	*cmd_ok(char **paths, char *cmd_name)
 
 void	run_child(t_data *data, char *envp[], t_list *current)
 {
-	char	*path_temp;
+	int	pid;
 
-	data->elements = ((t_cmd *)(current->content))->elements;
-	if (current != data->commands)
-		dup2(((t_cmd *)(current->content))->infile, STDIN_FILENO);
-	if (ft_lstlen(current) > 1)
-		dup2(((t_cmd *)(current->next->content))->outfile, STDOUT_FILENO);
-	ft_close(current);
-	if (is_builtin(data->elements[0]))
-		run_builtin(data, data->elements[0]);
-	else
+	pid = fork();
+	if (pid == -1)
+		werror_exit(data, "can't fork, error occured\n", 127);
+	else if (pid == 0)
 	{
-		path_temp = path_finder(data, envp);
-		data->paths = ft_split(path_temp, ':');
-		data->cmd = cmd_ok(data->paths, data->elements[0]);
-		if (!data->cmd)
-			werror_exit(data, "command not found", 127);
-		if (execve(data->cmd, data->elements, envp) == -1)
-			werror_exit(data, "can't execve, error occured\n", 256);
+		data->elements = ((t_cmd *)(current->content))->elements;
+		if (current != data->commands)
+			dup2(((t_cmd *)(current->content))->infile, STDIN_FILENO);
+		if (ft_lstlen(current) > 1)
+			dup2(((t_cmd *)(current->next->content))->outfile, STDOUT_FILENO);
+		ft_close(current);
+		if (is_builtin(data->elements[0]))
+			run_builtin(data, data->elements[0]);
+		else
+		{
+			data->paths = ft_split(path_finder(data, envp), ':');
+			data->cmd = cmd_ok(data->paths, data->elements[0]);
+			if (!data->cmd)
+				werror_exit(data, "command not found", 127);
+			if (execve(data->cmd, data->elements, envp) == -1)
+				werror_exit(data, "can't execve, error occured\n", 256);
+		}
 	}
 }
 
@@ -78,7 +83,6 @@ int	is_parent_cmd(char *cmd_name)
 // Execute the list of commands.
 void	execute(t_data *data, char *envp[])
 {
-	int		pid;
 	t_list	*current;
 
 	current = data->commands;
@@ -86,14 +90,8 @@ void	execute(t_data *data, char *envp[])
 	{
 		data->elements = ((t_cmd *)(current->content))->elements;
 		if (!is_parent_cmd(data->elements[0]))
-		{
-			pid = fork();
-			if (pid == -1)
-				werror_exit(data, "can't fork, error occured\n", 127);
-			else if (pid == 0)
-				run_child(data, envp, current);
-		}
-		else
+			run_child(data, envp, current);
+		else if (ft_lstlen(data->commands) == 1)
 			run_builtin(data, data->elements[0]);
 		close(((t_cmd *)(current->content))->infile);
 		close(((t_cmd *)(current->content))->outfile);

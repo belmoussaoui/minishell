@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+         #
+#    By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/20 19:48:23 by lrondia          ###   ########.fr        #
+#    Updated: 2022/06/21 19:06:11 by bel-mous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,10 @@ SRC = 	src/main.c\
 		src/builtins/ft_pwd.c\
 		src/redirections/redirections.c\
 		src/redirections/heredoc.c\
+		src/builtins/ft_cd.c\
+		src/builtins/ft_shlvl.c\
+		src/builtins/ft_mon_at.c\
+		src/builtins/ft_signal.c\
 
 INCLUDES = includes
 OBJ = $(SRC:.c=.o)
@@ -45,8 +49,9 @@ libft:
 	$(CC) $(CFLAGS) -I $(INCLUDES) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $@ -lreadline -L./libft -lft
+	$(CC) $(CFLAGS) $(OBJ) -o $@ -lreadline -L./libft -lft -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include
 
+	
 clean:
 	make clean -C ./libft
 	$(RM) $(OBJ)

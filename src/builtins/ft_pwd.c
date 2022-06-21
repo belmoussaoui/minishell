@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:38:03 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 18:58:48 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/21 18:11:05 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_pwd(void)
 	direction = getcwd(direction, 0);
 	if (!direction)
 		printf("Error pwd\n");
-	printf("%s\n", direction);
 	free(direction);
+	printf("%s\n", direction);
 	return (0);
 }

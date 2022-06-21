@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:34:39 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/20 18:39:50 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/21 19:10:05 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	parser(t_data *data, t_list **commands, char *line)
 			lexer(data, commands, line + i + 1);
 		i++;
 	}
-	redirections(data, *commands);
+	//redirections(data, *commands);
 	clear_quote(data);
 	return (1);
 }

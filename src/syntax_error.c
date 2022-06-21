@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/20 14:27:04 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/21 19:05:52 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	is_special_char(char c)
+{
+	return (!ft_isalnum(c) && !is_metachar(c) && c != '_'
+		&& c != ' ' && c != '\\' && c != '$' && c != '"' && c != '\''
+		&& c != '=' && c != '.' && c != '/');
+}
 
 void	check_wrong_seperators(t_data *data, char *line)
 {
