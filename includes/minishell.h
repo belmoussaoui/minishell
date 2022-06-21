@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/21 17:00:30 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:48:34 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 # define MINISHELL_H
 
 # include <stdio.h>
-# include <stdlib.h>
 # include <stdbool.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/wait.h>
+# include <signal.h>
+# include <fcntl.h>
 # include "../libft/libft.h"
 
-# define TABLE_SIZE 100
+# define BUFF_SIZE 4096
 
 typedef struct s_data
 {
@@ -44,6 +46,8 @@ typedef struct s_cmd
 	int		outfile;
 	void	*data;
 }	t_cmd;
+
+int	g_ret_number;
 
 void	write_error(char *message, int code);
 
@@ -73,9 +77,9 @@ void	ft_export(t_data *data, t_list **new_env);
 
 void	ft_env(t_list *env);
 
-void    increment_shell_level(t_data *data);
+void	increment_shell_level(t_data *data);
 
-int ft_atoi_1(const char *str);
+int		ft_atoi_1(const char *str);
 
 bool	ft_cd(t_data *data);
 
@@ -90,5 +94,16 @@ void	werror(t_data *data, char *message, int code);
 void	werror_exit(t_data *data, char *message, int code);
 void	debug_list(t_list *commands);
 void	debug_env(t_list *env);
+
+//signal
+void	run_signals(int sig);
+
+void	restore_prompt(int sig);
+
+void	ctrl_c(int sig);
+
+void	back_slash(int sig);
+
+void	rl_replace_line(const char *text, int clear_undo);
 
 #endif

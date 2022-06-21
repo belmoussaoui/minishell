@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 19:02:25 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/21 17:18:24 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/21 18:01:53 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,21 @@ void	ft_strinsert(char **astr, char *str, size_t i, size_t n)
 	*astr = dst;
 }
 
-static char *get_path(t_data *data)
+static char	*get_path(t_data *data)
 {
-	char	*path = NULL;
-	const char *home = getenv("HOME");
+	char		*path;
+	const char	*home = getenv("HOME");
 
+	path = NULL;
 	if (data->elements[1])
 	{
 		path = getcwd(NULL, 0);
 		ft_strinsert(&path, "/", ft_strlen(path), 1);
-		ft_strinsert(&path, data->elements[1], ft_strlen(path), ft_strlen(data->elements[1]));
+		ft_strinsert(&path, data->elements[1], ft_strlen(path),
+			ft_strlen(data->elements[1]));
 	}
 	else
-	{
-       chdir(home);
-	}
+		chdir(home);
 	return (path);
 }
 
@@ -84,7 +84,6 @@ bool	ft_cd(t_data *data)
 	char	*path;
 
 	path = get_path(data);
-
 	if (!path)
 		return (true);
 	if (chdir(path) < 0)
@@ -96,4 +95,3 @@ bool	ft_cd(t_data *data)
 	free (path);
 	return (false);
 }
-

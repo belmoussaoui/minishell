@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:05:53 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/20 15:46:02 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:20:43 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ void	initializer(t_data *data, char *envp[])
 	data->len_env = 0;
 	data->new_env = NULL;
 	data->error_code = 0;
+	g_ret_number = 0;
 	init_env(data, &data->new_env, envp);
+	increment_shell_level(data);
 }

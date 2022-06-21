@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 17:52:55 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/20 12:39:28 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:34:28 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_env(t_list *env)
 {
 	while (env)
 	{
-		//incr_shlvl(env);
 		printf("%s\n", env->content);
 		env = env->next;
 	}

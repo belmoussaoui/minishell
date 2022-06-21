@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/21 17:00:34 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:59:06 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	run_builtin(t_data *data, char *cmd_name)
 		ft_cd(data);
 	else if (!ft_strncmp(cmd_name, "pwd", 4))
 		ft_pwd();
+	exit(1);
 }
 
 int	cmp_env(t_data *data, t_list **new_env, int arg_count)
@@ -43,6 +44,8 @@ int	cmp_env(t_data *data, t_list **new_env, int arg_count)
 
 	i = 0;
 	elem_split = ft_split(data->elements[arg_count], '=');
+	if (!ft_strchr(data->elements[arg_count], '='))
+		exit(1);
 	while (i < data->len_env)
 	{
 		value = ft_split((ft_lstget(*new_env, i))->content, '=');
