@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:38:03 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/19 19:06:55 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/21 20:36:37 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int	ft_pwd(void)
 	if (!direction)
 		printf("Error pwd\n");
 	free(direction);
+	printf("%s\n", direction);
 	return (0);
 }

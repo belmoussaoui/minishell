@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/20 13:19:31 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/21 20:36:56 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	is_special_char(char c)
 {
-	return (!ft_isalnum(c) && !is_metachar(c) && c != '_'
-		&& c != ' ' && c != '\\' && c != '$' && c!= '~' && c != '"' && c != '\'');
+	return (!ft_isalnum(c) && !is_metachar(c) && c != '_' && c != '-'
+		&& c != ' ' && c != '\\' && c != '$' && c != '"' && c != '\''
+		&& c != '=');
 }
 
 void	check_wrong_seperators(t_data *data, char *line)

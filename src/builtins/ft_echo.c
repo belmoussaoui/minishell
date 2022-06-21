@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 14:56:58 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/21 20:36:45 by hakermad         ###   ########.fr       */
+/*   Created: 2022/06/21 18:20:33 by hakermad          #+#    #+#             */
+/*   Updated: 2022/06/21 18:43:47 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	debug_list(t_list *commands)
+bool	ft_echo(t_data *data)
 {
 	int	i;
 
-	while (commands)
+	if (!data->elements || ft_strcmp("echo", *data->elements))
+		return (true);
+	i = 1;
+	while (data->elements[i])
 	{
-		i = 0;
-		while (((t_cmd *)(commands->content))->elements[i])
-		{
-			printf("%s\n", ((t_cmd *)(commands->content))->elements[i]);
-			i++;
-		}
-		commands = commands->next;
+		if (ft_strcmp(data->elements[1], "-n") || i > 1)
+			printf("%s", data->elements[i]);
+		if (data->elements[i + 1] && ft_strcmp(data->elements[i], "-n"))
+			printf(" ");
+		i++;
 	}
-}
-
-void	debug_env(t_list *env)
-{
-	while (env)
-	{
-		printf("debug --> %s\n", env->content);
-		env = env->next;
-	}
+	if (ft_strcmp(data->elements[1], "-n"))
+		printf("\n");
+	return (false);
 }
