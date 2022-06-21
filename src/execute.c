@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 17:30:23 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/21 18:56:19 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ void	run_child(t_data *data, char *envp[], t_list *current)
 	}
 }
 
+int	is_parent_cmd(char *cmd_name)
+{
+	return (!ft_strncmp(cmd_name, "unset", 6)
+		|| !ft_strncmp(cmd_name, "export", 7)
+		|| !ft_strncmp(cmd_name, "cd", 3)
+		|| !ft_strncmp(cmd_name, "exit", 5));
+}
+
 // Execute the list of commands.
 void	execute(t_data *data, char *envp[])
 {
@@ -76,11 +84,17 @@ void	execute(t_data *data, char *envp[])
 	current = data->commands;
 	while (current)
 	{
-		pid = fork();
-		if (pid == -1)
-			werror_exit(data, "can't fork, error occured\n", 127);
-		else if (pid == 0)
-			run_child(data, envp, current);
+		data->elements = ((t_cmd *)(current->content))->elements;
+		if (!is_parent_cmd(data->elements[0]))
+		{
+			pid = fork();
+			if (pid == -1)
+				werror_exit(data, "can't fork, error occured\n", 127);
+			else if (pid == 0)
+				run_child(data, envp, current);
+		}
+		else
+			run_builtin(data, data->elements[0]);
 		close(((t_cmd *)(current->content))->infile);
 		close(((t_cmd *)(current->content))->outfile);
 		current = current->next;
