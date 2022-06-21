@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/21 18:11:22 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/21 19:56:33 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdbool.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/wait.h>
@@ -58,6 +59,9 @@ char	*reader(t_data *data);
 int		syntax_error(t_data *data);
 
 int		parser(t_data *data, t_list **commands, char *line);
+void	redirections(t_data *data, t_list *commands);
+void	handle_heredoc(t_data *data, t_cmd *cmd, char *stop);
+char	*get_file(char *line);
 
 void	expander(t_data *data, t_list *commands);
 
@@ -74,6 +78,7 @@ int		ft_pwd(void);
 void	ft_unset(t_data *data, t_list **new_env);
 
 void	ft_export(t_data *data, t_list **new_env);
+void	parsing_export_unset(t_data *data, char *line);
 
 void	ft_env(t_list *env);
 
@@ -83,10 +88,12 @@ int		ft_atoi_1(const char *str);
 
 bool	ft_cd(t_data *data);
 
+void	clear_redirection(char **elements);
+void	ft_exit(void);
+
 // UTILS
 
 int		is_metachar(char c);
-int		is_special_char(char c);
 int		check_quote(t_data *data, char c);
 void	clear_quote(t_data *data);
 void	ft_close(t_list *commands);

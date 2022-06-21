@@ -6,14 +6,14 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 19:37:32 by mliban-s          #+#    #+#             */
-/*   Updated: 2022/06/21 19:38:42 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/21 20:02:24 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_exit(void)
+void	ft_exit(void)
 {
-	printf("exit");
+	printf("exit\n");
 	exit(1);
 }

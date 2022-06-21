@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+         #
+#    By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/21 18:11:27 by hakermad         ###   ########.fr        #
+#    Updated: 2022/06/21 19:56:07 by mliban-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,13 @@ SRC = 	src/main.c\
 		src/builtins/ft_unset.c\
 		src/builtins/ft_env.c\
 		src/builtins/ft_pwd.c\
+		src/redirections/redirections.c\
+		src/redirections/heredoc.c\
 		src/builtins/ft_cd.c\
 		src/builtins/ft_shlvl.c\
 		src/builtins/ft_mon_at.c\
 		src/builtins/ft_signal.c\
+		src/builtins/ft_exit.c\
 
 INCLUDES = includes
 OBJ = $(SRC:.c=.o)

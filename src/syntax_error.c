@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/21 18:16:09 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/21 19:55:21 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,6 @@ void	begin_end_with_separator(t_data *data, char *line)
 	i = ft_strlen(line) - 1;
 	if (line[i] == '<' || line[i] == '>')
 		werror(data, "syntax error near unexpected token `newline'", 285);
-	i = 0;
-	while (line[i])
-	{
-		if (is_special_char(line[i]))
-			werror(data, "not a valid identifier", 1);
-		i++;
-	}
 }
 
 int	syntax_error(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/21 19:40:11 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/21 20:02:04 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	run_builtin(t_data *data, char *cmd_name)
 		ft_pwd();
 	else if (!ft_strncmp(cmd_name, "exit", 5))
 		ft_exit();
-	exit(1);
 }
 
 int	cmp_env(t_data *data, t_list **new_env, int arg_count)
