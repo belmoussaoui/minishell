@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/22 17:16:36 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:56:32 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ char	*cmd_ok(char **paths, char *cmd_name)
 void	run_child(t_data *data, char *envp[], t_list *current)
 {
 	data->elements = ((t_cmd *)(current->content))->elements;
-	if (current != data->commands)
-		dup2(((t_cmd *)(current->content))->infile, STDIN_FILENO);
+	dup2(((t_cmd *)(current->content))->infile, STDIN_FILENO);
 	if (ft_lstlen(current) > 1)
 		dup2(((t_cmd *)(current->next->content))->outfile, STDOUT_FILENO);
 	ft_close(current);
