@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/21 19:41:00 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:13:17 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	run_child(t_data *data, char *envp[], t_list *current)
 		{
 			data->paths = ft_split(path_finder(data, envp), ':');
 			data->cmd = cmd_ok(data->paths, data->elements[0]);
+			free_split(data->paths);
 			if (!data->cmd)
 				werror_exit(data, "command not found", 127);
 			if (execve(data->cmd, data->elements, envp) == -1)

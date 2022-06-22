@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_shlvl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:40:24 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/21 17:20:37 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/22 16:18:19 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	increment_shell_level(t_data *data)
 	shell_level_value = get_env(data->new_env, "SHLVL");
 	if (ft_strncmp(shell_level_value, "", ft_strlen(shell_level_value)) == 0)
 		return ;
-	shell_level = ft_atoi_1(shell_level_value) + 1;
+	shell_level = ft_atoi_shlvl(shell_level_value) + 1;
 	while (data && data->new_env->next)
 	{
 		get_env_name(env_name, data->new_env->content);
@@ -58,9 +58,11 @@ void	increment_shell_level(t_data *data)
 		{
 			shlvl = ft_itoa(shell_level);
 			data->new_env->content = ft_strjoin("SHLVL=", shlvl);
+			free(shlvl);
 			break ;
 		}
 		data->new_env = data->new_env->next;
 	}
 	data->new_env = save;
+	free (env_name);
 }

@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/22 12:00:14 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/22 14:45:46 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	cmp_env(t_data *data, t_list **new_env, int arg_count)
 		value = ft_split((ft_lstget(*new_env, i))->content, '=');
 		if (!ft_strncmp(elem_split[0], value[0], ft_strlen(elem_split[0])))
 			break ;
+		free_split(value);
 		i++;
 	}
 	return (i);

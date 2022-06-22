@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:31:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/22 13:37:47 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/22 14:51:26 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ static	int	count_char(t_data *data, char const *s, char c)
 	return (i);
 }
 
-static	void	*free_strings(char **strings, int current)
+void	*free_split(char **strings)
 {
 	int	i;
 
 	i = 0;
-	while (i < current)
+	while (strings[i])
 	{
 		free(strings[i]);
 		i++;
@@ -85,7 +85,7 @@ char	**ft_split_quote(t_data *data, char const *s, char c)
 			i++;
 		res[current] = malloc(sizeof(char) * (count_char(data, s + i, c) + 1));
 		if (res[current] == NULL)
-			return (free_strings(res, current));
+			return (free_split(res));
 		ft_strlcpy(res[current], s + i, count_char(data, s + i, c) + 1);
 		i += count_char(data, s + i, c);
 		current++;

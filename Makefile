@@ -6,7 +6,7 @@
 #    By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/22 12:28:51 by lrondia          ###   ########.fr        #
+#    Updated: 2022/06/22 16:01:18 by lrondia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,31 +14,31 @@ NAME = minishell
 SRC = 	src/main.c\
 		src/initializer.c\
 		src/reader.c\
+		src/signals.c\
 		src/parser.c\
+		src/syntax_utils.c\
+		src/syntax_error.c\
+		src/ft_split_quote.c\
 		src/expander.c\
 		src/execute.c\
-		src/clear.c\
 		src/utils.c\
-		src/syntax_utils.c\
+		src/clear.c\
 		src/debug.c\
-		src/ft_split_quote.c\
-		src/syntax_error.c\
 		src/builtins/builtins_utils.c\
 		src/builtins/ft_export.c\
 		src/builtins/ft_unset.c\
 		src/builtins/ft_env.c\
 		src/builtins/ft_pwd.c\
-		src/redirections/redirections.c\
-		src/redirections/heredoc.c\
 		src/builtins/ft_cd.c\
 		src/builtins/ft_echo.c\
 		src/builtins/ft_shlvl.c\
-		src/builtins/ft_mon_at.c\
-		src/builtins/ft_signal.c\
+		src/builtins/ft_atoi_shlvl.c\
+		src/redirections/redirections.c\
+		src/redirections/heredoc.c\
 
 INCLUDES = includes
 OBJ = $(SRC:.c=.o)
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 CC = gcc
 $(RM) = rm -rf
 
