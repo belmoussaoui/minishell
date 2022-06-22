@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/21 20:02:04 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:20:57 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	is_builtin(char *cmd_name)
 		|| !ft_strncmp(cmd_name, "export", 7)
 		|| !ft_strncmp(cmd_name, "pwd", 4)
 		|| !ft_strncmp(cmd_name, "cd", 3)
-		|| !ft_strncmp(cmd_name, "env", 4)
-		|| !ft_strncmp(cmd_name, "exit", 5));
+		|| !ft_strncmp(cmd_name, "echo", 5)
+		|| !ft_strncmp(cmd_name, "env", 4));
 }
 
 void	run_builtin(t_data *data, char *cmd_name)
@@ -32,6 +32,8 @@ void	run_builtin(t_data *data, char *cmd_name)
 		ft_env(data->new_env);
 	else if (!ft_strncmp(cmd_name, "cd", 3))
 		ft_cd(data);
+	else if (!ft_strncmp(cmd_name, "echo", 5))
+		ft_echo(data);
 	else if (!ft_strncmp(cmd_name, "pwd", 4))
 		ft_pwd();
 	else if (!ft_strncmp(cmd_name, "exit", 5))
@@ -73,3 +75,12 @@ char	*get_env(t_list *env, char *name)
 	}
 	return (NULL);
 }
+
+int	is_parent_cmd(char *cmd_name)
+{
+	return (!ft_strncmp(cmd_name, "unset", 6)
+		|| !ft_strncmp(cmd_name, "export", 7)
+		|| !ft_strncmp(cmd_name, "cd", 3)
+		|| !ft_strncmp(cmd_name, "exit", 5));
+}
+

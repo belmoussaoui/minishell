@@ -6,18 +6,11 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/21 19:55:21 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/22 14:49:42 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	is_special_char(char c)
-{
-	return (!ft_isalnum(c) && !is_metachar(c) && c != '_'
-		&& c != ' ' && c != '\\' && c != '$' && c != '"' && c != '\''
-		&& c != '=' && c != '.' && c != '/');
-}
 
 void	check_wrong_seperators(t_data *data, char *line)
 {

@@ -6,7 +6,7 @@
 #    By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/21 19:56:07 by mliban-s         ###   ########.fr        #
+#    Updated: 2022/06/22 14:50:13 by mliban-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC = 	src/main.c\
 		src/utils.c\
 		src/syntax_utils.c\
 		src/debug.c\
+		src/ft_split_quote.c\
 		src/syntax_error.c\
 		src/builtins/builtins_utils.c\
 		src/builtins/ft_export.c\
@@ -30,6 +31,7 @@ SRC = 	src/main.c\
 		src/redirections/redirections.c\
 		src/redirections/heredoc.c\
 		src/builtins/ft_cd.c\
+		src/builtins/ft_echo.c\
 		src/builtins/ft_shlvl.c\
 		src/builtins/ft_mon_at.c\
 		src/builtins/ft_signal.c\

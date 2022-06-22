@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:34:39 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/21 19:10:05 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/22 13:53:14 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	lexer(t_data *data, t_list **commands, char *line)
 	if (!cmd)
 		exit(EXIT_FAILURE);
 	tmp = get_command(data, line);
-	cmd->elements = ft_split(tmp, ' ');
+	cmd->elements = ft_split_quote(data, tmp, ' ');
 	if (!cmd->elements)
 		exit(EXIT_FAILURE);
 	fd_pipe(data, cmd);
@@ -84,7 +84,7 @@ int	parser(t_data *data, t_list **commands, char *line)
 			lexer(data, commands, line + i + 1);
 		i++;
 	}
-	//redirections(data, *commands);
+	redirections(data, *commands);
 	clear_quote(data);
 	return (1);
 }

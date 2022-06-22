@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/21 19:56:33 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:28:06 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,13 @@ int		ft_atoi_1(const char *str);
 
 bool	ft_cd(t_data *data);
 
+bool	ft_echo(t_data *data);
+
 void	clear_redirection(char **elements);
+
 void	ft_exit(void);
+
+void	run_fork(t_data *data, char *envp[], t_list *current);
 
 // UTILS
 
@@ -99,10 +104,17 @@ void	clear_quote(t_data *data);
 void	ft_close(t_list *commands);
 void	werror(t_data *data, char *message, int code);
 void	werror_exit(t_data *data, char *message, int code);
+int		ft_strcmp(char *s1, char *s2);
+char	**ft_split_quote(t_data *data, char const *s, char c);
+int		is_parent_cmd(char *cmd_name);
+
+// DEBUG
+
 void	debug_list(t_list *commands);
 void	debug_env(t_list *env);
+void	debug_split(char **split);
 
-//signal
+// SIGNAL
 void	run_signals(int sig);
 
 void	restore_prompt(int sig);
