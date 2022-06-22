@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:56:58 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/22 11:49:03 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/22 12:33:03 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,17 @@ void	debug_env(t_list *env)
 	{
 		printf("debug --> %s\n", env->content);
 		env = env->next;
+	}
+}
+
+void	debug_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		printf("debug --> %s\n", split[i]);
+		i++;
 	}
 }

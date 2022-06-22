@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/21 20:39:37 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/22 12:00:14 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	run_builtin(t_data *data, char *cmd_name)
 		ft_echo(data);
 	else if (!ft_strncmp(cmd_name, "pwd", 4))
 		ft_pwd();
-	exit(1);
 }
 
 int	cmp_env(t_data *data, t_list **new_env, int arg_count)

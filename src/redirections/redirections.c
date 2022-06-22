@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:42:11 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/20 19:55:00 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/21 19:34:00 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	redirections(t_data *data, t_list *commands)
 				content->elements[i]);
 			i++;
 		}
+		clear_redirection(content->elements);
 		commands = commands->next;
 	}
 }

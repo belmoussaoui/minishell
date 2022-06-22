@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/22 11:49:33 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/22 12:32:54 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ bool	ft_cd(t_data *data);
 
 bool	ft_echo(t_data *data);
 
+void	clear_redirection(char **elements);
+
 // UTILS
 
 int		is_metachar(char c);
@@ -98,11 +100,16 @@ void	clear_quote(t_data *data);
 void	ft_close(t_list *commands);
 void	werror(t_data *data, char *message, int code);
 void	werror_exit(t_data *data, char *message, int code);
+int		ft_strcmp(char *s1, char *s2);
+char	**ft_split_quote(t_data *data, char const *s, char c);
+
+// DEBUG
+
 void	debug_list(t_list *commands);
 void	debug_env(t_list *env);
-int		ft_strcmp(char *s1, char *s2);
+void	debug_split(char **split);
 
-//signal
+// SIGNAL
 void	run_signals(int sig);
 
 void	restore_prompt(int sig);

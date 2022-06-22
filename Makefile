@@ -6,7 +6,7 @@
 #    By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/22 11:48:37 by lrondia          ###   ########.fr        #
+#    Updated: 2022/06/22 12:28:51 by lrondia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC = 	src/main.c\
 		src/utils.c\
 		src/syntax_utils.c\
 		src/debug.c\
+		src/ft_split_quote.c\
 		src/syntax_error.c\
 		src/builtins/builtins_utils.c\
 		src/builtins/ft_export.c\
