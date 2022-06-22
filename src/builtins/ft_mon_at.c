@@ -1,21 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_mon_at.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 15:36:17 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/21 20:40:29 by hakermad         ###   ########.fr       */
+/*   Created: 2022/06/20 13:24:55 by mliban-s          #+#    #+#             */
+/*   Updated: 2022/06/21 16:37:58 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-static int	ft_isspace(char c)
+static int	invalid_lvl(const char *str)
 {
-	return (c == '\t' || c == '\n' || c == '\v'
-		|| c == '\f' || c == '\r' || c == ' ');
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	ft_skip_spacenl(const char *str, int *i)
+{
+	while ((str[*i] == ' ' || str[*i] == '\t' || str[*i] == '\n')
+		|| (str[*i] == '\r' || str[*i] == '\v' || str[*i] == '\f'))
+		(*i)++;
 }
 
 static int	handle_overflow(int sign)
@@ -26,7 +41,7 @@ static int	handle_overflow(int sign)
 		return (-1);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi_1(const char *str)
 {
 	int			sign;
 	long long	res;
@@ -35,8 +50,9 @@ int	ft_atoi(const char *str)
 	sign = 1;
 	i = 0;
 	res = 0;
-	while (ft_isspace(str[i]))
-		i++;
+	ft_skip_spacenl(&str[i], &i);
+	if (invalid_lvl(str))
+		return (0);
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
@@ -45,8 +61,7 @@ int	ft_atoi(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		res = res * 10 + str[i] - '0';
-		i++;
+		res = res * 10 + str[i++] - '0';
 		if (res < 0)
 			return (handle_overflow(sign));
 	}

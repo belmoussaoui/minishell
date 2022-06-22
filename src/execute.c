@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/16 17:30:23 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/21 17:57:42 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	execute(t_data *data, char *envp[])
 	while (current)
 	{
 		pid = fork();
+		run_signals(2);
 		if (pid == -1)
 			werror_exit(data, "can't fork, error occured\n", 127);
 		else if (pid == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/18 16:35:29 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/21 20:39:37 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	is_builtin(char *cmd_name)
 	return (!ft_strncmp(cmd_name, "unset", 6)
 		|| !ft_strncmp(cmd_name, "export", 7)
 		|| !ft_strncmp(cmd_name, "pwd", 4)
+		|| !ft_strncmp(cmd_name, "cd", 3)
+		|| !ft_strncmp(cmd_name, "echo", 5)
 		|| !ft_strncmp(cmd_name, "env", 4));
 }
 
@@ -28,8 +30,13 @@ void	run_builtin(t_data *data, char *cmd_name)
 		ft_export(data, &data->new_env);
 	else if (!ft_strncmp(cmd_name, "env", 4))
 		ft_env(data->new_env);
+	else if (!ft_strncmp(cmd_name, "cd", 3))
+		ft_cd(data);
+	else if (!ft_strncmp(cmd_name, "echo", 5))
+		ft_echo(data);
 	else if (!ft_strncmp(cmd_name, "pwd", 4))
 		ft_pwd();
+	exit(1);
 }
 
 int	cmp_env(t_data *data, t_list **new_env, int arg_count)
@@ -40,6 +47,8 @@ int	cmp_env(t_data *data, t_list **new_env, int arg_count)
 
 	i = 0;
 	elem_split = ft_split(data->elements[arg_count], '=');
+	if (!ft_strchr(data->elements[arg_count], '='))
+		exit(1);
 	while (i < data->len_env)
 	{
 		value = ft_split((ft_lstget(*new_env, i))->content, '=');
