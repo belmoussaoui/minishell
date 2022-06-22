@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:28:19 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/22 16:11:53 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:16:56 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	expander(t_data *data, t_list *commands)
 {
 	int		i;
 	t_cmd	*content;
-	(void) data;
 
 	while (commands)
 	{

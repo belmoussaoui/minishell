@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/22 14:45:46 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:15:42 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	run_builtin(t_data *data, char *cmd_name)
 		ft_echo(data);
 	else if (!ft_strncmp(cmd_name, "pwd", 4))
 		ft_pwd();
+	else if (!ft_strncmp(cmd_name, "exit", 5))
+		ft_exit();
 }
 
 int	cmp_env(t_data *data, t_list **new_env, int arg_count)
@@ -73,4 +75,12 @@ char	*get_env(t_list *env, char *name)
 		env = env->next;
 	}
 	return (NULL);
+}
+
+int	is_parent_cmd(char *cmd_name)
+{
+	return (!ft_strncmp(cmd_name, "unset", 6)
+		|| !ft_strncmp(cmd_name, "export", 7)
+		|| !ft_strncmp(cmd_name, "cd", 3)
+		|| !ft_strncmp(cmd_name, "exit", 5));
 }

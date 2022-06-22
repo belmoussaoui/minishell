@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reader.c                                           :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 03:03:03 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/22 17:16:01 by lrondia          ###   ########.fr       */
+/*   Created: 2022/06/21 19:37:32 by mliban-s          #+#    #+#             */
+/*   Updated: 2022/06/21 20:02:24 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Reads a command written by the user in the terminal
-char	*reader(t_data *data)
+void	ft_exit(void)
 {
-	char	*line;
-
-	run_signals(1);
-	line = readline("minishell$ ");
-	if (line == NULL)
-	{
-		printf("exit\n");
-		exit(0);
-	}
-	add_history(line);
-	data->error_code = 0;
-	return (line);
+	printf("exit\n");
+	exit(1);
 }

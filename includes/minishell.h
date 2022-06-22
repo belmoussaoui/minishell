@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/22 16:29:41 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:12:44 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_unset(t_data *data, t_list **new_env);
 void	ft_export(t_data *data, t_list **new_env);
 void	parsing_export_unset(t_data *data, char *line);
 
-void	increment_shell_level(t_data *data);
+void	increment_shell_level(t_list *new_env);
 int		ft_atoi_shlvl(const char *str);
 
 bool	ft_echo(t_data *data);
@@ -90,6 +90,10 @@ bool	ft_echo(t_data *data);
 // CLEAR
 void	clear(t_data *data);
 void	*free_split(char **strings);
+
+void	ft_exit(void);
+
+void	run_fork(t_data *data, char *envp[], t_list *current);
 
 // UTILS
 
@@ -101,6 +105,7 @@ void	werror(t_data *data, char *message, int code);
 void	werror_exit(t_data *data, char *message, int code);
 int		ft_strcmp(char *s1, char *s2);
 char	**ft_split_quote(t_data *data, char const *s, char c);
+int		is_parent_cmd(char *cmd_name);
 
 // DEBUG
 

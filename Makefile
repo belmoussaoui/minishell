@@ -6,7 +6,7 @@
 #    By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/22 16:01:18 by lrondia          ###   ########.fr        #
+#    Updated: 2022/06/22 16:44:25 by lrondia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC = 	src/main.c\
 		src/builtins/ft_echo.c\
 		src/builtins/ft_shlvl.c\
 		src/builtins/ft_atoi_shlvl.c\
+		src/builtins/ft_exit.c\
 		src/redirections/redirections.c\
 		src/redirections/heredoc.c\
 
