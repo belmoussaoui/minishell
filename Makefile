@@ -6,7 +6,7 @@
 #    By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/22 16:44:25 by lrondia          ###   ########.fr        #
+#    Updated: 2022/06/23 19:36:37 by lrondia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC = 	src/main.c\
 		src/syntax_utils.c\
 		src/syntax_error.c\
 		src/ft_split_quote.c\
+		src/ft_split_redirections.c\
 		src/expander.c\
 		src/execute.c\
 		src/utils.c\
@@ -36,6 +37,7 @@ SRC = 	src/main.c\
 		src/builtins/ft_exit.c\
 		src/redirections/redirections.c\
 		src/redirections/heredoc.c\
+		src/redirections/in_outfile.c\
 
 INCLUDES = includes
 OBJ = $(SRC:.c=.o)

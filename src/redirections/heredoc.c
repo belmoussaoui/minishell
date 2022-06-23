@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:47:26 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/21 19:34:08 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/23 19:34:35 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char	*get_file(char *line)
-{
-	int		i;
-	char	*file;
-
-	i = 0;
-	file = ft_strdup(line);
-	if (!file)
-		exit(EXIT_FAILURE);
-	while (file[i] && file[i] != '|')
-		i++;
-	if (file[i] == '|')
-		file[i] = '\0';
-	return (file);
-}
 
 void	write_stdin(char *stop, int file_id)
 {

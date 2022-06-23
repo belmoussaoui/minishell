@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:56:58 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/22 12:33:03 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/23 17:48:40 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	debug_split(char **split)
 	int	i;
 
 	i = 0;
+	printf("--------------------------\n");
 	while (split[i])
 	{
 		printf("debug --> %s\n", split[i]);

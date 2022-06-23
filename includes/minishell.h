@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/22 17:12:44 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/23 19:36:06 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ char	*reader(t_data *data);
 // PARSING
 int		syntax_error(t_data *data);
 int		parser(t_data *data, t_list **commands, char *line);
-void	handle_heredoc(t_data *data, t_cmd *cmd, char *stop);
-char	*get_file(char *line);
 
 // REDIRECTIONS
 void	redirections(t_data *data, t_list *commands);
 void	clear_redirection(char **elements);
+void	handle_heredoc(t_data *data, t_cmd *cmd, char *stop);
+void	handle_infile(t_data *data, t_cmd *cmd, char *infile);
+void	handle_outfile(t_data *data, t_cmd *cmd, char *outfile);
+void	handle_outfile_append(t_data *data, t_cmd *cmd, char *outfile);
 
 // EXPANDER
 void	expander(t_data *data, t_list *commands);
@@ -105,6 +107,7 @@ void	werror(t_data *data, char *message, int code);
 void	werror_exit(t_data *data, char *message, int code);
 int		ft_strcmp(char *s1, char *s2);
 char	**ft_split_quote(t_data *data, char const *s, char c);
+char	**ft_split_redirections(t_data *data, char **s);
 int		is_parent_cmd(char *cmd_name);
 
 // DEBUG
