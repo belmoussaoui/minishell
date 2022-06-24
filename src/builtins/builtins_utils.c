@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/24 13:15:16 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/24 13:17:32 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	cmp_env(t_data *data, t_list **new_env, int arg_count)
 		value = ft_split((ft_lstget(*new_env, i))->content, '=');
 		if (!ft_strncmp(elem_split[0], value[0], ft_strlen(elem_split[0])))
 			break ;
+		free_split(value);
 		i++;
 	}
 	return (i);

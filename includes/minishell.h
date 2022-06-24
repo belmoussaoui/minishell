@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/22 15:28:06 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/23 19:36:06 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 
-# define BUFF_SIZE 4096
-
 typedef struct s_data
 {
 	int		error_code;
@@ -36,7 +34,6 @@ typedef struct s_data
 	char	*cmd;
 	char	**paths;
 	char	**elements;
-	void	*data;
 	t_list	*commands;
 }	t_data;
 
@@ -45,33 +42,40 @@ typedef struct s_cmd
 	char	**elements;
 	int		infile;	
 	int		outfile;
-	void	*data;
 }	t_cmd;
 
 int	g_ret_number;
 
-void	write_error(char *message, int code);
-
+// INIT
 void	initializer(t_data *data, char *envp[]);
-
 char	*reader(t_data *data);
 
+// PARSING
 int		syntax_error(t_data *data);
-
 int		parser(t_data *data, t_list **commands, char *line);
-void	redirections(t_data *data, t_list *commands);
-void	handle_heredoc(t_data *data, t_cmd *cmd, char *stop);
-char	*get_file(char *line);
 
+// REDIRECTIONS
+void	redirections(t_data *data, t_list *commands);
+void	clear_redirection(char **elements);
+void	handle_heredoc(t_data *data, t_cmd *cmd, char *stop);
+void	handle_infile(t_data *data, t_cmd *cmd, char *infile);
+void	handle_outfile(t_data *data, t_cmd *cmd, char *outfile);
+void	handle_outfile_append(t_data *data, t_cmd *cmd, char *outfile);
+
+// EXPANDER
 void	expander(t_data *data, t_list *commands);
 
+// EXECUTION
 void	execute(t_data *data, char *envp[]);
 void	run_builtin(t_data *data, char *cmd_name);
 int		is_builtin(char *cmd_name);
 int		cmp_env(t_data *data, t_list **new_env, int arg_count);
 char	*get_env(t_list *env, char *name);
 
-void	clear(t_data *data, char *line);
+// BUILTINS
+void	ft_env(t_list *env);
+
+bool	ft_cd(t_data *data);
 
 int		ft_pwd(void);
 
@@ -80,17 +84,14 @@ void	ft_unset(t_data *data, t_list **new_env);
 void	ft_export(t_data *data, t_list **new_env);
 void	parsing_export_unset(t_data *data, char *line);
 
-void	ft_env(t_list *env);
-
-void	increment_shell_level(t_data *data);
-
-int		ft_atoi_1(const char *str);
-
-bool	ft_cd(t_data *data);
+void	increment_shell_level(t_list *new_env);
+int		ft_atoi_shlvl(const char *str);
 
 bool	ft_echo(t_data *data);
 
-void	clear_redirection(char **elements);
+// CLEAR
+void	clear(t_data *data);
+void	*free_split(char **strings);
 
 void	ft_exit(void);
 
@@ -106,6 +107,7 @@ void	werror(t_data *data, char *message, int code);
 void	werror_exit(t_data *data, char *message, int code);
 int		ft_strcmp(char *s1, char *s2);
 char	**ft_split_quote(t_data *data, char const *s, char c);
+char	**ft_split_redirections(t_data *data, char **s);
 int		is_parent_cmd(char *cmd_name);
 
 // DEBUG
@@ -116,13 +118,9 @@ void	debug_split(char **split);
 
 // SIGNAL
 void	run_signals(int sig);
-
 void	restore_prompt(int sig);
-
 void	ctrl_c(int sig);
-
 void	back_slash(int sig);
-
 void	rl_replace_line(const char *text, int clear_undo);
 
 #endif

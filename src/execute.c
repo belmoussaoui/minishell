@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/24 13:16:09 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/24 13:17:24 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ char	*cmd_ok(char **paths, char *cmd_name)
 void	run_child(t_data *data, char *envp[], t_list *current)
 {
 	data->elements = ((t_cmd *)(current->content))->elements;
-	if (current != data->commands)
-		dup2(((t_cmd *)(current->content))->infile, STDIN_FILENO);
+	dup2(((t_cmd *)(current->content))->infile, STDIN_FILENO);
 	if (ft_lstlen(current) > 1)
 		dup2(((t_cmd *)(current->next->content))->outfile, STDOUT_FILENO);
 	ft_close(current);
@@ -75,10 +74,9 @@ void	run_fork(t_data *data, char *envp[], t_list *current)
 	if (pid == -1)
 		werror_exit(data, "can't fork, error occured\n", 127);
 	else if (pid == 0)
-	{
 		run_child(data, envp, current);
-	}
 }
+
 // Execute the list of commands.
 
 void	execute(t_data *data, char *envp[])

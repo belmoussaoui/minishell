@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:03:03 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/22 16:38:26 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/24 14:54:35 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*reader(t_data *data)
 		printf("exit\n");
 		exit(0);
 	}
+	if (*line == '\0')
+		return (NULL);
 	add_history(line);
 	data->error_code = 0;
 	return (line);
