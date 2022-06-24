@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/22 15:20:57 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/24 13:15:16 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,3 @@ int	is_parent_cmd(char *cmd_name)
 		|| !ft_strncmp(cmd_name, "cd", 3)
 		|| !ft_strncmp(cmd_name, "exit", 5));
 }
-

@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/22 15:30:08 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/24 13:16:09 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	run_child(t_data *data, char *envp[], t_list *current)
 	}
 }
 
-void run_fork(t_data *data, char *envp[], t_list *current)
+void	run_fork(t_data *data, char *envp[], t_list *current)
 {
 	int	pid;
 
@@ -76,10 +76,11 @@ void run_fork(t_data *data, char *envp[], t_list *current)
 		werror_exit(data, "can't fork, error occured\n", 127);
 	else if (pid == 0)
 	{
-		run_child(data, envp,current);
+		run_child(data, envp, current);
 	}
 }
 // Execute the list of commands.
+
 void	execute(t_data *data, char *envp[])
 {
 	t_list	*current;
