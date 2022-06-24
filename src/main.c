@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:00:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/22 16:37:09 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/24 16:25:55 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	main(int argc, char *argv[], char *envp[])
 	while (19)
 	{
 		data.line = reader(&data);
-		if (!syntax_error(&data))
+		if (!syntax_error(&data) || !data.line)
 			continue ;
 		parser(&data, &data.commands, data.line);
 		expander(&data, data.commands);
-		execute(&data, envp);
+		execute(&data);
 		clear(&data);
 	}
 	return (1);

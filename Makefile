@@ -6,7 +6,7 @@
 #    By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/23 19:36:37 by lrondia          ###   ########.fr        #
+#    Updated: 2022/06/24 14:18:11 by lrondia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC = 	src/main.c\
 		src/ft_split_redirections.c\
 		src/expander.c\
 		src/execute.c\
+		src/execute_utils.c\
 		src/utils.c\
 		src/clear.c\
 		src/debug.c\

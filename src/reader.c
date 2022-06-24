@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:03:03 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/22 17:16:01 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/24 14:20:02 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ char	*reader(t_data *data)
 
 	run_signals(1);
 	line = readline("minishell$ ");
-	if (line == NULL)
+	if (!line)
 	{
 		printf("exit\n");
 		exit(0);
 	}
+	if (*line == '\0')
+		return (NULL);
 	add_history(line);
 	data->error_code = 0;
 	return (line);
