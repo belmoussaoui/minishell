@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:03:03 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/24 14:54:35 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/24 16:13:15 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*reader(t_data *data)
 	char	*line;
 
 	run_signals(1);
+	term_config();
 	line = readline("minishell$ ");
 	if (line == NULL)
 	{
