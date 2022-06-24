@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:28:19 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/22 17:16:56 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/24 20:04:46 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	expands_error(t_data *data, t_list **new)
+{
+	char	*val_var;
+	int		i;
+
+	val_var = ft_itoa(data->error_code);
+	if (!val_var)
+		exit(EXIT_FAILURE);
+	i = 0;
+	while (val_var[i])
+	{
+		ft_lstadd_back(new, ft_lstnew(val_var + i));
+		i++;
+	}
+	return (i + 1);
+}
 
 int	expands_variable(t_data *data, t_list **new, char *element)
 {
@@ -22,6 +39,13 @@ int	expands_variable(t_data *data, t_list **new, char *element)
 	len_var = 0;
 	while (ft_isalnum(element[len_var]) || element[len_var] == '_')
 		len_var++;
+	if (len_var == 0 && element[len_var] == '?')
+		return expands_error(data, new);
+	if (len_var == 0 && !element[len_var])
+	{
+		ft_lstadd_back(new, ft_lstnew(ft_strdup("$")));
+		return (1);
+	}
 	name_var = malloc(sizeof(char) * (len_var + 1));
 	if (!name_var)
 		exit(EXIT_FAILURE);
@@ -36,7 +60,7 @@ int	expands_variable(t_data *data, t_list **new, char *element)
 		ft_lstadd_back(new, ft_lstnew(val_var + i));
 		i++;
 	}
-	return (len_var);
+	return (len_var + 1);
 }
 
 void	remplace_element(t_list *new, char **element)

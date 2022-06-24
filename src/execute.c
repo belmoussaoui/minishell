@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/22 17:56:32 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/24 19:54:37 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	run_child(t_data *data, char *envp[], t_list *current)
 	if (is_builtin(data->elements[0]))
 	{
 		run_builtin(data, data->elements[0]);
-		exit(1);
+		exit(EXIT_SUCCESS);
 	}
 	else
 	{
@@ -62,7 +62,7 @@ void	run_child(t_data *data, char *envp[], t_list *current)
 		if (!data->cmd)
 			werror_exit(data, "command not found", 127);
 		if (execve(data->cmd, data->elements, envp) == -1)
-			werror_exit(data, "can't execve, error occured\n", 256);
+			werror_exit(data, "can't execve, error occured\n", 126);
 	}
 }
 
