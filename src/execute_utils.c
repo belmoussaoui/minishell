@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:14:12 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/24 16:56:29 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 16:18:12 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*path_finder(t_data *data, char **envp)
 		envp++;
 	if (!*envp)
 		werror_exit(data, "No such file or directory", 127);
-	return (*envp + 5);
+	return (*envp + 5); 
 }
 
 char	*cmd_ok(char **paths, char *cmd_name)

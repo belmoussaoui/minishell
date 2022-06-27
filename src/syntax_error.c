@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/27 15:02:21 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:30:13 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	check_wrong_seperators(t_data *data, char *line)
 	nb_pipe = 0;
 	while (line[i])
 	{
-		if (!check_quote(data, line[i]) && is_metachar(line[i]))
+		if (!check_quote(data, line[i]) && line[i] == '|')
 		{
 			nb_pipe++;
-			if (nb_pipe == 3 || (nb_pipe == 2 && !is_metachar(line[i - 1])))
+			if (nb_pipe == 3 || (nb_pipe == 2 && line[i - 1] != '|'))
 			{
 				werror(data, "syntax error near unexpected token `|'", 285);
 				break ;
