@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:34:39 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/27 15:28:37 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 16:16:42 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ void	lexer(t_data *data, t_list **commands, char *line)
 	tmp = get_command(data, line);
 	cmd->elements = ft_split_quote(data, tmp, ' ');
 	cmd->elements = ft_split_redirections(data, cmd->elements);
-	if (!cmd->elements)
-		exit(EXIT_FAILURE);
 	fd_pipe(data, cmd);
 	cmd->is_redirection = 0;
 	new = ft_lstnew(cmd);
