@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mon_at.c                                        :+:      :+:    :+:   */
+/*   ft_atoi_shlvl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:24:55 by mliban-s          #+#    #+#             */
-/*   Updated: 2022/06/21 16:37:58 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/22 14:00:00 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	handle_overflow(int sign)
 		return (-1);
 }
 
-int	ft_atoi_1(const char *str)
+int	ft_atoi_shlvl(const char *str)
 {
 	int			sign;
 	long long	res;

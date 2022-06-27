@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 16:53:53 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/21 20:36:40 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/22 12:00:28 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_unset(t_data *data, t_list **env)
 	arg_count = 1;
 	while (data->elements[arg_count])
 	{
+		parsing_export_unset(data, data->elements[arg_count]);
 		i = cmp_env(data, env, arg_count);
 		if (i != data->len_env)
 			unset_from_env(data, env, i);

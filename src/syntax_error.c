@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/21 20:36:56 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/22 14:49:42 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	is_special_char(char c)
-{
-	return (!ft_isalnum(c) && !is_metachar(c) && c != '_' && c != '-'
-		&& c != ' ' && c != '\\' && c != '$' && c != '"' && c != '\''
-		&& c != '=');
-}
 
 void	check_wrong_seperators(t_data *data, char *line)
 {
@@ -58,13 +51,6 @@ void	begin_end_with_separator(t_data *data, char *line)
 	i = ft_strlen(line) - 1;
 	if (line[i] == '<' || line[i] == '>')
 		werror(data, "syntax error near unexpected token `newline'", 285);
-	i = 0;
-	while (line[i])
-	{
-		if (is_special_char(line[i]))
-			werror(data, "not a valid identifier", 1);
-		i++;
-	}
 }
 
 int	syntax_error(t_data *data)

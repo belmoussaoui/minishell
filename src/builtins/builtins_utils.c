@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/21 20:39:37 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:16:50 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	run_builtin(t_data *data, char *cmd_name)
 		ft_echo(data);
 	else if (!ft_strncmp(cmd_name, "pwd", 4))
 		ft_pwd();
-	exit(1);
+	else if (!ft_strncmp(cmd_name, "exit", 5))
+		ft_exit();
 }
 
 int	cmp_env(t_data *data, t_list **new_env, int arg_count)
@@ -54,6 +55,7 @@ int	cmp_env(t_data *data, t_list **new_env, int arg_count)
 		value = ft_split((ft_lstget(*new_env, i))->content, '=');
 		if (!ft_strncmp(elem_split[0], value[0], ft_strlen(elem_split[0])))
 			break ;
+		free_split(value);
 		i++;
 	}
 	return (i);
@@ -73,4 +75,12 @@ char	*get_env(t_list *env, char *name)
 		env = env->next;
 	}
 	return (NULL);
+}
+
+int	is_parent_cmd(char *cmd_name)
+{
+	return (!ft_strncmp(cmd_name, "unset", 6)
+		|| !ft_strncmp(cmd_name, "export", 7)
+		|| !ft_strncmp(cmd_name, "cd", 3)
+		|| !ft_strncmp(cmd_name, "exit", 5));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 17:52:55 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/21 20:36:33 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/22 13:38:53 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_env(t_list *env)
 {
 	while (env)
 	{
-		//printf("%s\n", env->content);
+		printf("%s\n", env->content);
 		env = env->next;
 	}
 }
