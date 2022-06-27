@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/27 13:10:31 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:25:15 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	ft_exit(void);
 // UTILS
 
 int		is_metachar(char c);
+int		is_only_space(char *line);
 int		check_quote(t_data *data, char c);
 void	clear_quote(t_data *data);
 void	ft_close(t_list *commands);

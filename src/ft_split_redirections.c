@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 17:21:31 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/23 19:20:34 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 16:19:49 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	**ft_split_redirections(t_data *data, char **s)
 	i = 0;
 	count = 0;
 	if (!s)
-		exit(EXIT_FAILURE);
+		exit (EXIT_FAILURE);
 	while (s[i])
 	{
 		count += count_split(data, s[i]);
