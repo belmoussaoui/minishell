@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/27 16:25:15 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 16:48:35 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 typedef struct s_data
 {
+	int		shlvl;
 	int		error_code;
 	bool	s_quote;
 	bool	d_quote;
@@ -89,7 +90,7 @@ void	ft_unset(t_data *data, t_list **new_env);
 void	ft_export(t_data *data, t_list **new_env);
 void	parsing_export_unset(t_data *data, char *line);
 
-void	increment_shell_level(t_list *new_env);
+void	increment_shell_level(t_data *data, t_list *new_env);
 int		ft_atoi_shlvl(const char *str);
 
 bool	ft_echo(t_data *data);
