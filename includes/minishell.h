@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/27 12:16:44 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/27 13:10:31 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/wait.h>
 # include <signal.h>
 # include <fcntl.h>
+# include <termios.h>
 # include "../libft/libft.h"
 
 typedef struct s_data
@@ -40,8 +41,9 @@ typedef struct s_data
 typedef struct s_cmd
 {
 	char	**elements;
-	int		infile;	
+	int		infile;
 	int		outfile;
+	bool	is_redirection;
 }	t_cmd;
 
 int	g_ret_number;
@@ -66,7 +68,10 @@ void	handle_outfile_append(t_data *data, t_cmd *cmd, char *outfile);
 void	expander(t_data *data, t_list *commands);
 
 // EXECUTION
-void	execute(t_data *data, char *envp[]);
+void	execute(t_data *data);
+char	*path_finder(t_data *data, char **envp);
+char	*cmd_ok(char **paths, char *cmd_name);
+char	**env_list_to_tab(t_list *env);
 void	run_builtin(t_data *data, char *cmd_name);
 int		is_builtin(char *cmd_name);
 int		cmp_env(t_data *data, t_list **new_env, int arg_count);
@@ -95,8 +100,6 @@ void	*free_split(char **strings);
 
 void	ft_exit(void);
 
-void	run_fork(t_data *data, char *envp[], t_list *current);
-
 // UTILS
 
 int		is_metachar(char c);
@@ -122,5 +125,6 @@ void	restore_prompt(int sig);
 void	ctrl_c(int sig);
 void	back_slash(int sig);
 void	rl_replace_line(const char *text, int clear_undo);
+void	term_config(void);
 
 #endif

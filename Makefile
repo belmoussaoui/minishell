@@ -6,7 +6,7 @@
 #    By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/27 12:16:56 by hakermad         ###   ########.fr        #
+#    Updated: 2022/06/27 13:10:43 by hakermad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC = 	src/main.c\
 		src/ft_split_redirections.c\
 		src/expander.c\
 		src/execute.c\
+		src/execute_utils.c\
 		src/utils.c\
 		src/clear.c\
 		src/debug.c\
