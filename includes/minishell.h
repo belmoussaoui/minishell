@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/24 16:49:40 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 13:06:32 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/wait.h>
 # include <signal.h>
 # include <fcntl.h>
+# include <termios.h>
 # include "../libft/libft.h"
 
 typedef struct s_data
@@ -124,5 +125,6 @@ void	restore_prompt(int sig);
 void	ctrl_c(int sig);
 void	back_slash(int sig);
 void	rl_replace_line(const char *text, int clear_undo);
+void	term_config(void);
 
 #endif

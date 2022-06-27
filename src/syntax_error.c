@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/27 15:28:55 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 15:30:13 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	syntax_error(t_data *data)
 		werror(data, "syntax error near unexpected token `quote'", 285);
 	clear_quote(data);
 	begin_end_with_separator(data, data->line);
-	if (data->error_code)
+	if (data->error_code == 285)
 		return (0);
 	return (1);
 }
