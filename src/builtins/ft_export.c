@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 16:45:10 by mliban-s          #+#    #+#             */
-/*   Updated: 2022/06/27 15:25:22 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/27 18:48:33 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	parsing_export_unset(t_data *data, char *line)
+void	parsing_export_unset(char *line)
 {
 	int		i;
 	char	c;
@@ -20,7 +20,7 @@ void	parsing_export_unset(t_data *data, char *line)
 	i = 0;
 	if (ft_isdigit(line[i]))
 	{
-		werror(data, "export: not a valid identifier", 1);
+		werror("export: not a valid identifier", 1);
 		exit (1);
 	}
 	while (line[i])
@@ -29,7 +29,7 @@ void	parsing_export_unset(t_data *data, char *line)
 		if (!ft_isalnum(c) && c != '_' && c != ' ' && c != '\\'
 			&& c != '"' && c != '\'' && c != '=')
 		{
-			werror(data, "export: not a valid identifier", 1);
+			werror("export: not a valid identifier", 1);
 			exit (1);
 		}
 		i++;
@@ -44,7 +44,7 @@ void	ft_export(t_data *data, t_list **new_env)
 	arg_count = 1;
 	while (data->elements[arg_count])
 	{
-		parsing_export_unset(data, data->elements[arg_count]);
+		parsing_export_unset(data->elements[arg_count]);
 		i = cmp_env(data, new_env, arg_count);
 		if (!ft_strchr(data->elements[arg_count], '='))
 		{

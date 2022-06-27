@@ -6,7 +6,7 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/27 17:02:07 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/27 19:56:29 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@
 # include <termios.h>
 # include "../libft/libft.h"
 
+int		g_error_code;
+
 typedef struct s_data
 {
-	int		error_code;
 	bool	s_quote;
 	bool	d_quote;
 	int		len_env;
@@ -46,8 +47,6 @@ typedef struct s_cmd
 	int		outfile;
 }	t_cmd;
 
-int	g_ret_number;
-
 // INIT
 void	initializer(t_data *data, char *envp[]);
 char	*reader(t_data *data);
@@ -57,19 +56,19 @@ int		syntax_error(t_data *data);
 int		parser(t_data *data, t_list **commands, char *line);
 
 // REDIRECTIONS
-void	redirections(t_data *data, t_list *commands);
+void	redirections(t_list *commands);
 void	clear_redirection(char **elements);
-void	handle_heredoc(t_data *data, t_cmd *cmd, char *stop);
-void	handle_infile(t_data *data, t_cmd *cmd, char *infile);
-void	handle_outfile(t_data *data, t_cmd *cmd, char *outfile);
-void	handle_outfile_append(t_data *data, t_cmd *cmd, char *outfile);
+void	handle_heredoc(t_cmd *cmd, char *stop);
+void	handle_infile(t_cmd *cmd, char *infile);
+void	handle_outfile(t_cmd *cmd, char *outfile);
+void	handle_outfile_append(t_cmd *cmd, char *outfile);
 
 // EXPANDER
 void	expander(t_data *data, t_list *commands);
 
 // EXECUTION
 void	execute(t_data *data);
-char	*path_finder(t_data *data, char **envp);
+char	*path_finder(char **envp);
 char	*cmd_ok(char **paths, char *cmd_name);
 char	**env_list_to_tab(t_list *env);
 void	run_builtin(t_data *data, char *cmd_name);
@@ -87,7 +86,7 @@ int		ft_pwd(void);
 void	ft_unset(t_data *data, t_list **new_env);
 
 void	ft_export(t_data *data, t_list **new_env);
-void	parsing_export_unset(t_data *data, char *line);
+void	parsing_export_unset(char *line);
 
 void	increment_shell_level(t_list *new_env);
 int		ft_atoi_shlvl(const char *str);
@@ -107,8 +106,8 @@ int		is_only_space(char *line);
 int		check_quote(t_data *data, char c);
 void	clear_quote(t_data *data);
 void	ft_close(t_list *commands);
-void	werror(t_data *data, char *message, int code);
-void	werror_exit(t_data *data, char *message, int code);
+void	werror(char *message, int code);
+void	werror_exit(char *message, int code);
 int		ft_strcmp(char *s1, char *s2);
 char	**ft_split_quote(t_data *data, char const *s, char c);
 char	**ft_split_redirections(t_data *data, char **s);
@@ -122,9 +121,6 @@ void	debug_split(char **split);
 
 // SIGNAL
 void	run_signals(int sig);
-void	restore_prompt(int sig);
-void	ctrl_c(int sig);
-void	back_slash(int sig);
 void	rl_replace_line(const char *text, int clear_undo);
 void	term_config(void);
 

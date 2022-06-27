@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:14:12 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/24 16:56:29 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 18:46:17 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*path_finder(t_data *data, char **envp)
+char	*path_finder(char **envp)
 {
 	while (*envp && ft_strncmp("PATH", *envp, 4))
 		envp++;
 	if (!*envp)
-		werror_exit(data, "No such file or directory", 127);
+		werror_exit("No such file or directory", 127);
 	return (*envp + 5);
 }
 

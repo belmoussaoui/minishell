@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initializer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:05:53 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/22 17:12:51 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 19:58:01 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void	initializer(t_data *data, char *envp[])
 	data->commands = NULL;
 	data->len_env = 0;
 	data->new_env = NULL;
-	data->error_code = 0;
-	g_ret_number = 0;
+	g_error_code = 0;
 	init_env(data, &data->new_env, envp);
 	increment_shell_level(data->new_env);
 }

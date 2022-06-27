@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/27 15:30:13 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 19:56:48 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	check_wrong_seperators(t_data *data, char *line)
 			nb_pipe++;
 			if (nb_pipe == 3 || (nb_pipe == 2 && line[i - 1] != '|'))
 			{
-				werror(data, "syntax error near unexpected token `|'", 285);
+				werror("syntax error near unexpected token `|'", 285);
 				break ;
 			}
 			else if (line[i] == '|' && i != 0 && line[i - 1] == '<')
 			{
-				werror(data, "syntax error near unexpected token `|'", 285);
+				werror("syntax error near unexpected token `|'", 285);
 				break ;
 			}
 		}
@@ -41,26 +41,26 @@ void	check_wrong_seperators(t_data *data, char *line)
 	}
 }
 
-void	begin_end_with_separator(t_data *data, char *line)
+void	begin_end_with_separator(char *line)
 {
 	int	i;
 
 	i = 0;
 	if (line[i] == '|')
-		werror(data, "syntax error near unexpected token `|'", 285);
+		werror("syntax error near unexpected token `|'", 285);
 	i = ft_strlen(line) - 1;
 	if (line[i] == '<' || line[i] == '>')
-		werror(data, "syntax error near unexpected token `newline'", 285);
+		werror("syntax error near unexpected token `newline'", 285);
 }
 
 int	syntax_error(t_data *data)
 {
 	check_wrong_seperators(data, data->line);
 	if (check_quote(data, 'c'))
-		werror(data, "syntax error near unexpected token `quote'", 285);
+		werror("syntax error near unexpected token `quote'", 285);
 	clear_quote(data);
-	begin_end_with_separator(data, data->line);
-	if (data->error_code == 285)
+	begin_end_with_separator(data->line);
+	if (g_error_code == 285)
 		return (0);
 	return (1);
 }
