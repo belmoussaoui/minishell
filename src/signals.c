@@ -6,7 +6,7 @@
 /*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 18:05:14 by mliban-s          #+#    #+#             */
-/*   Updated: 2022/06/24 16:43:25 by mliban-s         ###   ########.fr       */
+/*   Updated: 2022/06/27 13:06:59 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	back_slash(int sig)
 void	term_config(void)
 {
 	struct termios	term;
+
 	tcgetattr(0, &term);
 	term.c_lflag &= ~ECHOCTL;
 	tcsetattr(0, TCSANOW, &term);
