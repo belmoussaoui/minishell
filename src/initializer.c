@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:05:53 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/27 16:46:13 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 20:51:46 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ void	initializer(t_data *data, char *envp[])
 	data->commands = NULL;
 	data->len_env = 0;
 	data->new_env = NULL;
-	data->error_code = 0;
-	g_ret_number = 0;
+	g_error_code = 0;
 	init_env(data, &data->new_env, envp);
 	increment_shell_level(data, data->new_env);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:47:26 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/23 19:34:35 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 18:50:06 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ void	write_stdin(char *stop, int file_id)
 		free (gnl);
 }
 
-void	handle_heredoc(t_data *data, t_cmd *cmd, char *stop)
+void	handle_heredoc(t_cmd *cmd, char *stop)
 {
 	cmd->infile = open(".heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (cmd->infile == -1)
-		werror_exit(data, "can't open, error occured", 1);
+		werror_exit("can't open, error occured", 1);
 	write_stdin(stop, cmd->infile);
 	cmd->infile = open(".heredoc", O_RDONLY, 0644);
 	if (cmd->infile == -1)
-		werror_exit(data, "can't open, error occured", 1);
+		werror_exit("can't open, error occured", 1);
 }
 
 void	clear_redirection(char **elements)
