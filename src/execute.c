@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/27 16:44:40 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/27 19:14:05 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	run_fork(t_data *data, t_list *current)
 {
 	int		pid;
 	char	**env_tab;
-
 	env_tab = env_list_to_tab(data->new_env);
 	pid = fork();
 	if (pid == -1)
