@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:34:39 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/27 16:16:42 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 17:01:41 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	lexer(t_data *data, t_list **commands, char *line)
 	t_cmd	*cmd;
 	char	*tmp;
 
-	cmd = malloc(sizeof(t_cmd *));
+	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
 		exit(EXIT_FAILURE);
 	tmp = get_command(data, line);

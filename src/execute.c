@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/27 15:20:11 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:48:37 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	execute(t_data *data)
 	while (current)
 	{
 		data->elements = ((t_cmd *)(current->content))->elements;
+		if (!data->elements[0])
+			break ;
 		if (!is_parent_cmd(data->elements[0]))
 		{
 			run_signals(2);

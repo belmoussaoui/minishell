@@ -6,11 +6,34 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:08:51 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/27 16:26:14 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 19:26:34 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*join_the_split(char **split)
+{
+	int		i;
+	char	*copy;
+	char	*str;
+
+	i = 0;
+	str = malloc(1);
+	if (!str)
+		exit (EXIT_FAILURE);
+	str[0] = '\0';
+	while (split[i])
+	{
+		copy = ft_strjoin(str, split[i]);
+		if (!copy)
+			exit(EXIT_FAILURE);
+		str = copy;
+		free(copy);
+		i++;
+	}
+	return (str);
+}
 
 int	is_only_space(char *line)
 {

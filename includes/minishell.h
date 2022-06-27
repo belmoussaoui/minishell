@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/27 16:48:35 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 19:27:34 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ typedef struct s_data
 typedef struct s_cmd
 {
 	char	**elements;
+	int		is_redirection;
 	int		infile;
 	int		outfile;
-	bool	is_redirection;
 }	t_cmd;
 
 int	g_ret_number;
@@ -111,6 +111,7 @@ void	ft_close(t_list *commands);
 void	werror(t_data *data, char *message, int code);
 void	werror_exit(t_data *data, char *message, int code);
 int		ft_strcmp(char *s1, char *s2);
+char	*join_the_split(char **split);
 char	**ft_split_quote(t_data *data, char const *s, char c);
 char	**ft_split_redirections(t_data *data, char **s);
 int		is_parent_cmd(char *cmd_name);

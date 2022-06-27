@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:14:12 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/24 16:56:29 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 17:33:58 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,15 @@ char	*cmd_ok(char **paths, char *cmd_name)
 char	**env_list_to_tab(t_list *env)
 {
 	int		i;
+	int		len;
 	char	**env_tab;
 
 	i = 0;
-	env_tab = malloc(sizeof (char *) * ft_lstlen(env));
+	len = ft_lstlen(env);
+	env_tab = malloc(sizeof (char *) * len + 1);
 	if (!env_tab)
 		exit (EXIT_FAILURE);
-	while (i < ft_lstlen(env))
+	while (i < len)
 	{
 		env_tab[i] = malloc(sizeof(char)
 				* ft_strlen((char *)(env->content)) + 1);
@@ -63,5 +65,6 @@ char	**env_list_to_tab(t_list *env)
 		env = env->next;
 		i++;
 	}
+	env_tab[i] = 0;
 	return (env_tab);
 }
