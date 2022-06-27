@@ -6,7 +6,7 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:03:03 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/27 15:01:36 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:18:32 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ char	*reader(t_data *data)
 
 	(void) data;
 	run_signals(1);
+	term_config();
 	line = readline("minishell$ ");
-	if (line == NULL)
+	if (!line)
 	{
 		printf("exit\n");
 		exit(0);
 	}
+	if (*line == '\0')
+		return (NULL);
 	add_history(line);
 	return (line);
 }

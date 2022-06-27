@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 16:45:10 by mliban-s          #+#    #+#             */
-/*   Updated: 2022/06/22 12:00:24 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/24 16:55:06 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	ft_export(t_data *data, t_list **new_env)
 		}
 		else if (i == data->len_env)
 		{
-			ft_lstadd_back(new_env, ft_lstnew(data->elements[arg_count]));
+			ft_lstadd_back(new_env,
+				ft_lstnew(ft_strdup(data->elements[arg_count])));
 			data->len_env++;
 		}
 		else

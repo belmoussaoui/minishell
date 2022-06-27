@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:42:11 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/23 19:35:09 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/24 16:55:34 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ void	handle_fd(t_data *data, t_cmd *cmd, char **elements, char *line)
 	i = 0;
 	while (line[i] && line[i] != '<' && line[i] != '>')
 		i++;
-	if (line[i] == '<' && line[i + 1] == '<')
+	if (line[i] && line[i] == '<' && line[i + 1] == '<')
 		handle_heredoc(data, cmd, elements[1]);
-	else if (line[i] == '<' && line[i + 1] != '<' && line[i + 1] == '\0')
+	else if (line[i] && line[i] == '<' && line[i + 1] != '<'
+		&& line[i + 1] == '\0')
 		handle_infile(data, cmd, elements[1]);
-	else if (line[i] == '>' && line[i + 1] != '>' && line[i + 1] == '\0')
+	else if (line[i] && line[i] == '>' && line[i + 1] != '>'
+		&& line[i + 1] == '\0')
 		handle_outfile(data, cmd, elements[1]);
-	else if (line[i] == '>' && line[i + 1] == '>')
+	else if (line[i] && line[i] == '>' && line[i + 1] == '>')
 		handle_outfile_append(data, cmd, elements[1]);
 }
 

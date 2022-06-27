@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: mliban-s <mliban-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:00:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/22 16:37:09 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/24 16:59:05 by mliban-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	main(int argc, char *argv[], char *envp[])
 	while (19)
 	{
 		data.line = reader(&data);
-		if (!syntax_error(&data))
+		if (!data.line || !syntax_error(&data))
 			continue ;
 		parser(&data, &data.commands, data.line);
 		expander(&data, data.commands);
-		execute(&data, envp);
+		execute(&data);
 		clear(&data);
 	}
 	return (1);
