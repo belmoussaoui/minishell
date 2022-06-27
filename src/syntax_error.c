@@ -6,7 +6,7 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/24 19:31:50 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:02:21 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	syntax_error(t_data *data)
 		werror(data, "syntax error near unexpected token `quote'", 285);
 	clear_quote(data);
 	begin_end_with_separator(data, data->line);
-	// if (data->error_code)
-	// 	return (0);
+	if (data->error_code == 285)
+		return (0);
 	return (1);
 }
