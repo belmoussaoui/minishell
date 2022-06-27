@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/27 20:48:37 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 20:50:48 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	run_child(t_data *data, char **env, t_list *current)
 	}
 	else
 	{
-		data->paths = ft_split(path_finder(data, env), ':');
+		data->paths = ft_split(path_finder(env), ':');
 		data->cmd = cmd_ok(data->paths, data->elements[0]);
 		if (!data->cmd)
-			werror_exit(data, "command not found", 127);
+			werror_exit("command not found", 127);
 		if (execve(data->cmd, data->elements, env) == -1)
-			werror_exit(data, "can't execve, error occured\n", 126);
+			werror_exit("can't execve, error occured\n", 126);
 	}
 }
 
@@ -49,9 +49,21 @@ void	run_fork(t_data *data, t_list *current)
 	env_tab = env_list_to_tab(data->new_env);
 	pid = fork();
 	if (pid == -1)
-		werror_exit(data, "can't fork, error occured\n", 127);
+		werror_exit("can't fork, error occured\n", 127);
 	else if (pid == 0)
 		run_child(data, env_tab, current);
+}
+
+void	end_execute(void)
+{
+	if (WIFEXITED(g_error_code))
+		g_error_code = WEXITSTATUS(g_error_code);
+	if (WIFSIGNALED(g_error_code))
+	{
+		g_error_code = WTERMSIG(g_error_code);
+		if (g_error_code != 131)
+			g_error_code += 128;
+	}
 }
 
 // Execute the list of commands.
@@ -79,8 +91,8 @@ void	execute(t_data *data)
 	current = data->commands;
 	while (current)
 	{
-		wait(&data->error_code);
+		wait(&g_error_code);
 		current = current->next;
 	}
-	data->error_code = WEXITSTATUS(data->error_code);
+	end_execute();
 }
