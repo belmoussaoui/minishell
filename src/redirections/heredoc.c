@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:47:26 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/28 13:35:26 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/28 17:07:07 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,16 @@ void	clear_redirection(char **elements)
 	while (elements[i])
 	{
 		line = elements[i];
-		j = 0;
-		while (line[j])
+		if (is_metachar(line[0]))
 		{
-			if (is_metachar(line[j]))
+			j = i;
+			while (elements[i])
 			{
-				if (j == 0)
-					elements[i] = NULL;
-				else
-					line[j] = '\0';
-				elements[i + 1] = NULL;
-				return ;
+				free(elements[i]);
+				i++;
 			}
-			j++;
+			elements[j] = NULL;
+			break ;
 		}
 		i++;
 	}
