@@ -6,13 +6,13 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:28:19 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/27 16:41:33 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/27 19:57:16 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	expands_error(t_data *data, t_list **new, char *element)
+int	expands_error(t_list **new, char *element)
 {
 	char	*val_var;
 	int		i;
@@ -22,7 +22,7 @@ int	expands_error(t_data *data, t_list **new, char *element)
 		ft_lstadd_back(new, ft_lstnew(ft_strdup("$")));
 		return (1);
 	}
-	val_var = ft_itoa(data->error_code);
+	val_var = ft_itoa(g_error_code);
 	if (!val_var)
 		exit(EXIT_FAILURE);
 	i = 0;
@@ -45,7 +45,7 @@ int	expands_variable(t_data *data, t_list **new, char *element)
 	while (ft_isalnum(element[len_var]) || element[len_var] == '_')
 		len_var++;
 	if (len_var == 0 && (element[len_var] == '?' || !element[len_var]))
-		return (expands_error(data, new, element));
+		return (expands_error(new, element));
 	name_var = malloc(sizeof(char) * (len_var + 1));
 	if (!name_var)
 		exit(EXIT_FAILURE);

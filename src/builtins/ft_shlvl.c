@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:40:24 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/27 16:40:30 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 20:51:11 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,8 @@ int	env_value_len(const char *env)
 	return (i);
 }
 
-void	increment_shell_level(t_list *new_env)
+void	increment_shell_level(t_data *data, t_list *new_env)
 {
-	int		shell_level;
 	char	*env_name;
 	char	*shlvl;
 	char	*shell_level_value;
@@ -47,16 +46,16 @@ void	increment_shell_level(t_list *new_env)
 	env_name = malloc(sizeof(char *) * env_value_len("SHLVL="));
 	if (!env_name)
 		exit (EXIT_FAILURE);
-	shell_level_value = get_env(new_env, "SHLVL"); 
+	shell_level_value = get_env(new_env, "SHLVL");
 	if (ft_strncmp(shell_level_value, "", ft_strlen(shell_level_value)) == 0)
 		return ;
-	shell_level = ft_atoi_shlvl(shell_level_value) + 1;
+	data->shlvl = ft_atoi_shlvl(shell_level_value) + 1;
 	while (new_env->next)
 	{
 		get_env_name(env_name, new_env->content);
 		if (ft_strncmp("SHLVL", env_name, 6) == 0)
 		{
-			shlvl = ft_itoa(shell_level);
+			shlvl = ft_itoa(data->shlvl);
 			new_env->content = ft_strjoin("SHLVL=", shlvl);
 			free(shlvl);
 			break ;

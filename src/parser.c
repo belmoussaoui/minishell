@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:34:39 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/27 18:07:55 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:02:41 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ char	*get_command(t_data *data, char *line)
 	return (tmp);
 }
 
-void	fd_pipe(t_data *data, t_cmd *cmd)
+void	fd_pipe(t_cmd *cmd)
 {
 	int		tab[2];
 
 	if (pipe(tab) == -1)
-		werror_exit(data, "can't pipe, error occured\n", 127);
+		werror_exit("can't pipe, error occured\n", 127);
 	cmd->infile = tab[0];
 	cmd->outfile = tab[1];
 }
@@ -60,7 +60,7 @@ void	lexer(t_data *data, t_list **commands, char *line)
 	tmp = get_command(data, line);
 	cmd->elements = ft_split_quote(data, tmp, ' ');
 	cmd->elements = ft_split_redirections(data, cmd->elements);
-	fd_pipe(data, cmd);
+	fd_pipe(cmd);
 	cmd->is_redirection = 0;
 	new = ft_lstnew(cmd);
 	if (!new)
@@ -84,7 +84,7 @@ int	parser(t_data *data, t_list **commands, char *line)
 			lexer(data, commands, line + i + 1);
 		i++;
 	}
-	redirections(data, *commands);
+	redirections(*commands);
 	clear_quote(data);
 	return (1);
 }

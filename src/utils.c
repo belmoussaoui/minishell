@@ -6,11 +6,34 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:08:51 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/28 12:01:42 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:02:44 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*join_the_split(char **split)
+{
+	int		i;
+	char	*copy;
+	char	*str;
+
+	i = 0;
+	str = malloc(1);
+	if (!str)
+		exit (EXIT_FAILURE);
+	str[0] = '\0';
+	while (split[i])
+	{
+		copy = ft_strjoin(str, split[i]);
+		if (!copy)
+			exit(EXIT_FAILURE);
+		str = copy;
+		free(copy);
+		i++;
+	}
+	return (str);
+}
 
 int	is_only_space(char *line)
 {
@@ -24,22 +47,22 @@ int	is_only_space(char *line)
 	return (0);
 }
 
-void	werror(t_data *data, char *message, int code)
+void	werror(char *message, int code)
 {
 	int	len;
 
 	len = ft_strlen(message);
-	data->error_code = code;
+	g_error_code = code;
 	write(2, message, len);
 	write(2, "\n", 1);
 }
 
-void	werror_exit(t_data *data, char *message, int code)
+void	werror_exit(char *message, int code)
 {
 	int	len;
 
 	len = ft_strlen(message);
-	data->error_code = code;
+	g_error_code = code;
 	write(2, message, len);
 	write(2, "\n", 1);
 	exit(code);

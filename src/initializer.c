@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:05:53 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/22 17:12:51 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/27 20:51:46 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	init_env(t_data *data, t_list **new_env, char *envp[])
 // Intialize minishell data and setup the environment.
 void	initializer(t_data *data, char *envp[])
 {
+	data->shlvl = 0;
 	data->s_quote = 0;
 	data->d_quote = 0;
 	data->commands = NULL;
 	data->len_env = 0;
 	data->new_env = NULL;
-	data->error_code = 0;
-	g_ret_number = 0;
+	g_error_code = 0;
 	init_env(data, &data->new_env, envp);
-	increment_shell_level(data->new_env);
+	increment_shell_level(data, data->new_env);
 }

@@ -6,19 +6,19 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:14:12 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/28 12:01:45 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:02:28 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*path_finder(t_data *data, char **envp)
+char	*path_finder(char **envp)
 {
 	while (*envp && ft_strncmp("PATH", *envp, 4))
 		envp++;
 	if (!*envp)
-		werror_exit(data, "No such file or directory", 127);
-	return (*envp + 5); 
+		werror_exit("No such file or directory", 127);
+	return (*envp + 5);
 }
 
 char	*cmd_ok(char **paths, char *cmd_name)
@@ -46,13 +46,15 @@ char	*cmd_ok(char **paths, char *cmd_name)
 char	**env_list_to_tab(t_list *env)
 {
 	int		i;
+	int		len;
 	char	**env_tab;
 
 	i = 0;
-	env_tab = malloc(sizeof (char *) * ft_lstlen(env));
+	len = ft_lstlen(env);
+	env_tab = malloc(sizeof (char *) * len + 1);
 	if (!env_tab)
 		exit (EXIT_FAILURE);
-	while (i < ft_lstlen(env))
+	while (i < len)
 	{
 		env_tab[i] = malloc(sizeof(char)
 				* ft_strlen((char *)(env->content)) + 1);
@@ -63,5 +65,6 @@ char	**env_list_to_tab(t_list *env)
 		env = env->next;
 		i++;
 	}
+	env_tab[i] = 0;
 	return (env_tab);
 }
