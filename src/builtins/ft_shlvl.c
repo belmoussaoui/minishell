@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_shlvl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:40:24 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/27 20:51:11 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/28 15:05:46 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	increment_shell_level(t_data *data, t_list *new_env)
 	if (ft_strncmp(shell_level_value, "", ft_strlen(shell_level_value)) == 0)
 		return ;
 	data->shlvl = ft_atoi_shlvl(shell_level_value) + 1;
-	while (new_env->next)
+	while (new_env)
 	{
 		get_env_name(env_name, new_env->content);
 		if (ft_strncmp("SHLVL", env_name, 6) == 0)
