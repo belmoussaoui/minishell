@@ -6,7 +6,7 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:47:26 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/28 17:07:07 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:27:32 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ void	clear_redirection(char **elements)
 		if (is_metachar(line[0]))
 		{
 			j = i;
-			while (elements[i])
+			while (elements[i + 2])
 			{
-				free(elements[i]);
+				elements[i] = elements[i + 2];
 				i++;
 			}
-			elements[j] = NULL;
+			elements[i] = NULL;
 			break ;
 		}
 		i++;
