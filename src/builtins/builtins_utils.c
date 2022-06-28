@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/27 18:16:31 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/28 15:06:17 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	cmp_env(t_data *data, t_list **new_env, int arg_count)
 
 	i = 0;
 	elem_split = ft_split(data->elements[arg_count], '=');
+	parsing_export_unset(elem_split[0]);
 	while (i < data->len_env)
 	{
 		value = ft_split((ft_lstget(*new_env, i))->content, '=');
