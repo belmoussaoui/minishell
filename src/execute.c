@@ -6,7 +6,7 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/28 19:31:29 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/28 20:19:09 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	run_child(t_data *data, char **env, t_list *current)
 		if (!data->cmd)
 			werror_exit("command not found", 127);
 		if (execve(data->cmd, data->elements, env) == -1)
-			werror_exit("can't execve, error occured\n", 126);
+			werror_exit("can't execve, error occured", 126);
 	}
 }
 
@@ -56,7 +56,7 @@ void	run_fork(t_data *data, t_list *current)
 	env_tab = env_list_to_tab(data->new_env);
 	pid = fork();
 	if (pid == -1)
-		werror_exit("can't fork, error occured\n", 127);
+		werror_exit("can't fork, error occured", 127);
 	else if (pid == 0)
 		run_child(data, env_tab, current);
 }
