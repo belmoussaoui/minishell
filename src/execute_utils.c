@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:14:12 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/28 12:05:41 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/28 19:24:43 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*cmd_ok(char **paths, char *cmd_name)
 	char	*temp;
 	char	*command;
 
-	if (!paths)
+	if (!paths || !cmd_name[0])
 		return (NULL);
 	if (access(cmd_name, F_OK) == 0)
 		return (cmd_name);

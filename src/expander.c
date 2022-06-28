@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:28:19 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/28 17:10:42 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/28 19:25:52 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,4 @@ void	expander(t_data *data, t_list *commands)
 		}
 		commands = commands->next;
 	}
-	// debug_list(data->commands);
 }
