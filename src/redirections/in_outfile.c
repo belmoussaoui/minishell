@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   in_outfile.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 19:35:10 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/27 20:54:31 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/28 13:33:04 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	handle_infile(t_cmd *cmd, char *infile)
 {
-	cmd->is_redirection = 1;
+	cmd->is_redirection = 0;
 	close (cmd->infile);
 	cmd->infile = open(infile, O_RDONLY);
 	if (cmd->infile == -1)

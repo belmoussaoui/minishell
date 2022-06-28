@@ -6,25 +6,32 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/28 12:05:47 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:42:25 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	run_child(t_data *data, char **env, t_list *current)
+void	dup_pipe(t_data *data, t_list *current)
 {
 	t_cmd	*content;
 
 	content = (t_cmd *)(current->content);
-	data->elements = content->elements;
 	if (current != data->commands)
+		dup2(content->infile, STDIN_FILENO);
+	else if (content->is_redirection == 0)
 		dup2(content->infile, STDIN_FILENO);
 	if (ft_lstlen(current) > 1)
 		dup2(((t_cmd *)(current->next->content))->outfile, STDOUT_FILENO);
-	else if (content->is_redirection)
+	else if (content->is_redirection == 1)
 		dup2(content->outfile, STDOUT_FILENO);
 	ft_close(current);
+}
+
+void	run_child(t_data *data, char **env, t_list *current)
+{
+	data->elements = ((t_cmd *)(current->content))->elements;
+	dup_pipe(data, current);
 	if (is_builtin(data->elements[0]))
 	{
 		run_builtin(data, data->elements[0]);
@@ -45,6 +52,7 @@ void	run_fork(t_data *data, t_list *current)
 {
 	int		pid;
 	char	**env_tab;
+
 	env_tab = env_list_to_tab(data->new_env);
 	pid = fork();
 	if (pid == -1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:42:11 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/27 20:51:31 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/28 13:06:28 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	redirections(t_list *commands)
 			i++;
 		}
 		clear_redirection(content->elements);
+		unlink(".heredoc");
 		commands = commands->next;
 	}
 }
