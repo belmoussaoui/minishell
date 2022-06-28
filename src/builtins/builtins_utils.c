@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/28 15:06:17 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:42:49 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	run_builtin(t_data *data, char *cmd_name)
 	else if (!ft_strncmp(cmd_name, "pwd", 4))
 		ft_pwd();
 	else if (!ft_strncmp(cmd_name, "exit", 5))
-		ft_exit();
+		ft_exit(data);
 }
 
 int	cmp_env(t_data *data, t_list **new_env, int arg_count)

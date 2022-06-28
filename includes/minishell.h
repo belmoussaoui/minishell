@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/28 14:30:24 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:22:43 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ bool	ft_echo(t_data *data);
 void	clear(t_data *data);
 void	*free_split(char **strings);
 
-void	ft_exit(void);
+void	ft_exit(t_data *data);
 
 // UTILS
 
