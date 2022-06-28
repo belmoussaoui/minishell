@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:08:51 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/28 12:05:52 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:24:12 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	is_only_space(char *line)
 	size_t	i;
 
 	i = 0;
-	while (line[i] == ' ')
+	while (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'
+		|| line[i] == '\v' || line[i] == '\f' || line[i] == '\r')
 		i++;
 	if (i == ft_strlen(line))
 		return (1);
