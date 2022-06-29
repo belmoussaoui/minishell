@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:08:51 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/29 16:18:49 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/29 17:44:35 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ char	*join_the_split(char **split)
 	char	*str;
 
 	i = 0;
-	str = malloc(1);
-	if (!str)
-		exit (EXIT_FAILURE);
-	str[0] = '\0';
+	str = "";
 	while (split[i])
 	{
 		copy = ft_strjoin(str, split[i]);
