@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:00:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/29 17:46:34 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:32:00 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char *argv[], char *envp[])
 		data.line = reader(&data);
 		if (!data.line || !syntax_error(&data) || is_only_space(data.line))
 			continue ;
+		printf("ici\n");
 		parser(&data, &data.commands, data.line);
 		expander(&data, data.commands);
 		execute(&data);
