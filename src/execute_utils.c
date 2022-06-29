@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:14:12 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/29 17:58:33 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:11:57 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	print_x_error(char *command, char *message, int code)
 	write(2, command, ft_strlen(command));
 	write(2, message, ft_strlen(message));
 	write(2, "\n", 1);
+	exit(code);
 }
 
 char	*path_finder(char **envp)
