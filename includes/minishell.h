@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/29 12:26:37 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 16:13:37 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ typedef struct s_data
 typedef struct s_cmd
 {
 	char	**elements;
-	int		is_redirection;
 	int		infile;
 	int		outfile;
+	int		is_redirection;
+	int		fd_redirection;
 }	t_cmd;
 
 // INIT

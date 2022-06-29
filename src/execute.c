@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/29 13:21:39 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 16:31:18 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	dup_pipe(t_data *data, t_list *current)
 	t_cmd	*content;
 
 	content = (t_cmd *)(current->content);
-	if (current != data->commands)
+	if (current != data->commands && content->is_redirection != 0)
 		dup2(content->infile, STDIN_FILENO);
 	else if (content->is_redirection == 0)
-		dup2(content->infile, STDIN_FILENO);
-	if (ft_lstlen(current) > 1)
+		dup2(content->fd_redirection, STDIN_FILENO);
+	if (ft_lstlen(current) > 1 && content->is_redirection != 1)
 		dup2(((t_cmd *)(current->next->content))->outfile, STDOUT_FILENO);
 	else if (content->is_redirection == 1)
-		dup2(content->outfile, STDOUT_FILENO);
+		dup2(content->fd_redirection, STDOUT_FILENO);
 	ft_close(current);
 }
 
@@ -84,24 +84,24 @@ void	end_execute(t_data *data)
 // Execute the list of commands.
 void	execute(t_data *data)
 {
-	t_list	*current;
+	t_list	*commands;
 
-	current = data->commands;
-	while (current)
+	commands = data->commands;
+	while (commands)
 	{
-		data->elements = ((t_cmd *)(current->content))->elements;
+		data->elements = ((t_cmd *)(commands->content))->elements;
 		if (!data->elements[0])
 			break ;
 		if (!is_parent_cmd(data->elements[0]))
 		{
 			run_signals(2);
-			run_fork(data, current);
+			run_fork(data, commands);
 		}
 		else if (ft_lstlen(data->commands) == 1)
 			run_builtin(data, data->elements[0]);
-		close(((t_cmd *)(current->content))->infile);
-		close(((t_cmd *)(current->content))->outfile);
-		current = current->next;
+		close(((t_cmd *)(commands->content))->infile);
+		close(((t_cmd *)(commands->content))->outfile);
+		commands = commands->next;
 	}
 	end_execute(data);
 }
