@@ -6,7 +6,7 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/29 19:28:38 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/29 22:15:25 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void	ft_env(t_list *env);
 bool	ft_cd(t_data *data);
 
 int		ft_pwd(void);
+char	*get_pwd(void);
+void	update_pwd(t_data *data, char *name);
 
 void	ft_unset(t_data *data, t_list **new_env);
 

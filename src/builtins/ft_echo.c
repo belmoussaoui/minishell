@@ -6,7 +6,7 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 18:20:33 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/29 21:05:53 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/29 21:13:14 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 bool	is_option_n(char *options)
 {
 	int	i;
+
 	i = 0;
 	if (options[0] != '-')
 		return (false);
