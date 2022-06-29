@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:14:12 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/29 18:33:33 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 19:55:50 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ char	*cmd_ok(char **paths, char *cmd_name)
 
 	if (!paths || !cmd_name[0])
 		return (NULL);
-	if (opendir(cmd_name))
+	if (opendir(cmd_name) && cmd_name[0] == '/')
 		print_x_error(cmd_name, ": is a directory", 126);
-	if (access(cmd_name, F_OK) == 0)
+	if (access(cmd_name, X_OK) == 0 && !opendir(cmd_name))
 		return (cmd_name);
 	while (*paths)
 	{
