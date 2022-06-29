@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/29 16:13:37 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/29 19:28:38 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	handle_outfile_append(t_cmd *cmd, char *outfile);
 void	expander(t_data *data, t_list *commands);
 
 // EXECUTION
+void	print_x_error(char *command, char *message, int code);
 void	execute(t_data *data);
 char	*path_finder(char **envp);
 char	*cmd_ok(char **paths, char *cmd_name);

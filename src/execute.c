@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/29 17:56:29 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/29 19:41:59 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void	dup_pipe(t_data *data, t_list *current)
 	t_cmd	*content;
 
 	content = (t_cmd *)(current->content);
+	if (content->fd_redirection == -2)
+	{
+		ft_close(current);
+		exit(g_error_code);
+	}
 	if (current != data->commands && content->is_redirection != 0)
 		dup2(content->infile, STDIN_FILENO);
 	else if (content->is_redirection == 0)
