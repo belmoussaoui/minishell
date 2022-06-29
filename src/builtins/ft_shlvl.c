@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:40:24 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/29 17:58:55 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:47:22 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ int	env_value_len(const char *env)
 	return (i);
 }
 
+void	check_env_name(char *env_name)
+{
+	if (!env_name)
+		exit(EXIT_FAILURE);
+}
+
 void	increment_shell_level(t_data *data, t_list *new_env)
 {
 	char	*env_name;
@@ -44,8 +50,7 @@ void	increment_shell_level(t_data *data, t_list *new_env)
 	char	*shell_level_value;
 
 	env_name = malloc(sizeof(char *) * env_value_len("SHLVL="));
-	if (!env_name)
-		exit (EXIT_FAILURE);
+	check_env_name(env_name);
 	shell_level_value = get_env(new_env, "SHLVL");
 	if (ft_strncmp(shell_level_value, "", ft_strlen(shell_level_value)) == 0)
 		return ;

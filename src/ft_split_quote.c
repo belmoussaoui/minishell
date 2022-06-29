@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:31:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/29 18:03:48 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:39:58 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	*free_split(char **strings)
 		i++;
 	}
 	free(strings);
-	exit (EXIT_FAILURE);
+	return (NULL);
 }
 
 char	**ft_split_quote(t_data *data, char const *s, char c)
