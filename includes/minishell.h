@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/28 18:22:43 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 12:26:37 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <fcntl.h>
 # include <termios.h>
 # include "../libft/libft.h"
+# include <errno.h>
+# include <dirent.h>
 
 int		g_error_code;
 

@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:14:12 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/28 12:05:41 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/28 20:19:06 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	print_x_error(char *command, char *message, int code)
+{
+	g_error_code = code;
+	write(2, command, ft_strlen(command));
+	write(2, message, ft_strlen(message));
+	write(2, "\n", 1);
+}
 
 char	*path_finder(char **envp)
 {
@@ -26,8 +34,10 @@ char	*cmd_ok(char **paths, char *cmd_name)
 	char	*temp;
 	char	*command;
 
-	if (!paths)
+	if (!paths || !cmd_name[0])
 		return (NULL);
+	if (opendir(cmd_name))
+		print_x_error(cmd_name, ": is a directory", 126);
 	if (access(cmd_name, F_OK) == 0)
 		return (cmd_name);
 	while (*paths)
@@ -35,11 +45,13 @@ char	*cmd_ok(char **paths, char *cmd_name)
 		temp = ft_strjoin(*paths, "/");
 		command = ft_strjoin(temp, cmd_name);
 		free(temp);
-		if (access(command, X_OK) == 0)
+		if (access(command, F_OK) == 0)
 			return (command);
 		free(command);
 		paths++;
 	}
+	if (cmd_name[0] == '/')
+		print_x_error(cmd_name, ": No such file or directory", 127);
 	return (NULL);
 }
 
