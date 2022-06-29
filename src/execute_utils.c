@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:14:12 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/28 20:19:06 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/29 17:58:33 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ char	*cmd_ok(char **paths, char *cmd_name)
 	{
 		temp = ft_strjoin(*paths, "/");
 		command = ft_strjoin(temp, cmd_name);
+		if (!command)
+			exit(EXIT_FAILURE);
 		free(temp);
 		if (access(command, F_OK) == 0)
 			return (command);

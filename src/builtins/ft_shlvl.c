@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:40:24 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/28 15:05:46 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 17:58:55 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	increment_shell_level(t_data *data, t_list *new_env)
 		{
 			shlvl = ft_itoa(data->shlvl);
 			new_env->content = ft_strjoin("SHLVL=", shlvl);
+			if (!new_env->content)
+				exit(EXIT_FAILURE);
 			free(shlvl);
 			break ;
 		}

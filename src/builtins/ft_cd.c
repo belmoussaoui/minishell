@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 19:02:25 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/21 20:36:27 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 17:55:00 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,11 @@ void	ft_strinsert(char **astr, char *str, size_t i, size_t n)
 	if (!astr || !*astr || !str)
 		return ;
 	dst = malloc((ft_strlen(*astr) + ft_strlen(str) + 1) * sizeof(char));
-	if (dst)
-	{
-		ft_strncpy(dst, *astr, i);
-		ft_strncpy(dst + i, str, n);
-		ft_strncpy(dst + i + (ft_strlen(str), n), *astr + i, ft_strlen(*astr));
-	}
+	if (dst == NULL)
+		exit(EXIT_FAILURE);
+	ft_strncpy(dst, *astr, i);
+	ft_strncpy(dst + i, str, n);
+	ft_strncpy(dst + i + (ft_strlen(str), n), *astr + i, ft_strlen(*astr));
 	free(*astr);
 	*astr = dst;
 }

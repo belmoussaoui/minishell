@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_quote.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
+/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:31:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/23 17:38:25 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/29 18:03:48 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	*free_split(char **strings)
 		i++;
 	}
 	free(strings);
-	return (NULL);
+	exit (EXIT_FAILURE);
 }
 
 char	**ft_split_quote(t_data *data, char const *s, char c)
@@ -72,11 +72,11 @@ char	**ft_split_quote(t_data *data, char const *s, char c)
 	char	**res;
 	int		current;
 
-	if (s == NULL)
+	if (!s)
 		return (NULL);
 	res = malloc(sizeof(char *) * (count_split(data, s, c) + 1));
-	if (res == NULL)
-		return (NULL);
+	if (!res)
+		exit (EXIT_FAILURE);
 	i = 0;
 	current = 0;
 	while (current < count_split(data, s, c))

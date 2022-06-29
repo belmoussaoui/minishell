@@ -6,19 +6,21 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:13:54 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/27 20:54:20 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/29 17:11:25 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_s_error(char c, char *s, int code)
+void	print_s_error(char c, char c2, char *s, int code)
 {
 	g_error_code = code;
 	write(2, "syntax error near unexpected token `", 36);
 	if (c)
 		write(2, &c, 1);
-	else
+	if (c2)
+		write(2, &c2, 1);
+	if (s)
 		write(2, s, ft_strlen(s));
 	write(2, "'\n", 2);
 }
@@ -35,14 +37,12 @@ void	check_wrong_seperators(t_data *data, char *line)
 		if (!check_quote(data, line[i]) && is_metachar(line[i]))
 		{
 			nb_pipe++;
-			if (nb_pipe == 3 || (nb_pipe == 2 && !is_metachar(line[i])))
+			if (nb_pipe == 3 || (nb_pipe == 2 && !is_metachar(line[i - 1])))
 			{
-				print_s_error(line[i], 0, 285);
-				break ;
-			}
-			else if (line[i] == '|' && i != 0 && line[i - 1] == '<')
-			{
-				print_s_error(line[i], 0, 285);
+				if (is_metachar(line[i + 1]))
+					print_s_error(line[i], line[i + 1], 0, 258);
+				else
+					print_s_error(line[i], 0, 0, 258);
 				break ;
 			}
 		}
@@ -65,12 +65,12 @@ void	begin_end_with_separator(char *line)
 		exit(EXIT_FAILURE);
 	str = join_the_split(split);
 	if (line[0] == '|')
-		print_s_error(line[0], 0, 285);
+		print_s_error(line[0], 0, 0, 258);
 	max = ft_strlen(str) - 1;
 	if (str[max] == '<' || str[max] == '>')
-		print_s_error(0, "newline", 285);
+		print_s_error(0, 0, "newline", 258);
 	else if (str[max - 1] && (str[max - 1] == '<' || str[max - 1] == '>'))
-		print_s_error(str[max], 0, 285);
+		print_s_error(str[max], 0, 0, 258);
 	free_split(split);
 }
 
@@ -82,10 +82,10 @@ int	syntax_error(t_data *data)
 	g_error_code = 0;
 	check_wrong_seperators(data, data->line);
 	if (check_quote(data, 'c'))
-		werror("syntax error near unexpected token `quote'", 285);
+		werror("syntax error near unexpected token `quote'", 258);
 	clear_quote(data);
 	begin_end_with_separator(data->line);
-	if (g_error_code == 285)
+	if (g_error_code == 258)
 		return (0);
 	g_error_code = save;
 	return (1);
