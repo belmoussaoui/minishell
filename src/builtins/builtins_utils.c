@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:04 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/29 18:35:41 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 19:09:23 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	cmp_env(t_data *data, t_list **new_env, int arg_count)
 		value = ft_split((ft_lstget(*new_env, i))->content, '=');
 		if (!value)
 			exit(EXIT_FAILURE);
-		if (!ft_strncmp(elem_split[0], value[0], ft_strlen(elem_split[0])))
+		if (!ft_strncmp(elem_split[0], value[0], ft_strlen(value[0])))
 			break ;
 		free_split(value);
 		i++;

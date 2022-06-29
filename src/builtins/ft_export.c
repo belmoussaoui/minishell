@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 16:45:10 by mliban-s          #+#    #+#             */
-/*   Updated: 2022/06/28 15:07:35 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 19:13:02 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	ft_export(t_data *data, t_list **new_env)
 	int		arg_count;
 
 	arg_count = 1;
+	if (!data->elements[arg_count])
+		ft_env(*new_env);
 	while (data->elements[arg_count])
 	{
 		i = cmp_env(data, new_env, arg_count);
