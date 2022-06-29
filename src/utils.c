@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:08:51 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/28 16:24:12 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/29 16:18:49 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	ft_close(t_list *commands)
 	{
 		close(((t_cmd *)(copy->content))->infile);
 		close(((t_cmd *)(copy->content))->outfile);
+		if (((t_cmd *)(copy->content))->is_redirection != -1)
+			close(((t_cmd *)(copy->content))->fd_redirection);
 		copy = copy->next;
 	}
 }
