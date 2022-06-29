@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 18:05:14 by mliban-s          #+#    #+#             */
-/*   Updated: 2022/06/29 12:26:41 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 16:25:44 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	restore_prompt(int sig)
 void	ctrl_c(int sig)
 {
 	g_error_code = 130;
-	write(1, "", 1);
+	write(1, "^C\n", 3);
 	(void)sig;
 }
 
 void	back_slash(int sig)
 {
 	g_error_code = 131;
-	printf("Quit : 3\n");
+	printf("^\\Quit : 3\n");
 	(void)sig;
 }
 
