@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/29 17:51:50 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/29 17:56:29 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ void	dup_pipe(t_data *data, t_list *current)
 	ft_close(current);
 }
 
-void	run_child(t_data *data, char **env, t_list *current)
+void	run_child(t_data *data, t_list *current)
 {
+	char	**env;
+
+	env = env_list_to_tab(data->new_env);
 	data->elements = ((t_cmd *)(current->content))->elements;
 	dup_pipe(data, current);
 	if (is_builtin(data->elements[0]))
@@ -54,14 +57,12 @@ void	run_child(t_data *data, char **env, t_list *current)
 void	run_fork(t_data *data, t_list *current)
 {
 	int		pid;
-	char	**env_tab;
 
-	env_tab = env_list_to_tab(data->new_env);
 	pid = fork();
 	if (pid == -1)
 		werror_exit("can't fork, error occured", 127);
 	else if (pid == 0)
-		run_child(data, env_tab, current);
+		run_child(data, current);
 }
 
 void	end_execute(t_data *data)
