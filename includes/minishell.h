@@ -6,7 +6,7 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/29 22:15:25 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/29 22:34:24 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	werror(char *message, int code);
 void	werror_exit(char *message, int code);
 int		ft_strcmp(char *s1, char *s2);
 char	*join_the_split(char **split);
-char	**ft_split_quote(t_data *data, char const *s, char c);
+char	**ft_split_quote(t_data *data, char const *s);
 char	**ft_split_redirections(t_data *data, char **s);
 int		is_parent_cmd(char *cmd_name);
 

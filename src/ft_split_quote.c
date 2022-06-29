@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_quote.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:31:20 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/29 18:39:58 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 22:33:58 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static	int	count_split(t_data *data, char const *s, char c)
+static int	ft_isspace(char c)
+{
+	return (c == '\t' || c == '\n' || c == '\v'
+		|| c == '\f' || c == '\r' || c == ' ');
+}
+
+static	int	count_split(t_data *data, char const *s)
 {
 	int	count;
 	int	i;
@@ -23,12 +29,12 @@ static	int	count_split(t_data *data, char const *s, char c)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] != c && trigger)
+		if (!ft_isspace(s[i]) && trigger)
 		{
 			count++;
 			trigger = 0;
 		}
-		if (!check_quote(data, s[i]) && s[i] == c && !trigger)
+		if (!check_quote(data, s[i]) && ft_isspace(s[i]) && !trigger)
 			trigger = 1;
 		i++;
 	}
@@ -36,14 +42,14 @@ static	int	count_split(t_data *data, char const *s, char c)
 	return (count);
 }
 
-static	int	count_char(t_data *data, char const *s, char c)
+static	int	count_char(t_data *data, char const *s)
 {
 	int	i;
 	int	check;
 
 	i = 0;
 	check = 0;
-	while (s[i] && (s[i] != c || check == 1))
+	while (s[i] && (!ft_isspace(s[i]) || check == 1))
 	{
 		check = check_quote(data, s[i]);
 		i++;
@@ -66,7 +72,7 @@ void	*free_split(char **strings)
 	return (NULL);
 }
 
-char	**ft_split_quote(t_data *data, char const *s, char c)
+char	**ft_split_quote(t_data *data, char const *s)
 {
 	int		i;
 	char	**res;
@@ -74,20 +80,20 @@ char	**ft_split_quote(t_data *data, char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	res = malloc(sizeof(char *) * (count_split(data, s, c) + 1));
+	res = malloc(sizeof(char *) * (count_split(data, s) + 1));
 	if (!res)
 		exit (EXIT_FAILURE);
 	i = 0;
 	current = 0;
-	while (current < count_split(data, s, c))
+	while (current < count_split(data, s))
 	{
-		while (s[i] && s[i] == c)
+		while (s[i] && ft_isspace(s[i]))
 			i++;
-		res[current] = malloc(sizeof(char) * (count_char(data, s + i, c) + 1));
+		res[current] = malloc(sizeof(char) * (count_char(data, s + i) + 1));
 		if (res[current] == NULL)
 			return (free_split(res));
-		ft_strlcpy(res[current], s + i, count_char(data, s + i, c) + 1);
-		i += count_char(data, s + i, c);
+		ft_strlcpy(res[current], s + i, count_char(data, s + i) + 1);
+		i += count_char(data, s + i);
 		current++;
 	}
 	res[current] = NULL;
