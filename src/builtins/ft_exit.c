@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 19:37:32 by mliban-s          #+#    #+#             */
-/*   Updated: 2022/06/29 12:33:53 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 13:23:49 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	exit_code(char *message, int code)
 
 void	ft_exit(t_data *data)
 {
-	int arg_count;
+	int	arg_count;
 
 	arg_count = 0;
 	while (data->elements[arg_count])

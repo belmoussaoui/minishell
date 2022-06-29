@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/29 12:30:57 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 13:21:39 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ void	end_execute(t_data *data)
 	}
 	if (WIFEXITED(g_error_code))
 		g_error_code = WEXITSTATUS(g_error_code);
-	if (WIFSIGNALED(g_error_code))
+	else if (WIFSIGNALED(g_error_code))
 	{
 		g_error_code = WTERMSIG(g_error_code);
-		// if (g_error_code != 131)
-		// 	g_error_code += 128;
+		if (g_error_code != 131)
+			g_error_code += 128;
 	}
 }
 
