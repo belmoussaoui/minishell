@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/29 16:31:18 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/29 17:51:50 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ void	run_child(t_data *data, char **env, t_list *current)
 		data->paths = ft_split(path_finder(env), ':');
 		data->cmd = cmd_ok(data->paths, data->elements[0]);
 		if (!data->cmd)
-			werror_exit("command not found", 127);
+		{
+			write(2, data->elements[0], ft_strlen(data->elements[0]));
+			werror_exit(": command not found", 127);
+		}
 		if (execve(data->cmd, data->elements, env) == -1)
 			werror_exit("can't execve, error occured", 126);
 	}

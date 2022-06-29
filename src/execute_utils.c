@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:14:12 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/28 20:19:06 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/29 17:53:05 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	print_x_error(char *command, char *message, int code)
 	write(2, command, ft_strlen(command));
 	write(2, message, ft_strlen(message));
 	write(2, "\n", 1);
+	exit(code);
 }
 
 char	*path_finder(char **envp)
