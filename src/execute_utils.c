@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:14:12 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/29 19:55:50 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/30 14:07:16 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ char	*path_finder(char **envp)
 	return (*envp + 5);
 }
 
+void	write_permission(char *cmd_name)
+{
+	write(2, cmd_name, ft_strlen(cmd_name));
+	werror_exit(": Permission denied", 126);
+}
+
 char	*cmd_ok(char **paths, char *cmd_name)
 {
 	char	*temp;
@@ -41,12 +47,13 @@ char	*cmd_ok(char **paths, char *cmd_name)
 		print_x_error(cmd_name, ": is a directory", 126);
 	if (access(cmd_name, X_OK) == 0 && !opendir(cmd_name))
 		return (cmd_name);
+	else if (access(cmd_name, X_OK) == -1 && errno == EACCES)
+		write_permission(cmd_name);
 	while (*paths)
 	{
 		temp = ft_strjoin(*paths, "/");
 		command = ft_strjoin(temp, cmd_name);
-		if (!command)
-			exit(EXIT_FAILURE);
+		check_command(command);
 		free(temp);
 		if (access(command, F_OK) == 0)
 			return (command);

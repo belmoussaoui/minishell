@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 17:02:23 by bel-mous          #+#    #+#              #
-#    Updated: 2022/06/29 17:32:32 by bel-mous         ###   ########.fr        #
+#    Updated: 2022/06/30 14:05:22 by lrondia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC = 	src/main.c\
 		src/expander.c\
 		src/execute.c\
 		src/execute_utils.c\
+		src/execute_check.c\
 		src/utils.c\
 		src/clear.c\
 		src/debug.c\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:47:26 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/30 05:55:35 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:36:04 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	write_stdin(char *stop, int file_id)
 
 void	handle_heredoc(t_cmd *cmd, char *stop)
 {
-	cmd->is_redirection = 0;
-	cmd->fd_redirection = open(".heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (cmd->fd_redirection == -1)
+	cmd->is_infile = 0;
+	cmd->fd_infile = open(".heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (cmd->fd_infile == -1)
 		werror_exit("can't open, error occured", 1);
-	write_stdin(stop, cmd->fd_redirection);
-	close (cmd->fd_redirection);
-	cmd->fd_redirection = open(".heredoc", O_RDONLY, 0644);
-	if (cmd->fd_redirection == -1)
+	write_stdin(stop, cmd->fd_infile);
+	close (cmd->fd_infile);
+	cmd->fd_infile = open(".heredoc", O_RDONLY, 0644);
+	if (cmd->fd_infile == -1)
 		werror_exit("can't open, error occured", 1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:02:14 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/29 19:41:59 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/30 13:24:34 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ void	dup_pipe(t_data *data, t_list *current)
 	t_cmd	*content;
 
 	content = (t_cmd *)(current->content);
-	if (content->fd_redirection == -2)
+	if (content->fd_infile == -2 || content->fd_outfile == -2)
 	{
 		ft_close(current);
 		exit(g_error_code);
 	}
-	if (current != data->commands && content->is_redirection != 0)
+	if (current != data->commands && content->is_infile != 0)
 		dup2(content->infile, STDIN_FILENO);
-	else if (content->is_redirection == 0)
-		dup2(content->fd_redirection, STDIN_FILENO);
-	if (ft_lstlen(current) > 1 && content->is_redirection != 1)
+	else if (content->is_infile == 0)
+		dup2(content->fd_infile, STDIN_FILENO);
+	if (ft_lstlen(current) > 1 && content->is_outfile != 1)
 		dup2(((t_cmd *)(current->next->content))->outfile, STDOUT_FILENO);
-	else if (content->is_redirection == 1)
-		dup2(content->fd_redirection, STDOUT_FILENO);
+	else if (content->is_outfile == 1)
+		dup2(content->fd_outfile, STDOUT_FILENO);
 	ft_close(current);
 }
 

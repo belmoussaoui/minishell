@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/29 22:34:24 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/30 14:05:05 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ typedef struct s_cmd
 	char	**elements;
 	int		infile;
 	int		outfile;
-	int		is_redirection;
-	int		fd_redirection;
+	int		is_infile;
+	int		is_outfile;
+	int		fd_infile;
+	int		fd_outfile;
 }	t_cmd;
 
 // INIT
@@ -81,6 +83,7 @@ int		is_builtin(char *cmd_name);
 int		cmp_env(t_data *data, t_list **new_env, int arg_count);
 char	*get_env(t_list *env, char *name);
 void	add_env(t_data *data, t_list **env, char *str);
+void	check_command(char *command);
 
 // BUILTINS
 void	ft_env(t_list *env);
