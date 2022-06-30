@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 03:28:19 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/29 18:10:05 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/30 16:35:10 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,14 @@ void	expands_element(t_data *data, char **element)
 		check_quote(data, str[i]);
 		if (str[i] == '$' && data->s_quote == 0)
 			i += expands_variable(data, &new, str + i + 1);
-		if ((str[i] != '"' || data->s_quote)
+		else if ((str[i] != '"' || data->s_quote)
 			&& (str[i] != '\'' || data->d_quote))
+		{
 			ft_lstadd_back(&new, ft_lstnew(str + i));
-		i++;
+			i++;
+		}
+		else
+			i++;
 	}
 	remplace_element(new, element);
 	ft_lstclear(&new, NULL);
