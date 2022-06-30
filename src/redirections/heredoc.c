@@ -6,7 +6,7 @@
 /*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:47:26 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/30 01:14:22 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/30 05:55:35 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	clear_redirection(char **elements)
 				i++;
 			}
 			elements[i] = NULL;
-			break ;
+			clear_redirection(elements);
 		}
 		i++;
 	}
