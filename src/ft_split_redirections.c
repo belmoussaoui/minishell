@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 17:21:31 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/27 16:19:49 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/30 12:20:36 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	count_split(t_data *data, char const *s)
 {
-	int	count;
 	int	i;
+	int	count;
 	int	trigger;
 
+	i = 0;
 	count = 0;
 	trigger = 1;
-	i = 0;
 	while (s[i])
 	{
 		if (trigger && s[i] != '<' && s[i] != '>')

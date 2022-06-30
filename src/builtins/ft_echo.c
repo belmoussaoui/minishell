@@ -3,31 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 18:20:33 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/21 20:38:49 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 21:13:14 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	ft_echo(t_data *data)
+bool	is_option_n(char *options)
 {
 	int	i;
 
+	i = 0;
+	if (options[0] != '-')
+		return (false);
+	while (options[i])
+	{
+		if (options[i] == 'n')
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
+bool	ft_echo(t_data *data)
+{
+	int	i;
+	int	is_options_mode;
+
+	is_options_mode = 0;
 	if (!data->elements || ft_strcmp("echo", *data->elements))
 		return (true);
 	i = 1;
 	while (data->elements[i])
 	{
-		if (ft_strcmp(data->elements[1], "-n") || i > 1)
+		if (!is_option_n(data->elements[i]) || is_options_mode)
+		{
 			printf("%s", data->elements[i]);
-		if (data->elements[i + 1] && ft_strcmp(data->elements[i], "-n"))
+			is_options_mode = 1;
+		}
+		if (data->elements[i + 1] && !is_option_n(data->elements[i]))
 			printf(" ");
 		i++;
 	}
-	if (ft_strcmp(data->elements[1], "-n"))
+	if (!is_option_n(data->elements[1]))
 		printf("\n");
 	return (false);
 }

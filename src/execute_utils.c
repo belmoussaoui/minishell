@@ -6,7 +6,7 @@
 /*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:14:12 by lrondia           #+#    #+#             */
-/*   Updated: 2022/06/29 18:33:33 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/30 14:19:30 by hakermad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ char	*path_finder(char **envp)
 	return (*envp + 5);
 }
 
+void	write_permission(char *cmd_name)
+{
+	write(2, cmd_name, ft_strlen(cmd_name));
+	werror_exit(": Permission denied", 126);
+}
+
 char	*cmd_ok(char **paths, char *cmd_name)
 {
 	char	*temp;
@@ -37,16 +43,17 @@ char	*cmd_ok(char **paths, char *cmd_name)
 
 	if (!paths || !cmd_name[0])
 		return (NULL);
-	if (opendir(cmd_name))
+	if (opendir(cmd_name) && cmd_name[0] == '/')
 		print_x_error(cmd_name, ": is a directory", 126);
-	if (access(cmd_name, F_OK) == 0)
+	if (access(cmd_name, X_OK) == 0 && !opendir(cmd_name))
 		return (cmd_name);
+	else if (access(cmd_name, X_OK) == -1 && errno == EACCES)
+		write_permission(cmd_name);
 	while (*paths)
 	{
 		temp = ft_strjoin(*paths, "/");
 		command = ft_strjoin(temp, cmd_name);
-		if (!command)
-			exit(EXIT_FAILURE);
+		check_command(command);
 		free(temp);
 		if (access(command, F_OK) == 0)
 			return (command);

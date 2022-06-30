@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakermad <hakermad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 19:02:25 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/29 17:55:00 by hakermad         ###   ########.fr       */
+/*   Updated: 2022/06/29 22:15:08 by bel-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ bool	ft_cd(t_data *data)
 {
 	char	*path;
 
+	update_pwd(data, "OLDPWD=");
 	path = get_path(data);
 	if (!path)
 		return (true);
@@ -91,6 +92,7 @@ bool	ft_cd(t_data *data)
 		free(path);
 		return (true);
 	}
+	update_pwd(data, "PWD=");
 	free (path);
 	return (false);
 }

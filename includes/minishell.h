@@ -6,7 +6,7 @@
 /*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:28 by bel-mous          #+#    #+#             */
-/*   Updated: 2022/06/29 16:13:37 by lrondia          ###   ########.fr       */
+/*   Updated: 2022/06/30 14:05:05 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ typedef struct s_cmd
 	char	**elements;
 	int		infile;
 	int		outfile;
-	int		is_redirection;
-	int		fd_redirection;
+	int		is_infile;
+	int		is_outfile;
+	int		fd_infile;
+	int		fd_outfile;
 }	t_cmd;
 
 // INIT
@@ -71,6 +73,7 @@ void	handle_outfile_append(t_cmd *cmd, char *outfile);
 void	expander(t_data *data, t_list *commands);
 
 // EXECUTION
+void	print_x_error(char *command, char *message, int code);
 void	execute(t_data *data);
 char	*path_finder(char **envp);
 char	*cmd_ok(char **paths, char *cmd_name);
@@ -80,6 +83,7 @@ int		is_builtin(char *cmd_name);
 int		cmp_env(t_data *data, t_list **new_env, int arg_count);
 char	*get_env(t_list *env, char *name);
 void	add_env(t_data *data, t_list **env, char *str);
+void	check_command(char *command);
 
 // BUILTINS
 void	ft_env(t_list *env);
@@ -87,6 +91,8 @@ void	ft_env(t_list *env);
 bool	ft_cd(t_data *data);
 
 int		ft_pwd(void);
+char	*get_pwd(void);
+void	update_pwd(t_data *data, char *name);
 
 void	ft_unset(t_data *data, t_list **new_env);
 
@@ -115,7 +121,7 @@ void	werror(char *message, int code);
 void	werror_exit(char *message, int code);
 int		ft_strcmp(char *s1, char *s2);
 char	*join_the_split(char **split);
-char	**ft_split_quote(t_data *data, char const *s, char c);
+char	**ft_split_quote(t_data *data, char const *s);
 char	**ft_split_redirections(t_data *data, char **s);
 int		is_parent_cmd(char *cmd_name);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrondia <lrondia@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:08:51 by hakermad          #+#    #+#             */
-/*   Updated: 2022/06/29 17:44:35 by bel-mous         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:40:44 by lrondia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,10 @@ void	ft_close(t_list *commands)
 	{
 		close(((t_cmd *)(copy->content))->infile);
 		close(((t_cmd *)(copy->content))->outfile);
-		if (((t_cmd *)(copy->content))->is_redirection != -1)
-			close(((t_cmd *)(copy->content))->fd_redirection);
+		if (((t_cmd *)(copy->content))->is_infile != -1)
+			close(((t_cmd *)(copy->content))->fd_infile);
+		if (((t_cmd *)(copy->content))->is_outfile != -1)
+			close(((t_cmd *)(copy->content))->fd_outfile);
 		copy = copy->next;
 	}
 }
